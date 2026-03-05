@@ -60,20 +60,20 @@
         (<i>input, outcome</i>) đã biết từ trước. Cặp dữ liệu này còn được gọi là (<i>data, label</i>), tức (<i>dữ
             liệu, nhãn</i>).
         Supervised learning là nhóm phổ biến nhất trong các thuật toán Machine Learning.</p>
-    <p>Một cách toán học, Supervised learning là khi chúng ra có một tập hợp biến đầu vào X = {x<sub>1</sub>,
-        x<sub>2</sub>,...,x<sub>n</sub>} và một tập hợp nhãn tương ứng
-        Y = {y<sub>1</sub>, y<sub>2</sub>,...,y<sub>n</sub>}, trong đó
-        x<sub>i</sub>, y<sub>i</sub> là các vector. Các cặp dữ liệu biết trước (x<sub>i</sub>, y<sub>i</sub>)
-        <span>&#8712;</span>
+    <p>Một cách toán học, Supervised learning là khi chúng ra có một tập hợp biến đầu vào <b>X = {x<sub>1</sub>,
+            x<sub>2</sub>,...,x<sub>n</sub>}</b> và một tập hợp nhãn tương ứng
+        <b>Y = {y<sub>1</sub>, y<sub>2</sub>,...,y<sub>n</sub>}</b>, trong đó
+        <b> x<sub>i</sub>, y<sub>i</sub> </b>là các vector. Các cặp dữ liệu biết trước <b>(x<sub>i</sub>, y<sub>i</sub>)
+            <span>&#8712;</span> X x Y</b>
         được gọi là tập <i>training data</i> (dữ liệu huấn luyện). Từ tập training data này, chúng ta cần tạo ra một hàm
         số ánh xạ mỗi phần tử từ tập X
         sang một phần tử (xấp xỉ) tương ứng của tập Y:
     </p>
     <p>
-        y<sub>i</sub> &#8776; f(x<sub>1</sub>), ∀i=1,2,...,N
+        <b>y<sub>i</sub> &#8776; f(x<sub>1</sub>), ∀i=1,2,...,N</b>
     </p>
     <p>Mục đích là xấp xỉ hàm số f thật tốt để khi có một dữ liệu <b>x</b> mới, chúng ta có thể tính được nhãn tương
-        ứng của nó <b>y</b>=f(x)</p>
+        ứng của nó <b>y=f(x)</b>.</p>
     <p><b>Ví dụ 1:</b> trong nhận dạng chữ viết tay, ta có ảnh của hàng nghìn ví dụ của mỗi chữ số được viết bởi nhiều
         người
         khác nhau. Chúng ta đưa các bức ảnh này vào trong một thuật toán và chỉ cho nó biết mỗi bức ảnh tương ứng với
