@@ -1,0 +1,39 @@
+h1 {
+    color: red;
+}
+
+h2 {
+    color: blue;
+}
+
+h3 {
+    color: green;
+}
+
+p {
+    color: purple;
+}
+
+.title {
+    color: orange;
+}
+
+.section {
+    color: teal;
+}
+
+.highlight {
+    color: brown;
+}
+
+.big {
+    color: pink;
+}
+
+#main {
+    color: navy;
+}
+
+#special {
+    color: darkgoldenrod;
+}
