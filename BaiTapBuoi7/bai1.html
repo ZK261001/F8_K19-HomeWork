@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Theme */
+        input[id="light"]:checked~label[for="light"] {
+            background-color: #fff8cc;
+            color: #8b5e00;
+        }
+
+        input[id="light"]:checked~div p.light-theme {
+            background-color: #fff8cc;
+            color: #111827;
+        }
+
+        input[id="dark"]:checked~label[for="dark"] {
+            background-color: #111827;
+            color: #f9fafb;
+        }
+
+        input[id="dark"]:checked~div .dark-theme {
+            background-color: #111827;
+            color: #f9fafb;
+        }
+
+        /* Color */
+        input[id="red"]:checked~label[for="red"] {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        input[id="red"]:checked~div div:nth-child(3) p {
+            background-color: #fee2e2;
+            color: #7f1d1d;
+        }
+
+        input[id="blue"]:checked~label[for="blue"] {
+            background-color: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        input[id="blue"]:checked~div div:nth-child(4) p {
+            background-color: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        input[id="green"]:checked~label[for="green"] {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        input[id="green"]:checked~div div:nth-child(5) p {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        /* Language */
+        input[id="VI"]:checked~label[for="VI"] {
+            background-color: #bbf7d0;
+            color: #166534;
+        }
+
+        input[id="VI"]:checked~div div:nth-child(6) p {
+            color: #166534;
+        }
+
+        input[id="EN"]:checked~label[for="EN"] {
+            background-color: #bfdbfe;
+            color: #1d4ed8;
+        }
+
+        input[id="EN"]:checked~div div:nth-child(7) p {
+            color: #1d4ed8;
+        }
+
+        /* Options */
+        input[id="advanced"]:checked~label[for="advanced"] {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        input[id="advanced"]:checked~div div:nth-child(8) p {
+            background-color: #fef3c7;
+            color: #92400e
+        }
+
+        input[id="eco"]:checked~label[for="eco"] {
+            background-color: #bbf7d0;
+            color: #15803d;
+        }
+
+        input[id="eco"]:checked~div div:nth-child(9) p {
+            background-color: #bbf7d0;
+            color: #166534
+        }
+
+        input[id="warning"]:checked~label[for="warning"] {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        input[id="warning"]:checked~div div:nth-child(10) p {
+            background-color: #fee2e2;
+            color: #b91c1c
+        }
+
+        /* Common */
+
+        .panel {
+            background-color: #f9fafb;
+            color: #111827;
+        }
+
+        .header {
+            background-color: #f98000;
+            color: #f9fafb;
+        }
+
+        /* groupTitle */
+        .panel p {
+            background-color: #e5e7eb;
+            color: #111827
+        }
+
+        .labelDefault {
+            background-color: #eef2ff;
+            color: #4b5563;
+        }
+
+        .contentArea {
+            background-color: #f3f4f6;
+            color: #111827;
+        }
+
+        /* contentDefault */
+        .contentArea p {
+            background-color: #ffffff;
+            color: #9ca3af
+        }
+    </style>
+</head>
+
+<body>
+    <div class="panel">
+        <h1 class="header">Trung tâm cấu hình giao diện (Demo)</h1>
+        <!-- Theme Selection -->
+        <p>Chọn giao diện (Theme):</p>
+        <input type="radio" name="theme" id="light" checked>
+        <label class="labelDefault" for="light">Light</label>
+        <input type="radio" name="theme" id="dark">
+        <label class="labelDefault" for="dark">Dark</label>
+
+        <!-- Primary Color Selection -->
+        <p>Chọn màu chủ đạo (Color):</p>
+        <input type="radio" id="red" name="color" checked>
+        <label class="labelDefault" for="red">Red</label>
+        <input type="radio" id="blue" name="color">
+        <label class="labelDefault" for="blue">Blue</label>
+        <input type="radio" id="green" name="color">
+        <label class="labelDefault" for="green">Green</label>
+
+        <!-- Language Selection -->
+        <p>Chọn ngôn ngữ (Language):</p>
+        <input type="radio" id="VI" name="language" checked>
+        <label class="labelDefault" for="VI">VI</label>
+        <input type="radio" id="EN" name="language">
+        <label class="labelDefault" for="EN">EN</label>
+
+        <!-- Other Options -->
+        <p>Tùy chọn bổ sung (Options - Checkbox):</p>
+        <input type="checkbox" name="option" id="advanced">
+        <label class="labelDefault" for="advanced">Hiển thị mô tả nâng cao</label>
+        <input type="checkbox" name="option" id="eco">
+        <label class="labelDefault" for="eco">Bật chế độ eco</label>
+        <input type="checkbox" name="option" id="warning">
+        <label class="labelDefault" for="warning">Hiển thị cảnh báo quan trọng</label>
+
+        <div class="contentArea">
+            <div>
+                <p class="light-theme">Theme Light: Giao diện sáng chữ đen.</p>
+            </div>
+            <div>
+                <p class="dark-theme">Theme Dark: Giao diện tối chữ sáng.</p>
+            </div>
+            <div>
+                <p>Màu Red: được nhấn mạnh khi chọn Red.</p>
+            </div>
+            <div>
+                <p>Màu Blue: được nhấn mạnh khi chọn Blue.</p>
+            </div>
+            <div>
+                <p>Màu Green: được nhấn mạnh khi chọn Green.</p>
+            </div>
+            <div>
+                <p>[VI] Xin chào bạn! Khi chọn VI, dòng này rõ hơn. </p>
+            </div>
+            <div>
+                <p>[EN] Hello, world! Khi chọn EN, dòng này rõ hơn. </p>
+            </div>
+            <div>
+                <p>Mô tả nâng cao: giải thích kĩ hơn về các lựa chọn đang ảnh hưởng giao diện. </p>
+            </div>
+            <div>
+                <p>Chế độ Eco: mô phỏng trạng thái tiết kiệm tài nguyên của giao diện.</p>
+            </div>
+            <div>
+                <p>Cảnh báo quan trọng: khu vực dùng để nhấn mạnh thông tin hệ thống.</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
