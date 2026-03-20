@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .open-btn {
+            background: #3b82f6;
+            color: #ffffff;
+            padding: 8px 10px;
+        }
+
+        .overlay {
+            padding-top: 30vh;
+            margin-top: 20px;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal {
+            width: 200px;
+            height: 200px;
+            background-color: #ffffff;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .text {
+            color: #333333;
+            margin-top: 60px;
+        }
+
+        .close-btn {
+            background-color: #ef4444;
+            color: #ffffff;
+            padding: 8px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" id="modal-toggle">
+    <label for="modal-toggle" class="open-btn">Mở modal</label>
+    <div class="overlay">
+        <div class="modal">
+            <p class="text">Đây là nội dung thông báo</p>
+            <label for="modal-toggle" class="close-btn">Đóng modal</label>
+        </div>
+    </div>
+</body>
+
+</html>
