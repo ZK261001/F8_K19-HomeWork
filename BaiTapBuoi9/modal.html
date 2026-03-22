@@ -21,11 +21,10 @@
         }
 
         .modal {
-            display: none;
             width: 200px;
             height: 200px;
             background-color: #ffffff;
-            margin: -80vh auto;
+            margin: 0 auto;
             padding: 20px;
         }
 
@@ -40,17 +39,7 @@
             padding: 8px 10px;
         }
 
-        .sub-modal {
-            display: block;
-            height: 100px;
-            background-color: red;
-        }
-
         #modal-toggle:checked~.overlay {
-            display: block;
-        }
-
-        #modal-toggle:checked~.modal {
             display: block;
         }
     </style>
@@ -60,11 +49,11 @@
     <input type="checkbox" id="modal-toggle" hidden>
     <label for="modal-toggle" class="open-btn">Mở modal</label>
     <label class="overlay" for="modal-toggle">
+        <div class="modal">
+            <p class="text">Đây là nội dung thông báo</p>
+            <label for="modal-toggle" class="close-btn">Đóng modal</label>
+        </div>
     </label>
-    <div class="modal">
-        <p class="text">Đây là nội dung thông báo</p>
-        <label for="modal-toggle" class="close-btn">Đóng modal</label>
-    </div>
 </body>
 
 </html>

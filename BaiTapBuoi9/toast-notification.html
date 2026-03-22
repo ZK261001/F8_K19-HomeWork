@@ -6,21 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        /* Thêm padding cho body  */
         body {
             padding-top: 50px;
-            ;
         }
 
+        /* Định dạng cho nút mở */
         .open-btn {
             background-color: black;
             color: white;
             padding: 10px 12px;
         }
 
+        /* Ẩn thông báo mỗi khi load lại trang */
         .toast {
             display: none
         }
 
+        /* Định dạng thông báo khi được hiển thị */
         #toast-toggle:checked~.toast {
             display: inline-block;
             background-color: green;
@@ -28,12 +31,14 @@
             margin-left: 20px;
         }
 
+        /* Định dạng cho chữ trong thông báo */
         .toast-msg {
             display: inline-block;
             color: white;
             font-weight: bold;
         }
 
+        /* Định dạng cho nút đóng */
         .close-btn {
             font-size: 12px;
             background-color: #ccc;
