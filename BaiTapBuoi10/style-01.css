@@ -88,7 +88,7 @@ body {
     position: absolute;
     top: 0.5rem;
     right: 1rem;
-    font-size: 1rem;
+    font-size: 2rem;
 }
 
 .close-btn:hover {
@@ -206,7 +206,6 @@ body {
 
 .checkbox-item span {
     display: inline-block;
-    vertical-align: middle;
     font-size: 0.9rem;
     color: #334155;
 }
