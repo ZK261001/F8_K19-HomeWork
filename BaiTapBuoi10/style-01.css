@@ -65,7 +65,7 @@ body {
     margin-left: -17rem;
     padding: 2rem;
     width: 34rem;
-    max-height: 48rem;
+    /* max-height: 48rem; */
     overflow: auto;
     border-radius: 0.75rem;
     z-index: 200;
@@ -76,7 +76,7 @@ body {
 }
 
 #modal-toggle:checked ~ .modal {
-    display: block;
+    display: inline-block;
 }
 
 .model-header {
