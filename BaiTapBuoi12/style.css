@@ -9,17 +9,14 @@ body {
     font-family: Roboto, sans-serif;
 }
 
-.container {
-    width: 1170px;
-    margin: 16px auto;
-    max-width: calc(100% - 48px);
-}
-
 .service-cards {
     display: flex;
     /* justify-content: center; */
     gap: 20px;
     flex-wrap: wrap;
+    width: 1170px;
+    margin: 16px auto;
+    max-width: calc(100% - 48px);
 }
 
 .card {
