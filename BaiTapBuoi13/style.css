@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.strip {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    min-height: 100vh;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.strip-1 {
+    background-color: forestgreen;
+}
+
+.strip-2 {
+    background-color: khaki;
+}
+
+.strip-3 {
+    background-color: dodgerblue;
+}
+
+.strip-4 {
+    background-color: orange;
+}
+
+.strip-5 {
+    background-color: violet;
+}
+
+.strip__title {
+    font-family: Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: white;
+    z-index: 2;
+}
+
+.strip__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.strip:hover {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.strip:hover .strip__title {
+    display: none;
+}
+
+.strip:hover .strip__img {
+    display: block;
+}
+
+.strip:hover .overlay {
+    display: block;
+}
