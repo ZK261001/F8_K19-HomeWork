@@ -1,0 +1,25 @@
+Bài 1
+1. student.name → KHÔNG bị đổi. name là string (primitive). Khi spread, JS copy giá trị thành một slot độc lập trong mentor. 
+Đổi mentor.name không ảnh hưởng gì tới student.name.
+2. student.parent.name → BỊ ĐỔI. parent là object. Khi spread, JS chỉ copy tham chiếu (địa chỉ bộ nhớ) chứ không tạo object mới. 
+Cả student.parent và mentor.parent đều trỏ tới cùng một object trong RAM. Nên đổi qua mentor → student cũng thấy thay đổi.
+3. Kết luận: { ...obj } là shallow copy — chỉ copy 1 tầng ngoài cùng, các nested object vẫn được chia sẻ.
+
+Bài 2
+1. student.parent.name → KHÔNG bị ảnh hưởng.
+2. Vì sao JSON.parse(JSON.stringify(...)) khác spread?
+JSON.stringify biến toàn bộ object thành một chuỗi văn bản — lúc này không còn tham chiếu nào nữa. 
+Sau đó JSON.parse tạo ra một object hoàn toàn mới từ đầu, độc lập 100% với object gốc. 
+Đây là deep copy — mọi tầng lồng nhau đều được tạo mới.
+
+Bài 3
+1. Mảng students → KHÔNG bị thay đổi (về mặt cấu trúc mảng — tức là số phần tử, thứ tự vẫn nguyên).
+2. Phần tử bên trong → BỊ thay đổi. [...students] cũng là shallow copy. 
+Nó tạo một mảng mới, nhưng các phần tử bên trong ({ name: 'a' }, { name: 'b' }) vẫn là cùng object tham chiếu.
+ Nên newStudents[0].name = 'z' cũng làm students[0].name thành 'z'.
+
+Bài 4
+Kết quả: 999
+{ ...user } chỉ copy 1 tầng. newUser.address và user.address trỏ cùng object. 
+Mà address.location lại là object lồng thêm một tầng nữa → newUser.address.location cũng là cùng tham chiếu với user.address.location. 
+Nên gán lat = 999 ảnh hưởng thẳng tới user.
