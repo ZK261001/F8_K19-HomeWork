@@ -54,6 +54,7 @@ function findTopRevenueProduct(products, orders) {
     for (let i = 0; i < products.length; i++) {
         const product = products[i];
         let revenue = 0;
+        let bestProduct = null;
         if (revenueMap[product.id] !== undefined) {
             revenue = revenueMap[product.id];
         }
