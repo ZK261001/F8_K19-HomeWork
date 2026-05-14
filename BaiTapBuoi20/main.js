@@ -32,7 +32,6 @@ function findSecondLargest(arr) {
 
 const classA = [15, 2, 8, 10];
 const classB = [8, 11, 2, 5, 9];
-const merged = [...classA, ...classB];
 
 function mergeAndSort(arr1, arr2) {
     const merged = [...arr1, ...arr2];
