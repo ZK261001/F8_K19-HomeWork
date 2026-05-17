@@ -13,29 +13,15 @@ const orders = [
     { orderId: "ORD05", productId: 2, quantity: 1, status: "completed" },
 ];
 
-function getCompletedOrderDetails(products, orders) {
-    const productsMap = {};
-    for (const product of products) {
-        productsMap[product.id] = product;
-    }
-
-    const ordersCompleted = orders.filter((order) => {
-        return order.status === "completed";
+const completedOrderDetails = orders
+    .filter((order) => order.status === "completed")
+    .map((order) => {
+        const product = products.find((p) => p.id === order.productId);
+        return {
+            idDonHang: order.orderId,
+            tenSanPham: product?.name ?? "Không tìm thấy",
+            tongTien: (product?.price ?? 0) * order.quantity,
+        };
     });
 
-    const completedOrderDetails = [];
-    for (const order of ordersCompleted) {
-        const product = productsMap[order.productId];
-
-        completedOrderDetails.push({
-            idDonHang: order.orderId,
-            tenSanpham: product.name,
-            tongTien: product.price * order.quantity,
-        });
-    }
-
-    return completedOrderDetails;
-}
-
-const result = getCompletedOrderDetails(products, orders);
-console.log(result);
+console.log(completedOrderDetails);
