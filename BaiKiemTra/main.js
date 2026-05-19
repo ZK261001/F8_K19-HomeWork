@@ -24,16 +24,6 @@ const orders = [
     { id: 7, employeeId: 10, productId: 3, quantity: 2 },
 ];
 
-/*
-Yeu cau viet ham
-+	lam dung 80%
-+	comment code: bang tieng anh (neu co comment)
-+	ten bien: tuan thu quy tac
-+	toi uu 20%
-+	toc do
-+	code (ham dung chung thi viet chung)chung
-*/
-
 // Shared Function
 function findMax(arr, selector) {
     let maxItem = arr[0];
