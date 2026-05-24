@@ -235,7 +235,7 @@ function getTopProductPerEmployee(ordersByEmployeeMap, employees, products) {
 
     return result;
 }
-// console.log(getTopProductPerEmployee(ordersByEmployeeMap, employees, products));
+console.log(getTopProductPerEmployee(ordersByEmployeeMap, employees, products));
 
 // Exercise 9: Calculate commission for each employee based on their total revenue
 function getEmployeeCommissions(

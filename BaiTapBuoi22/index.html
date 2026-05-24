@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hóa đơn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+    <div class="invoice">
+        <!-- Header -->
+        <div class="invoice-header">
+            <!-- store -->
+            <div class="invoice-header__store">
+                <div class="invoice-header__brand">
+                    <div class="invoice-header__logo">
+                        <img src="assets/img/logo.jpg" alt="logo" />
+                    </div>
+                    <div class="invoice-header__name">
+                        WinMart 2 Hai Bà Trưng
+                    </div>
+                </div>
+                <p class="invoice-header__description">
+                    Cung cấp sản phẩm thời trang cao cấp & thiết kế độc
+                    quyền.
+                </p>
+            </div>
+            <!-- meta -->
+            <div class="invoice-header__meta">
+                <span class="invoice-header__type">HÓA ĐƠN BÁN LẺ</span>
+                <div class="invoice-header__code"></div>
+                <div class="invoice-header__date"></div>
+            </div>
+        </div>
+        <!-- Parties -->
+        <div class="invoice-parties">
+            <!-- seller -->
+            <div class="seller-info">
+                <p class="party-title">ĐƠN VỊ BÁN HÀNG (SELLER)</p>
+            </div>
+            <!-- buyer -->
+            <div class="buyer-info">
+                <p class="party-title">KHÁCH HÀNG (BUYER)</p>
+            </div>
+        </div>
+
+        <!-- Items -->
+        <div class="invoice-items">
+            <table class="items-list">
+                <thead class="items-list__header">
+                    <tr>
+                        <th class="col-no">STT</th>
+                        <th class="col-name">TÊN SẢN PHẨM</th>
+                        <th class="col-size">SIZE</th>
+                        <th class="col-quantity">SL</th>
+                        <th class="col-price">ĐƠN GIÁ</th>
+                        <th class="col-total">THÀNH TIỀN</th>
+                    </tr>
+                </thead>
+                <tbody class="items-list__body"></tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <div class="invoice-footer">
+            <!-- Promo -->
+            <div class="invoice-promotion">
+                <div class="invoice-promotion__icon--wrapper">
+                    <div class="invoice-promotion__icon">✓</div>
+                </div>
+
+                <div class="invoice-promotion__content">
+                    <p class="invoice-promotion__title">
+                        KHUYẾN MÃI / TRỢ GIÁ
+                    </p>
+
+                    <p class="invoice-promotion__description"></p>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="invoice-summary">
+                <div class="invoice-summary__row">
+                    <span class="invoice-summary__label">
+                        Cộng tiền hàng:
+                    </span>
+
+                    <span class="invoice-summary__sub-total"></span>
+                </div>
+
+                <div class="invoice-summary__row invoice-summary__row--discount">
+                    <span class="invoice-summary__label">
+                        Khấu trừ giảm giá:
+                    </span>
+
+                    <span class="invoice-summary__discount"> </span>
+                </div>
+
+                <div class="invoice-summary__row invoice-summary__row--total">
+                    <span class="invoice-summary__label">
+                        Tổng thanh toán:
+                    </span>
+
+                    <span class="invoice-summary__total"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./main.js"></script>
+</body>
+
+</html>
