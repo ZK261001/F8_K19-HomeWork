@@ -5,8 +5,9 @@ async function onLogin() {
     const password = document.getElementById("password").value;
 
     const res = await login(username, password);
-
-    const { accessToken, refreshToken } = res;
+    if (res) {
+        const { accessToken, refreshToken } = res;
+    }
 
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);

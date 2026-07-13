@@ -19,7 +19,7 @@ const post = async (endpoint, body) => {
 
         if (res.status === 401) {
             await getNewAccessToken();
-            return post(endpoint, body);
+            return await post(endpoint, body);
         }
 
         return await res.json();
@@ -94,7 +94,7 @@ const login = async (username, password) => {
 
         return await res.json();
     } catch {
-        await getNewAccessToken();
+        alert("Sai tài khoản hoặc mật khẩu");
     }
 };
 
