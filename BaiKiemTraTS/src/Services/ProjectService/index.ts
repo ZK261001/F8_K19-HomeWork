@@ -16,10 +16,10 @@ export class ProjectService {
     updateById(id: string, data: Partial<Project>): Project | null {
         const project = this.projects.find((project) => project.id === id);
         if (!project) return null;
-        if (data.customerId) {
+        if (data.customerId !== undefined) {
             project.customerId = data.customerId;
         }
-        if (data.employeeId) {
+        if (data.employeeId !== undefined) {
             const employee = this.employeeService.findById(data.employeeId);
             if (employee)
                 employee.receiveNoti(

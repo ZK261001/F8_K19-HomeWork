@@ -16,13 +16,13 @@ export class CustomerService {
         const customer = this.customers.find((customer) => customer.id === id);
         if (!customer) return null;
 
-        if (data.name) {
+        if (data.name !== undefined) {
             customer.name = data.name;
         }
-        if (data.tax) {
+        if (data.tax !== undefined) {
             customer.tax = data.tax;
         }
-        if (data.address) {
+        if (data.address !== undefined) {
             customer.address = data.address;
         }
 

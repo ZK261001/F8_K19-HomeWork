@@ -3,7 +3,6 @@ import { Employee } from "../../Models/Employee";
 export class EmployeeService {
     private employees: Employee[] = [];
     create(employee: Omit<Employee, "id" | "receiveNoti">): Employee {
-        if (!employee.name) throw new Error("Wrong format");
         const newEmployee = new Employee(employee.name);
         this.employees.push(newEmployee);
         return newEmployee;
@@ -18,7 +17,7 @@ export class EmployeeService {
     updateById(id: string, data: Partial<Employee>): Employee | null {
         const employee = this.findById(id);
         if (!employee) return null;
-        if (data.name) {
+        if (data.name !== undefined) {
             employee.name = data.name;
         }
         return employee;
