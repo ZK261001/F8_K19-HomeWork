@@ -26,6 +26,13 @@ export class Product implements ProductI {
         return this._stock;
     }
 
+    set stock(stock: number) {
+        if (stock < 0) {
+            throw new Error("Tồn kho không được để âm");
+        }
+        this._stock = stock;
+    }
+
     set name(name: string) {
         this._name = name;
     }

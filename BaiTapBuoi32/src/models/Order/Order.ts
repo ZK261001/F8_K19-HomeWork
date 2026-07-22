@@ -1,16 +1,9 @@
 import { v7 } from "uuid";
 import { OrderItem } from "../OrderItem/OrderItem";
 import { Customer } from "../Customer";
+import { OrderStatus, type OrderI } from "./type";
 
-export enum OrderStatus {
-    NEW = "NEW",
-
-    PAID = "PAID",
-
-    CANCELLED = "CANCELLED",
-}
-
-export class Order {
+export class Order implements OrderI {
     private _id: string = v7();
     private _items: OrderItem[] = [];
     private _createdAt: Date = new Date();
@@ -39,6 +32,15 @@ export class Order {
     }
 
     addItem(item: OrderItem) {
+        const existingItem = this._items.find(
+            (i) => i.product.id === item.product.id,
+        );
+
+        if (existingItem) {
+            existingItem.quantity += item.quantity;
+            return;
+        }
+
         this._items.push(item);
     }
 

@@ -6,14 +6,14 @@ export class Customer implements CustomerI {
 
     constructor(
         private _name: string,
-        private _phone: number,
+        private _phone: string,
         private _address: string,
     ) {}
 
     get id(): string {
         return this._id;
     }
-    get phone(): number {
+    get phone(): string {
         return this._phone;
     }
     get name(): string {
@@ -23,7 +23,7 @@ export class Customer implements CustomerI {
         return this._address;
     }
 
-    set phone(newPhoneNumber: number) {
+    set phone(newPhoneNumber: string) {
         this._phone = newPhoneNumber;
     }
 
@@ -35,7 +35,7 @@ export class Customer implements CustomerI {
         this._address = address;
     }
 
-    updatePhone(phone: number): void {
+    updatePhone(phone: string): void {
         this._phone = phone;
     }
 

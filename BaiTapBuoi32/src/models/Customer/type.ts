@@ -1,5 +1,5 @@
 export interface CustomerI {
-    updatePhone(phone: number): void;
+    updatePhone(phone: string): void;
 
     updateAddress(address: string): void;
 

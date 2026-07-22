@@ -1,7 +1,7 @@
 import type { Product } from "../Product";
-interface OrderItemI {}
+import type { OrderItemI } from "./type";
 
-export class OrderItem {
+export class OrderItem implements OrderItemI {
     private _price: number;
     constructor(
         private _product: Product,

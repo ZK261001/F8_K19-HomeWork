@@ -1,19 +1,5 @@
 import type { Customer } from "../../models/Customer";
-interface CustomerServiceI {
-    addCustomer(customer: Customer): void;
-
-    updateCustomer(id: string, data: Partial<Customer>): void;
-
-    deleteCustomer(id: string): void;
-
-    findById(id: string): Customer | undefined;
-
-    findByPhone(phone: number): Customer[];
-
-    getAllCustomers(): Customer[];
-
-    printCustomers(): void;
-}
+import type { CustomerServiceI } from "./type";
 
 export class CustomerService implements CustomerServiceI {
     private customers: Customer[] = [];
@@ -53,7 +39,7 @@ export class CustomerService implements CustomerServiceI {
         return this.customers.find((customer) => customer.id === id);
     }
 
-    findByPhone(phone: number): Customer[] {
+    findByPhone(phone: string): Customer[] {
         return this.customers.filter((customer) => customer.phone === phone);
     }
 

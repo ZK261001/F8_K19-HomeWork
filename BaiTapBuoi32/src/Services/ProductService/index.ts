@@ -1,15 +1,5 @@
-// import { ProductServiceI } from "./type";
 import type { Product } from "../../models/Product";
-
-export interface ProductServiceI {
-    addProduct(product: Product): void;
-    updateProduct(id: string, data: Partial<Product>): void;
-    deleteProduct(id: string): void;
-    findById(id: string): Product | undefined;
-    findByName(keyword: string): Product[];
-    getAllProduct(): Product[];
-    printProduct(): void;
-}
+import type { ProductServiceI } from "./type";
 
 export class ProductService implements ProductServiceI {
     private products: Product[] = [];
@@ -35,6 +25,10 @@ export class ProductService implements ProductServiceI {
 
         if (data.price !== undefined) {
             product.price = data.price;
+        }
+
+        if (data.stock !== undefined) {
+            product.stock = data.stock;
         }
     }
 

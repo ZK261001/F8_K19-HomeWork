@@ -1,9 +1,11 @@
 import { Customer } from "../../models/Customer";
-import { Order, OrderStatus } from "../../models/Order/Order";
+import { Order } from "../../models/Order/Order";
+import { OrderStatus } from "../../models/Order/type";
 import { OrderItem } from "../../models/OrderItem/OrderItem";
-import { ProductServiceI } from "../ProductService";
+import { ProductServiceI } from "../ProductService/type";
+import type { OrderServiceI } from "./type";
 
-export class OrderService {
+export class OrderService implements OrderServiceI {
     private _orders: Order[] = [];
 
     constructor(private productService: ProductServiceI) {}
@@ -23,6 +25,8 @@ export class OrderService {
             throw new Error(`Không tìm thấy Product với id ${productId}`);
         }
 
+        product.decreaseStock(quantity);
+
         const orderItem = new OrderItem(product, quantity);
         order.addItem(orderItem);
     }
@@ -33,6 +37,11 @@ export class OrderService {
             throw new Error(`Không tìm thấy Order với id ${orderId}`);
         }
 
+        const item = order.items.find((item) => item.product.id === productId);
+        if (item) {
+            item.product.increaseStock(item.quantity);
+        }
+
         order.removeItem(productId);
     }
 
@@ -41,8 +50,8 @@ export class OrderService {
         if (!order) {
             throw new Error(`Không tìm thấy Order với id ${orderId}`);
         }
-        if (order.status !== "NEW") {
-            throw new Error(`Không hủy được`);
+        if (order.status !== OrderStatus.NEW) {
+            throw new Error(`Không thể thanh toán đơn hàng này`);
         }
         order.status = OrderStatus.PAID;
     }
@@ -52,9 +61,17 @@ export class OrderService {
         if (!order) {
             throw new Error(`Không tìm thấy Order với id ${orderId}`);
         }
-        if (order.status !== "PAID") {
-            throw new Error(`Không hủy được`);
+        if (order.status === OrderStatus.PAID) {
+            throw new Error(`Không thể hủy đơn hàng đã thanh toán`);
         }
+        if (order.status === OrderStatus.CANCELLED) {
+            throw new Error(`Đơn hàng đã được hủy trước đó`);
+        }
+
+        order.items.forEach((item) => {
+            item.product.increaseStock(item.quantity);
+        });
+
         order.status = OrderStatus.CANCELLED;
     }
 
