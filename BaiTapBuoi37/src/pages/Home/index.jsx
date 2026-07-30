@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Home.css";
 import api from "../../plugins/axios";
 import ProductCard from "../../components/ProductCard";
-import { Link } from "react-router";
+import Header from "../../components/Header";
 
 function Home() {
     const [productInCart, setProductInCart] = useState([]);
@@ -26,29 +26,7 @@ function Home() {
 
     return (
         <>
-            <header className="header">
-                <div className="header-inner">
-                    <div className="logo">
-                        Shop<span>.</span>
-                    </div>
-
-                    <nav className="nav">
-                        <a href="#">Home</a>
-                        <a href="#">Products</a>
-                        <a href="#">Categories</a>
-                    </nav>
-
-                    <div className="cart">
-                        <button className="cart-button">
-                            <span className="cart-icon">🛒</span>
-                            <span className="cart-text">Cart</span>
-                            <span className="cart-badge">
-                                {productInCart.length}
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </header>
+            <Header total={productInCart.length} />
 
             <main className="container">
                 <h1>Products</h1>

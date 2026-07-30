@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import ProductCard from "../../components/ProductCard";
+import Header from "../../components/Header";
 import "./HomeDetail.css";
 
 function pickFeaturedProducts(products, currentId) {
@@ -53,84 +54,95 @@ function HomeDetail() {
     if (!product) return <div className="detail-loading">Loading...</div>;
 
     return (
-        <main className="container">
-            <div className="breadcrumb">
-                <Link to="/">Home</Link>
-                <span>/</span>
-                <span className="breadcrumb-category">{product.category}</span>
-                <span>/</span>
-                <span className="breadcrumb-current">{product.title}</span>
-            </div>
-
-            <div className="detail-wrapper">
-                <div className="detail-image">
-                    <img src={product.image} alt={product.title} />
+        <>
+            <Header total={3} />
+            <main className="container">
+                <div className="breadcrumb">
+                    <Link to="/">Home</Link>
+                    <span>/</span>
+                    <span className="breadcrumb-category">
+                        {product.category}
+                    </span>
+                    <span>/</span>
+                    <span className="breadcrumb-current">{product.title}</span>
                 </div>
 
-                <div className="detail-info">
-                    <div className="detail-category">{product.category}</div>
-                    <h1 className="detail-title">{product.title}</h1>
-
-                    <div className="detail-rating">
-                        ⭐ {product.rating.rate}
-                        <span className="detail-rating-count">
-                            ({product.rating.count} đánh giá)
-                        </span>
+                <div className="detail-wrapper">
+                    <div className="detail-image">
+                        <img src={product.image} alt={product.title} />
                     </div>
 
-                    <div className="detail-price">${product.price}</div>
+                    <div className="detail-info">
+                        <div className="detail-category">
+                            {product.category}
+                        </div>
+                        <h1 className="detail-title">{product.title}</h1>
 
-                    <p className="detail-description">{product.description}</p>
+                        <div className="detail-rating">
+                            ⭐ {product.rating.rate}
+                            <span className="detail-rating-count">
+                                ({product.rating.count} đánh giá)
+                            </span>
+                        </div>
 
-                    <div className="detail-quantity">
-                        <span>Số lượng</span>
-                        <div className="quantity-control">
+                        <div className="detail-price">${product.price}</div>
+
+                        <p className="detail-description">
+                            {product.description}
+                        </p>
+
+                        <div className="detail-quantity">
+                            <span>Số lượng</span>
+                            <div className="quantity-control">
+                                <button
+                                    onClick={() =>
+                                        setQuantity((q) => Math.max(1, q - 1))
+                                    }
+                                >
+                                    −
+                                </button>
+                                <span>{quantity}</span>
+                                <button
+                                    onClick={() => setQuantity((q) => q + 1)}
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="detail-actions">
                             <button
-                                onClick={() =>
-                                    setQuantity((q) => Math.max(1, q - 1))
-                                }
+                                className="btn-add-to-cart"
+                                onClick={() => addToCart(product.id)}
                             >
-                                −
+                                🛒 Thêm vào giỏ hàng
                             </button>
-                            <span>{quantity}</span>
-                            <button onClick={() => setQuantity((q) => q + 1)}>
-                                +
+                            <button
+                                className="btn-back"
+                                onClick={() => navigate(-1)}
+                            >
+                                Quay lại
                             </button>
                         </div>
                     </div>
-
-                    <div className="detail-actions">
-                        <button
-                            className="btn-add-to-cart"
-                            onClick={() => addToCart(product.id)}
-                        >
-                            🛒 Thêm vào giỏ hàng
-                        </button>
-                        <button
-                            className="btn-back"
-                            onClick={() => navigate(-1)}
-                        >
-                            Quay lại
-                        </button>
-                    </div>
                 </div>
-            </div>
 
-            {featuredProducts.length > 0 && (
-                <section className="featured-section">
-                    <h2>Sản phẩm nổi bật</h2>
-                    <div className="product-grid">
-                        {featuredProducts.map((item) => (
-                            <ProductCard
-                                key={item.id}
-                                product={item}
-                                onClickAddToCart={addToCart}
-                            />
-                        ))}
-                    </div>
-                </section>
-            )}
-        </main>
+                {featuredProducts.length > 0 && (
+                    <section className="featured-section">
+                        <h2>Sản phẩm nổi bật</h2>
+                        <div className="product-grid">
+                            {featuredProducts.map((item) => (
+                                <ProductCard
+                                    key={item.id}
+                                    product={item}
+                                    onClickAddToCart={addToCart}
+                                />
+                            ))}
+                        </div>
+                    </section>
+                )}
+            </main>
+        </>
     );
 }
 
