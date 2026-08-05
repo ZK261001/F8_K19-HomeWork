@@ -1,3 +1,5 @@
+import { NavLink } from "react-router";
+
 const Header = ({ total }) => {
     return (
         <header className="header">
@@ -7,9 +9,9 @@ const Header = ({ total }) => {
                 </div>
 
                 <nav className="nav">
-                    <a href="#">Home</a>
-                    <a href="#">Products</a>
-                    <a href="#">Categories</a>
+                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/">Products</NavLink>
+                    <NavLink to="/">Categories</NavLink>
                 </nav>
 
                 <div className="cart">

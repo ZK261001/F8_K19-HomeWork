@@ -55,7 +55,7 @@ function HomeDetail() {
 
     return (
         <>
-            <Header total={3} />
+            <Header total={productInCart.length} />
             <main className="container">
                 <div className="breadcrumb">
                     <Link to="/">Home</Link>
