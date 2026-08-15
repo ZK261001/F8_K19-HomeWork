@@ -1,0 +1,876 @@
+{
+  "locations": [
+    {
+      "id": "1",
+      "name": "Hà Nội"
+    },
+    {
+      "id": "2",
+      "name": "Hồ Chí Minh"
+    },
+    {
+      "id": "3",
+      "name": "Đà Nẵng"
+    },
+    {
+      "id": "4",
+      "name": "Hải Phòng"
+    },
+    {
+      "id": "5",
+      "name": "Cần Thơ"
+    },
+    {
+      "id": "6",
+      "name": "Bình Dương"
+    },
+    {
+      "id": "7",
+      "name": "Đồng Nai"
+    },
+    {
+      "id": "8",
+      "name": "Bắc Ninh"
+    },
+    {
+      "id": "9",
+      "name": "Nghệ An"
+    },
+    {
+      "id": "10",
+      "name": "Khánh Hòa"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Công nghệ thông tin",
+      "slug": "cong-nghe-thong-tin",
+      "popularKeywords": ["Software Tester", "Data Engineer", "IT Helpdesk", "IT Comtor", "PHP", "React.js", "Node.js", ".NET", "Java", "Flutter", "Python", "Unity Developer"],
+      "groups": [
+        { "title": "Software Engineering", "jobs": ["Software Engineer", "Backend Developer", "Frontend Developer", "Mobile Developer", "Fullstack Developer", "Blockchain Engineer"] },
+        { "title": "Software Testing", "jobs": ["Software Tester (Automation & Manual)", "Automation Tester", "Manual Tester", "Game Tester", "QA Engineer"] },
+        { "title": "Data & AI", "jobs": ["Data Engineer", "Data Analyst", "Data Scientist", "AI Engineer", "Machine Learning Engineer"] },
+        { "title": "IT Support & Hạ tầng", "jobs": ["IT Helpdesk", "IT Comtor", "System Admin", "DevOps Engineer", "Network Engineer"] },
+        { "title": "Quản lý dự án CNTT", "jobs": ["IT Project Manager", "Product Owner", "Scrum Master", "Business Analyst"] }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Kinh doanh / Bán hàng",
+      "slug": "kinh-doanh-ban-hang",
+      "popularKeywords": ["Nhân viên kinh doanh", "Sales B2B", "Account Manager", "Telesales", "Sales Admin", "Sales Executive", "Trade Marketing"],
+      "groups": [
+        { "title": "Kinh doanh trực tiếp", "jobs": ["Nhân viên kinh doanh", "Sales B2B", "Sales B2C", "Account Manager", "Sales Executive"] },
+        { "title": "Hỗ trợ bán hàng", "jobs": ["Telesales", "Sales Admin", "Chăm sóc khách hàng bán hàng", "Trade Marketing", "Giám sát bán hàng"] }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Marketing / PR / Quảng cáo",
+      "slug": "marketing-pr-quang-cao",
+      "popularKeywords": ["Content Marketing", "SEO", "Digital Marketing", "Social Media", "Copywriter", "Branding", "Media Planner"],
+      "groups": [
+        { "title": "Digital Marketing", "jobs": ["Digital Marketing Executive", "SEO Specialist", "Performance Marketing", "Social Media Executive", "Email Marketing"] },
+        { "title": "Content & Sáng tạo", "jobs": ["Content Creator", "Copywriter", "Content Strategist", "Graphic Content Designer"] },
+        { "title": "Truyền thông & PR", "jobs": ["PR Executive", "Media Planner", "Brand Executive", "Event Executive"] }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Kế toán / Kiểm toán",
+      "slug": "ke-toan-kiem-toan",
+      "popularKeywords": ["Kế toán tổng hợp", "Kế toán thuế", "Kiểm toán nội bộ", "Kế toán công nợ", "Kế toán trưởng", "Kế toán kho"],
+      "groups": [
+        { "title": "Kế toán doanh nghiệp", "jobs": ["Kế toán tổng hợp", "Kế toán thuế", "Kế toán công nợ", "Kế toán kho", "Kế toán thanh toán"] },
+        { "title": "Kiểm toán & Tài chính", "jobs": ["Kiểm toán nội bộ", "Kiểm toán độc lập", "Kế toán trưởng", "Chuyên viên tài chính"] }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Nhân sự / Hành chính",
+      "slug": "nhan-su-hanh-chinh",
+      "popularKeywords": ["Tuyển dụng", "C&B", "HR Generalist", "Đào tạo nhân sự", "HR Admin", "HRBP"],
+      "groups": [
+        { "title": "Tuyển dụng & Đào tạo", "jobs": ["Chuyên viên tuyển dụng", "HR Generalist", "Chuyên viên đào tạo", "HRBP"] },
+        { "title": "Hành chính nhân sự", "jobs": ["Chuyên viên C&B", "HR Admin", "Chuyên viên hành chính nhân sự", "Trợ lý nhân sự"] }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Hành chính / Văn phòng",
+      "slug": "hanh-chinh-van-phong",
+      "popularKeywords": ["Thư ký", "Lễ tân", "Trợ lý giám đốc", "Nhân viên văn phòng", "Hành chính tổng hợp"],
+      "groups": [
+        { "title": "Văn phòng", "jobs": ["Nhân viên hành chính văn phòng", "Thư ký", "Lễ tân", "Trợ lý giám đốc"] },
+        { "title": "Hỗ trợ vận hành", "jobs": ["Nhân viên hành chính tổng hợp", "Nhân viên lưu trữ hồ sơ", "Nhân viên văn thư"] }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Thiết kế / Sáng tạo",
+      "slug": "thiet-ke-sang-tao",
+      "popularKeywords": ["Graphic Designer", "UI/UX Designer", "Motion Designer", "3D Designer", "Illustrator", "Art Director"],
+      "groups": [
+        { "title": "Thiết kế đồ hoạ", "jobs": ["Graphic Designer", "Illustrator", "Print Designer", "Packaging Designer"] },
+        { "title": "Thiết kế số", "jobs": ["UI/UX Designer", "Motion Designer", "3D Designer", "Web Designer"] },
+        { "title": "Quản lý sáng tạo", "jobs": ["Art Director", "Creative Director"] }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Chăm sóc khách hàng",
+      "slug": "cham-soc-khach-hang",
+      "popularKeywords": ["CSKH", "Customer Support", "Call Center", "Customer Success", "Tổng đài viên"],
+      "groups": [
+        { "title": "Chăm sóc khách hàng", "jobs": ["Nhân viên CSKH", "Customer Support Executive", "Tổng đài viên", "Customer Success Executive"] },
+        { "title": "Hỗ trợ khách hàng", "jobs": ["Call Center Agent", "Nhân viên hỗ trợ kỹ thuật", "Live Chat Support"] }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Xây dựng",
+      "slug": "xay-dung",
+      "popularKeywords": ["Kỹ sư xây dựng", "Giám sát công trình", "Kỹ sư kết cấu", "Kiến trúc sư", "Kỹ sư MEP", "Chỉ huy trưởng"],
+      "groups": [
+        { "title": "Kỹ thuật công trình", "jobs": ["Kỹ sư xây dựng dân dụng", "Kỹ sư kết cấu", "Kỹ sư MEP", "Kỹ sư cầu đường"] },
+        { "title": "Quản lý dự án xây dựng", "jobs": ["Giám sát công trình", "Chỉ huy trưởng công trình", "Kỹ sư QS/Dự toán", "Kiến trúc sư"] }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Giáo dục / Đào tạo",
+      "slug": "giao-duc-dao-tao",
+      "popularKeywords": ["Giáo viên tiếng Anh", "Giáo viên mầm non", "Trợ giảng", "Chuyên viên đào tạo", "Giảng viên"],
+      "groups": [
+        { "title": "Giảng dạy", "jobs": ["Giáo viên tiếng Anh", "Giáo viên mầm non", "Giáo viên Toán", "Trợ giảng"] },
+        { "title": "Đào tạo doanh nghiệp", "jobs": ["Chuyên viên đào tạo nội bộ", "Giảng viên", "Chuyên viên phát triển chương trình đào tạo"] }
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "id": "1",
+      "name": "Sản xuất"
+    },
+    {
+      "id": "2",
+      "name": "Bán lẻ - Hàng tiêu dùng FMCG"
+    },
+    {
+      "id": "3",
+      "name": "IT - Phần mềm"
+    },
+    {
+      "id": "4",
+      "name": "Xây dựng"
+    },
+    {
+      "id": "5",
+      "name": "Giáo dục/Đào tạo"
+    }
+  ],
+  "companies": [
+    {
+      "id": "1",
+      "mst": "0102345678",
+      "name": "Công ty Cổ phần Công nghệ ABC",
+      "internationalName": "ABC Technology Joint Stock Company",
+      "director": "Nguyễn Văn An",
+      "phone": "0243 7654 321",
+      "email": "hr@abctech.vn",
+      "logo": "/assets/logos/abctech.png",
+      "coverImage": "/assets/covers/abctech-cover.jpg",
+      "address": "Tòa nhà Sun Grand, 69 Trần Thái Tông, Cầu Giấy, Hà Nội",
+      "scale": "100-499 nhân viên",
+      "field": "Công nghệ thông tin",
+      "description": "ABC Technology là công ty phát triển phần mềm chuyên về giải pháp web và mobile cho doanh nghiệp vừa và nhỏ tại Việt Nam.",
+      "website": "https://abctech.vn",
+      "status": "approved",
+      "foundedYear": 2015
+    },
+    {
+      "id": "2",
+      "mst": "0304567890",
+      "name": "Công ty TNHH Thương mại Sao Việt",
+      "internationalName": "Sao Viet Trading Co., Ltd",
+      "director": "Trần Thị Bình",
+      "phone": "0283 1234 567",
+      "email": "tuyendung@saoviet.vn",
+      "logo": "/assets/logos/saoviet.png",
+      "coverImage": "/assets/covers/saoviet-cover.jpg",
+      "address": "45 Nguyễn Huệ, Quận 1, Hồ Chí Minh",
+      "scale": "25-99 nhân viên",
+      "field": "Kinh doanh / Bán lẻ",
+      "description": "Sao Việt Trading phân phối hàng tiêu dùng nhanh (FMCG) trên toàn quốc với hệ thống hơn 500 đại lý.",
+      "website": "https://saoviet.vn",
+      "status": "approved",
+      "foundedYear": 2010
+    },
+    {
+      "id": "3",
+      "mst": "0401234567",
+      "name": "Công ty Cổ phần Giải pháp Số Minh Long",
+      "internationalName": "Minh Long Digital Solutions JSC",
+      "director": "Lê Văn Cường",
+      "phone": "0236 3987 654",
+      "email": "contact@minhlongds.vn",
+      "logo": "/assets/logos/minhlong.png",
+      "coverImage": "/assets/covers/minhlong-cover.jpg",
+      "address": "12 Nguyễn Văn Linh, Hải Châu, Đà Nẵng",
+      "scale": "10-24 nhân viên",
+      "field": "Công nghệ thông tin",
+      "description": "Minh Long cung cấp dịch vụ chuyển đổi số cho doanh nghiệp vừa và nhỏ tại khu vực miền Trung.",
+      "website": "https://minhlongds.vn",
+      "status": "pending",
+      "foundedYear": 2021
+    },
+    {
+      "id": "4",
+      "mst": "0501122334",
+      "name": "Công ty Cổ phần Truyền thông Sáng Tạo Việt",
+      "internationalName": "Sang Tao Viet Media JSC",
+      "director": "Phạm Thị Dung",
+      "phone": "0287 2233 445",
+      "email": "hr@sangtaoviet.vn",
+      "logo": "/assets/logos/sangtaoviet.png",
+      "coverImage": "/assets/covers/sangtaoviet-cover.jpg",
+      "address": "88 Điện Biên Phủ, Bình Thạnh, Hồ Chí Minh",
+      "scale": "50-99 nhân viên",
+      "field": "Marketing / PR / Quảng cáo",
+      "description": "Sáng Tạo Việt là agency truyền thông chuyên triển khai chiến dịch digital marketing và sản xuất nội dung.",
+      "website": "https://sangtaoviet.vn",
+      "status": "approved",
+      "foundedYear": 2017
+    },
+    {
+      "id": "5",
+      "mst": "0602233445",
+      "name": "Công ty TNHH Xây dựng Đại Phát",
+      "internationalName": "Dai Phat Construction Co., Ltd",
+      "director": "Hoàng Văn Em",
+      "phone": "0274 3556 778",
+      "email": "tuyendung@daiphat.vn",
+      "logo": "/assets/logos/daiphat.png",
+      "coverImage": "/assets/covers/daiphat-cover.jpg",
+      "address": "Khu công nghiệp Sóng Thần, Dĩ An, Bình Dương",
+      "scale": "100-299 nhân viên",
+      "field": "Xây dựng",
+      "description": "Đại Phát thi công các công trình dân dụng và công nghiệp trên khắp khu vực Đông Nam Bộ.",
+      "website": "https://daiphat-construction.vn",
+      "status": "approved",
+      "foundedYear": 2008
+    },
+    {
+      "id": "6",
+      "mst": "0703344556",
+      "name": "Công ty Cổ phần Giáo dục Tương Lai",
+      "internationalName": "Future Education JSC",
+      "director": "Vũ Thị Hoa",
+      "phone": "0243 9988 776",
+      "email": "hr@tuongedu.vn",
+      "logo": "/assets/logos/tuongedu.png",
+      "coverImage": "/assets/covers/tuongedu-cover.jpg",
+      "address": "22 Láng Hạ, Đống Đa, Hà Nội",
+      "scale": "25-99 nhân viên",
+      "field": "Giáo dục / Đào tạo",
+      "description": "Tương Lai vận hành hệ thống trung tâm Anh ngữ và luyện thi chứng chỉ quốc tế cho học sinh, sinh viên.",
+      "website": "https://tuongedu.vn",
+      "status": "pending",
+      "foundedYear": 2019
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "role": "admin",
+      "email": "admin@topcvclone.vn",
+      "password": "Admin@123",
+      "fullName": "Quản trị viên hệ thống",
+      "phone": "0900000000",
+      "avatar": "/assets/avatars/admin.png",
+      "companyId": null,
+      "createdAt": "2026-01-05T08:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "role": "recruiter",
+      "email": "hr@abctech.vn",
+      "password": "Recruiter@123",
+      "fullName": "Nguyễn Thu Hằng",
+      "phone": "0912345678",
+      "avatar": "/assets/avatars/user2.png",
+      "companyId": 1,
+      "createdAt": "2026-02-10T08:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "role": "recruiter",
+      "email": "tuyendung@saoviet.vn",
+      "password": "Recruiter@123",
+      "fullName": "Đỗ Minh Tuấn",
+      "phone": "0913456789",
+      "avatar": "/assets/avatars/user3.png",
+      "companyId": 2,
+      "createdAt": "2026-02-15T08:00:00.000Z"
+    },
+    {
+      "id": "4",
+      "role": "recruiter",
+      "email": "contact@minhlongds.vn",
+      "password": "Recruiter@123",
+      "fullName": "Lê Văn Cường",
+      "phone": "0914567890",
+      "avatar": "/assets/avatars/user4.png",
+      "companyId": 3,
+      "createdAt": "2026-03-01T08:00:00.000Z"
+    },
+    {
+      "id": "5",
+      "role": "recruiter",
+      "email": "hr@sangtaoviet.vn",
+      "password": "Recruiter@123",
+      "fullName": "Phạm Thị Dung",
+      "phone": "0915678901",
+      "avatar": "/assets/avatars/user5.png",
+      "companyId": 4,
+      "createdAt": "2026-03-10T08:00:00.000Z"
+    },
+    {
+      "id": "6",
+      "role": "recruiter",
+      "email": "tuyendung@daiphat.vn",
+      "password": "Recruiter@123",
+      "fullName": "Hoàng Văn Em",
+      "phone": "0916789012",
+      "avatar": "/assets/avatars/user6.png",
+      "companyId": 5,
+      "createdAt": "2026-03-20T08:00:00.000Z"
+    },
+    {
+      "id": "7",
+      "role": "recruiter",
+      "email": "hr@tuongedu.vn",
+      "password": "Recruiter@123",
+      "fullName": "Vũ Thị Hoa",
+      "phone": "0917890123",
+      "avatar": "/assets/avatars/user7.png",
+      "companyId": 6,
+      "createdAt": "2026-04-02T08:00:00.000Z"
+    },
+    {
+      "id": "8",
+      "role": "candidate",
+      "email": "nguyenvannam@gmail.com",
+      "password": "Candidate@123",
+      "fullName": "Nguyễn Văn Nam",
+      "phone": "0921234567",
+      "avatar": "/assets/avatars/user8.png",
+      "companyId": null,
+      "unreadNotifications": 3,
+      "createdAt": "2026-05-01T08:00:00.000Z"
+    },
+    {
+      "id": "9",
+      "role": "candidate",
+      "email": "tranthilan@gmail.com",
+      "password": "Candidate@123",
+      "fullName": "Trần Thị Lan",
+      "phone": "0922345678",
+      "avatar": "/assets/avatars/user9.png",
+      "companyId": null,
+      "createdAt": "2026-05-15T08:00:00.000Z"
+    },
+    {
+      "id": "10",
+      "role": "candidate",
+      "email": "lehoangphuc@gmail.com",
+      "password": "Candidate@123",
+      "fullName": "Lê Hoàng Phúc",
+      "phone": "0923456789",
+      "avatar": "/assets/avatars/user10.png",
+      "companyId": null,
+      "createdAt": "2026-06-01T08:00:00.000Z"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "1",
+      "companyId": 1,
+      "recruiterId": 2,
+      "title": "Lập trình viên Frontend ReactJS",
+      "slug": "lap-trinh-vien-frontend-reactjs",
+      "categoryId": 1,
+      "locationId": 1,
+      "salaryMin": 15000000,
+      "salaryMax": 25000000,
+      "salaryText": "15 - 25 triệu",
+      "experience": "1-2 năm",
+      "level": "Nhân viên",
+      "workType": "Toàn thời gian",
+      "quantity": 2,
+      "gender": "Không yêu cầu",
+      "description": "Mô tả công việc:\n- Phát triển và bảo trì các ứng dụng web sử dụng ReactJS.\n- Phối hợp với team Backend để tích hợp API.\n- Tối ưu hiệu năng, đảm bảo trải nghiệm người dùng mượt mà.\n- Tham gia code review, viết tài liệu kỹ thuật.",
+      "requirements": "- Tốt nghiệp Cao đẳng/Đại học chuyên ngành CNTT hoặc liên quan.\n- Có 1-2 năm kinh nghiệm làm việc với ReactJS, HTML/CSS/JavaScript.\n- Hiểu biết về RESTful API, Git.\n- Có tinh thần trách nhiệm, chủ động trong công việc.",
+      "benefits": "- Lương thoả thuận theo năng lực, review lương 2 lần/năm.\n- Thưởng lễ, Tết, tháng lương 13.\n- Bảo hiểm đầy đủ theo quy định + bảo hiểm sức khoẻ.\n- Môi trường làm việc trẻ, năng động.",
+      "deadline": "2026-09-15",
+      "postedDate": "2026-08-01",
+      "status": "active",
+      "isHot": true,
+      "isUrgent": false,
+      "viewCount": 342,
+      "jobType": "van-phong"
+    },
+    {
+      "id": "2",
+      "companyId": 1,
+      "recruiterId": 2,
+      "title": "Lập trình viên Backend Node.js",
+      "slug": "lap-trinh-vien-backend-nodejs",
+      "categoryId": 1,
+      "locationId": 2,
+      "salaryMin": 18000000,
+      "salaryMax": 30000000,
+      "salaryText": "18 - 30 triệu",
+      "experience": "2 năm",
+      "level": "Nhân viên",
+      "workType": "Toàn thời gian",
+      "quantity": 1,
+      "gender": "Không yêu cầu",
+      "description": "Mô tả công việc:\n- Xây dựng và bảo trì hệ thống API bằng Node.js/Express.\n- Thiết kế cơ sở dữ liệu, tối ưu truy vấn.\n- Triển khai và giám sát hệ thống trên môi trường cloud.",
+      "requirements": "- Có ít nhất 2 năm kinh nghiệm với Node.js, Express hoặc NestJS.\n- Thành thạo MongoDB hoặc MySQL/PostgreSQL.\n- Có kinh nghiệm làm việc với Docker là một lợi thế.",
+      "benefits": "- Thu nhập cạnh tranh, thưởng dự án.\n- Chế độ bảo hiểm đầy đủ, khám sức khoẻ định kỳ.\n- Được đào tạo và tham gia các khoá học nâng cao chuyên môn.",
+      "deadline": "2026-09-20",
+      "postedDate": "2026-08-03",
+      "status": "active",
+      "isHot": false,
+      "isUrgent": true,
+      "viewCount": 218,
+      "jobType": "van-phong"
+    },
+    {
+      "id": "3",
+      "companyId": 2,
+      "recruiterId": 3,
+      "title": "Nhân viên Kinh doanh (Sales)",
+      "slug": "nhan-vien-kinh-doanh-sales",
+      "categoryId": 2,
+      "locationId": 2,
+      "salaryMin": 10000000,
+      "salaryMax": 20000000,
+      "salaryText": "10 - 20 triệu + hoa hồng",
+      "experience": "Không yêu cầu",
+      "level": "Nhân viên",
+      "workType": "Toàn thời gian",
+      "quantity": 5,
+      "gender": "Không yêu cầu",
+      "description": "Mô tả công việc:\n- Tìm kiếm và phát triển khách hàng mới cho các dòng sản phẩm FMCG.\n- Chăm sóc hệ thống đại lý hiện có.\n- Báo cáo doanh số định kỳ cho quản lý.",
+      "requirements": "- Tốt nghiệp THPT trở lên, ưu tiên có kinh nghiệm bán hàng.\n- Giao tiếp tốt, chịu được áp lực doanh số.\n- Có phương tiện đi lại cá nhân.",
+      "benefits": "- Lương cứng + hoa hồng không giới hạn.\n- Được đào tạo kỹ năng bán hàng bài bản.\n- Cơ hội thăng tiến lên vị trí Giám sát bán hàng.",
+      "deadline": "2026-09-10",
+      "postedDate": "2026-07-25",
+      "status": "active",
+      "isHot": false,
+      "isUrgent": false,
+      "viewCount": 156,
+      "jobType": "pho-thong"
+    },
+    {
+      "id": "4",
+      "companyId": 4,
+      "recruiterId": 5,
+      "title": "Chuyên viên Marketing Digital",
+      "slug": "chuyen-vien-marketing-digital",
+      "categoryId": 3,
+      "locationId": 2,
+      "salaryMin": 12000000,
+      "salaryMax": 18000000,
+      "salaryText": "12 - 18 triệu",
+      "experience": "1 năm",
+      "level": "Nhân viên",
+      "workType": "Toàn thời gian",
+      "quantity": 2,
+      "gender": "Không yêu cầu",
+      "description": "Mô tả công việc:\n- Lên kế hoạch và triển khai chiến dịch quảng cáo trên Facebook, Google, TikTok.\n- Phân tích số liệu, tối ưu hiệu quả chiến dịch.\n- Phối hợp với team content sản xuất nội dung quảng cáo.",
+      "requirements": "- Có kinh nghiệm chạy quảng cáo Facebook Ads/Google Ads.\n- Thành thạo công cụ phân tích số liệu (Google Analytics, Excel).\n- Tư duy sáng tạo, cập nhật xu hướng nhanh.",
+      "benefits": "- Thưởng theo hiệu quả chiến dịch.\n- Môi trường agency năng động, nhiều dự án đa dạng.\n- Chế độ nghỉ phép, bảo hiểm đầy đủ.",
+      "deadline": "2026-09-05",
+      "postedDate": "2026-07-28",
+      "status": "active",
+      "isHot": true,
+      "isUrgent": false,
+      "viewCount": 289,
+      "jobType": "van-phong"
+    },
+    {
+      "id": "5",
+      "companyId": 2,
+      "recruiterId": 3,
+      "title": "Kế toán tổng hợp",
+      "slug": "ke-toan-tong-hop",
+      "categoryId": 4,
+      "locationId": 2,
+      "salaryMin": 10000000,
+      "salaryMax": 15000000,
+      "salaryText": "10 - 15 triệu",
+      "experience": "2 năm",
+      "level": "Nhân viên",
+      "workType": "Toàn thời gian",
+      "quantity": 1,
+      "gender": "Nữ",
+      "description": "Mô tả công việc:\n- Hạch toán các nghiệp vụ kế toán phát sinh hàng ngày.\n- Lập báo cáo thuế, báo cáo tài chính định kỳ.\n- Đối chiếu công nợ với khách hàng, nhà cung cấp.",
+      "requirements": "- Tốt nghiệp Đại học chuyên ngành Kế toán/Tài chính.\n- Thành thạo phần mềm kế toán (MISA) và Excel.\n- Cẩn thận, trung thực, chịu được áp lực công việc.",
+      "benefits": "- Lương tháng 13, thưởng theo kết quả kinh doanh.\n- Đóng BHXH đầy đủ theo lương thực nhận.\n- Được đào tạo nâng cao nghiệp vụ.",
+      "deadline": "2026-09-12",
+      "postedDate": "2026-07-30",
+      "status": "active",
+      "isHot": false,
+      "isUrgent": false,
+      "viewCount": 97,
+      "jobType": "van-phong"
+    },
+    {
+      "id": "6",
+      "companyId": 1,
+      "recruiterId": 2,
+      "title": "Chuyên viên Nhân sự (HR Generalist)",
+      "slug": "chuyen-vien-nhan-su-hr-generalist",
+      "categoryId": 5,
+      "locationId": 1,
+      "salaryMin": 10000000,
+      "salaryMax": 15000000,
+      "salaryText": "10 - 15 triệu",
+      "experience": "1-2 năm",
+      "level": "Nhân viên",
+      "workType": "Toàn thời gian",
+      "quantity": 1,
+      "gender": "Không yêu cầu",
+      "description": "Mô tả công việc:\n- Tuyển dụng, tổ chức phỏng vấn cho các vị trí trong công ty.\n- Xây dựng và triển khai chính sách nhân sự, C&B.\n- Tổ chức các hoạt động gắn kết nội bộ.",
+      "requirements": "- Tốt nghiệp Đại học chuyên ngành Quản trị nhân lực hoặc liên quan.\n- Có kinh nghiệm tuyển dụng vị trí IT là một lợi thế.\n- Kỹ năng giao tiếp, tổ chức tốt.",
+      "benefits": "- Thưởng hiệu suất theo quý.\n- Du lịch công ty hàng năm, team building.\n- Máy tính xách tay được công ty trang bị.",
+      "deadline": "2026-09-18",
+      "postedDate": "2026-08-02",
+      "status": "active",
+      "isHot": false,
+      "isUrgent": false,
+      "viewCount": 134,
+      "jobType": "van-phong"
+    },
+    {
+      "id": "7",
+      "companyId": 3,
+      "recruiterId": 4,
+      "title": "Nhân viên Hành chính văn phòng",
+      "slug": "nhan-vien-hanh-chinh-van-phong",
+      "categoryId": 6,
+      "locationId": 3,
+      "salaryMin": 8000000,
+      "salaryMax": 12000000,
+      "salaryText": "8 - 12 triệu",
+      "experience": "Không yêu cầu",
+      "level": "Nhân viên",
+      "workType": "Toàn thời gian",
+      "quantity": 1,
+      "gender": "Nữ",
+      "description": "Mô tả công việc:\n- Quản lý văn thư, lưu trữ hồ sơ công ty.\n- Hỗ trợ mua sắm văn phòng phẩm, trang thiết bị.\n- Sắp xếp lịch họp, hỗ trợ công tác hậu cần cho ban giám đốc.",
+      "requirements": "- Tốt nghiệp Trung cấp/Cao đẳng trở lên.\n- Thành thạo tin học văn phòng (Word, Excel).\n- Cẩn thận, nhanh nhẹn, giao tiếp tốt.",
+      "benefits": "- Môi trường làm việc ổn định.\n- Đóng BHXH đầy đủ sau thời gian thử việc.\n- Nghỉ phép năm theo quy định.",
+      "deadline": "2026-09-08",
+      "postedDate": "2026-07-22",
+      "status": "active",
+      "isHot": false,
+      "isUrgent": false,
+      "viewCount": 65,
+      "jobType": "van-phong"
+    },
+    {
+      "id": "8",
+      "companyId": 4,
+      "recruiterId": 5,
+      "title": "Nhân viên Thiết kế đồ hoạ (Graphic Designer)",
+      "slug": "nhan-vien-thiet-ke-do-hoa-graphic-designer",
+      "categoryId": 7,
+      "locationId": 2,
+      "salaryMin": 10000000,
+      "salaryMax": 16000000,
+      "salaryText": "10 - 16 triệu",
+      "experience": "1 năm",
+      "level": "Nhân viên",
+      "workType": "Toàn thời gian",
+      "quantity": 1,
+      "gender": "Không yêu cầu",
+      "description": "Mô tả công việc:\n- Thiết kế ấn phẩm quảng cáo, social media, banner cho các nhãn hàng.\n- Phối hợp với đội content và marketing để lên ý tưởng thiết kế.\n- Đảm bảo tiến độ và chất lượng sản phẩm thiết kế.",
+      "requirements": "- Thành thạo Photoshop, Illustrator; biết After Effects là lợi thế.\n- Có gu thẩm mỹ tốt, cập nhật xu hướng thiết kế.\n- Có portfolio thiết kế khi ứng tuyển.",
+      "benefits": "- Môi trường sáng tạo, được chủ động ý tưởng.\n- Thưởng theo dự án hoàn thành.\n- Trang bị máy tính cấu hình cao phục vụ công việc.",
+      "deadline": "2026-08-30",
+      "postedDate": "2026-07-26",
+      "status": "active",
+      "isHot": false,
+      "isUrgent": true,
+      "viewCount": 201,
+      "jobType": "van-phong"
+    },
+    {
+      "id": "9",
+      "companyId": 5,
+      "recruiterId": 6,
+      "title": "Kỹ sư xây dựng dân dụng",
+      "slug": "ky-su-xay-dung-dan-dung",
+      "categoryId": 9,
+      "locationId": 6,
+      "salaryMin": 15000000,
+      "salaryMax": 25000000,
+      "salaryText": "15 - 25 triệu",
+      "experience": "2-3 năm",
+      "level": "Nhân viên",
+      "workType": "Toàn thời gian",
+      "quantity": 3,
+      "gender": "Nam",
+      "description": "Mô tả công việc:\n- Giám sát thi công công trình dân dụng, công nghiệp tại công trường.\n- Kiểm tra chất lượng, tiến độ thi công theo bản vẽ thiết kế.\n- Lập báo cáo tiến độ định kỳ cho Ban chỉ huy công trình.",
+      "requirements": "- Tốt nghiệp Đại học chuyên ngành Xây dựng dân dụng.\n- Có kinh nghiệm giám sát thi công từ 2 năm trở lên.\n- Thành thạo AutoCAD, đọc hiểu bản vẽ kỹ thuật.",
+      "benefits": "- Phụ cấp công trường, phụ cấp đi lại.\n- Thưởng theo tiến độ và chất lượng công trình.\n- Cơ hội thăng tiến lên vị trí Chỉ huy trưởng.",
+      "deadline": "2026-09-25",
+      "postedDate": "2026-08-04",
+      "status": "active",
+      "isHot": false,
+      "isUrgent": false,
+      "viewCount": 112,
+      "jobType": "pho-thong"
+    },
+    {
+      "id": "10",
+      "companyId": 6,
+      "recruiterId": 7,
+      "title": "Giáo viên Tiếng Anh",
+      "slug": "giao-vien-tieng-anh",
+      "categoryId": 10,
+      "locationId": 1,
+      "salaryMin": 200000,
+      "salaryMax": 350000,
+      "salaryText": "200.000 - 350.000đ/giờ",
+      "experience": "1 năm",
+      "level": "Nhân viên",
+      "workType": "Bán thời gian",
+      "quantity": 4,
+      "gender": "Không yêu cầu",
+      "description": "Mô tả công việc:\n- Giảng dạy Tiếng Anh giao tiếp và luyện thi chứng chỉ quốc tế (IELTS/TOEIC).\n- Soạn giáo án, theo dõi tiến độ học tập của học viên.\n- Tham gia họp chuyên môn định kỳ với trung tâm.",
+      "requirements": "- Tốt nghiệp chuyên ngành Sư phạm Anh hoặc Ngôn ngữ Anh.\n- Chứng chỉ IELTS 7.0/TOEIC 900 trở lên hoặc tương đương.\n- Có kinh nghiệm giảng dạy là lợi thế.",
+      "benefits": "- Thu nhập tính theo giờ dạy, thưởng theo kết quả học viên.\n- Được hỗ trợ tài liệu giảng dạy.\n- Lịch dạy linh hoạt theo ca.",
+      "deadline": "2026-07-30",
+      "postedDate": "2026-06-15",
+      "status": "closed",
+      "isHot": false,
+      "isUrgent": false,
+      "viewCount": 178,
+      "jobType": "van-phong"
+    }
+  ],
+  "cvs": [
+    {
+      "id": "1",
+      "candidateId": 8,
+      "title": "CV xin việc - Lập trình viên Frontend",
+      "fullName": "Nguyễn Văn Nam",
+      "email": "nguyenvannam@gmail.com",
+      "phone": "0921234567",
+      "address": "Cầu Giấy, Hà Nội",
+      "avatar": "/assets/avatars/user8.png",
+      "objective": "Mong muốn phát triển sự nghiệp trong lĩnh vực Frontend Development, đóng góp vào các sản phẩm web có lượng người dùng lớn.",
+      "education": [
+        {
+          "school": "Đại học Bách Khoa Hà Nội",
+          "major": "Công nghệ thông tin",
+          "from": "2018",
+          "to": "2022"
+        }
+      ],
+      "experience": [
+        {
+          "company": "Công ty TNHH Giải pháp Phần mềm XYZ",
+          "position": "Frontend Developer",
+          "from": "2022-06",
+          "to": "Hiện tại",
+          "description": "Phát triển giao diện web bằng ReactJS cho các dự án thương mại điện tử."
+        }
+      ],
+      "skills": [
+        "ReactJS",
+        "JavaScript",
+        "HTML/CSS",
+        "Git",
+        "TypeScript"
+      ],
+      "certificates": [
+        "Chứng chỉ IELTS 6.5"
+      ],
+      "updatedAt": "2026-07-15T09:30:00.000Z"
+    },
+    {
+      "id": "2",
+      "candidateId": 9,
+      "title": "CV ứng tuyển Marketing",
+      "fullName": "Trần Thị Lan",
+      "email": "tranthilan@gmail.com",
+      "phone": "0922345678",
+      "address": "Bình Thạnh, Hồ Chí Minh",
+      "avatar": "/assets/avatars/user9.png",
+      "objective": "Tìm kiếm cơ hội làm việc trong môi trường agency năng động để phát triển kỹ năng Digital Marketing.",
+      "education": [
+        {
+          "school": "Đại học Kinh tế Quốc dân",
+          "major": "Marketing",
+          "from": "2019",
+          "to": "2023"
+        }
+      ],
+      "experience": [
+        {
+          "company": "Công ty Cổ phần Truyền thông ABC",
+          "position": "Marketing Intern",
+          "from": "2023-01",
+          "to": "2023-06",
+          "description": "Hỗ trợ lên kế hoạch nội dung mạng xã hội và theo dõi hiệu quả chiến dịch."
+        }
+      ],
+      "skills": [
+        "Content Marketing",
+        "SEO cơ bản",
+        "Canva",
+        "Facebook Ads"
+      ],
+      "certificates": [],
+      "updatedAt": "2026-07-20T14:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "candidateId": 10,
+      "title": "CV Kỹ sư xây dựng",
+      "fullName": "Lê Hoàng Phúc",
+      "email": "lehoangphuc@gmail.com",
+      "phone": "0923456789",
+      "address": "Dĩ An, Bình Dương",
+      "avatar": "/assets/avatars/user10.png",
+      "objective": "Ứng tuyển vị trí Kỹ sư giám sát công trình, mong muốn gắn bó lâu dài với doanh nghiệp xây dựng uy tín.",
+      "education": [
+        {
+          "school": "Đại học Xây dựng Hà Nội",
+          "major": "Kỹ thuật xây dựng",
+          "from": "2016",
+          "to": "2021"
+        }
+      ],
+      "experience": [
+        {
+          "company": "Công ty Cổ phần Xây dựng Hòa Bình",
+          "position": "Kỹ sư giám sát công trình",
+          "from": "2021-08",
+          "to": "Hiện tại",
+          "description": "Giám sát thi công phần thô các công trình dân dụng, đảm bảo tiến độ và chất lượng."
+        }
+      ],
+      "skills": [
+        "AutoCAD",
+        "Revit",
+        "Quản lý tiến độ thi công"
+      ],
+      "certificates": [
+        "Chứng chỉ hành nghề giám sát thi công xây dựng"
+      ],
+      "updatedAt": "2026-08-01T10:15:00.000Z"
+    },
+    {
+      "id": "4",
+      "candidateId": 8,
+      "title": "CV xin việc - Backend Developer",
+      "fullName": "Nguyễn Văn Nam",
+      "email": "nguyenvannam@gmail.com",
+      "phone": "0921234567",
+      "address": "Cầu Giấy, Hà Nội",
+      "avatar": "/assets/avatars/user8.png",
+      "objective": "Mong muốn thử sức ở vị trí Backend Developer để mở rộng kỹ năng phát triển hệ thống toàn diện (fullstack).",
+      "education": [
+        {
+          "school": "Đại học Bách Khoa Hà Nội",
+          "major": "Công nghệ thông tin",
+          "from": "2018",
+          "to": "2022"
+        }
+      ],
+      "experience": [
+        {
+          "company": "Công ty TNHH Giải pháp Phần mềm XYZ",
+          "position": "Fullstack Developer",
+          "from": "2022-06",
+          "to": "Hiện tại",
+          "description": "Phát triển API bằng Node.js/Express, làm việc với MongoDB và MySQL."
+        }
+      ],
+      "skills": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "MySQL",
+        "Docker"
+      ],
+      "certificates": [],
+      "updatedAt": "2026-08-05T16:45:00.000Z"
+    }
+  ],
+  "applications": [
+    {
+      "id": "1",
+      "jobId": 1,
+      "candidateId": 8,
+      "cvId": 1,
+      "status": "pending",
+      "appliedDate": "2026-08-01",
+      "note": ""
+    },
+    {
+      "id": "2",
+      "jobId": 2,
+      "candidateId": 8,
+      "cvId": 4,
+      "status": "viewed",
+      "appliedDate": "2026-08-02",
+      "note": ""
+    },
+    {
+      "id": "3",
+      "jobId": 4,
+      "candidateId": 9,
+      "cvId": 2,
+      "status": "accepted",
+      "appliedDate": "2026-07-28",
+      "note": "Ứng viên phù hợp, hẹn phỏng vấn ngày 15/08."
+    },
+    {
+      "id": "4",
+      "jobId": 8,
+      "candidateId": 9,
+      "cvId": 2,
+      "status": "pending",
+      "appliedDate": "2026-08-05",
+      "note": ""
+    },
+    {
+      "id": "5",
+      "jobId": 9,
+      "candidateId": 10,
+      "cvId": 3,
+      "status": "viewed",
+      "appliedDate": "2026-08-03",
+      "note": ""
+    },
+    {
+      "id": "6",
+      "jobId": 3,
+      "candidateId": 9,
+      "cvId": 2,
+      "status": "rejected",
+      "appliedDate": "2026-07-20",
+      "note": "Không phù hợp vị trí yêu cầu kinh nghiệm bán hàng B2B."
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,0 +1,165 @@
+.header {
+    padding: 2.4rem;
+    border: 0.1rem solid #eee;
+    border-radius: 1.2rem;
+    background-color: #fff;
+}
+
+.badges {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.badgeIcon {
+    font-size: 1.2rem !important;
+}
+
+.badgeHot {
+    background-color: #ff424e;
+}
+
+.badgeUrgent {
+    background-color: #ff9800;
+}
+
+.title {
+    margin-bottom: 1.2rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #212f3f;
+}
+
+.salary {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.6rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ff9800;
+}
+
+.salaryIcon {
+    font-size: 2rem !important;
+}
+
+.metaRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.4rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 0.1rem solid #eee;
+}
+
+.metaItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+
+.metaIcon {
+    font-size: 2rem !important;
+    color: #00b14f !important;
+    margin-top: 0.2rem;
+}
+
+.metaLabel {
+    display: block;
+    font-size: 1.2rem;
+    color: #7a7a7a;
+}
+
+.metaValue {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #212f3f;
+}
+
+.countdown {
+    font-weight: 400;
+    color: #7a7a7a;
+}
+
+.actions {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.applyButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    flex: 1;
+    max-width: 30rem;
+    padding: 1.2rem 2rem;
+    border: none;
+    border-radius: 0.8rem;
+    background-color: #00b14f;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.applyButton:hover:not(:disabled) {
+    background-color: #009645;
+}
+
+.applyButton:disabled {
+    background-color: #7a7a7a;
+    cursor: default;
+}
+
+.applyIcon {
+    font-size: 1.8rem !important;
+}
+
+.saveButton {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.2rem 2rem;
+    border: 0.1rem solid #00b14f;
+    border-radius: 0.8rem;
+    background-color: #fff;
+    color: #00b14f;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.saveButton:hover {
+    background-color: #eafaf1;
+}
+
+.saveIcon {
+    font-size: 1.8rem !important;
+}
+
+@media (max-width: 560px) {
+    .actions {
+        flex-direction: column;
+    }
+    .applyButton {
+        max-width: none;
+    }
+}

@@ -1,0 +1,50 @@
+.rail {
+    position: sticky;
+    top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    flex-shrink: 0;
+    width: 4.4rem;
+}
+
+.iconButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border: 0.1rem solid #eee;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #7a7a7a;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.iconButton:hover {
+    border-color: #00b14f;
+    color: #00b14f;
+}
+
+.icon {
+    font-size: 1.9rem !important;
+}
+
+.tooltip {
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.6rem;
+    background-color: #212f3f;
+    color: #fff;
+    font-size: 1.1rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .rail {
+        position: static;
+        flex-direction: row;
+        width: auto;
+    }
+}

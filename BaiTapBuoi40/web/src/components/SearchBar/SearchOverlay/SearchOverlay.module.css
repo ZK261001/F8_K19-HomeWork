@@ -1,0 +1,265 @@
+.panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    margin-top: 0.8rem;
+    padding: 2rem 2.4rem;
+    background-color: #fff;
+    border-radius: 0.8rem;
+    box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.15);
+    text-align: left;
+}
+
+.column {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.column:first-child {
+    flex: 0 0 32rem;
+    padding-right: 2.4rem;
+}
+
+.divider {
+    width: 0.1rem;
+    background-color: #e5e5e5;
+    margin: 0 2.4rem 0 0;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.groupTitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #212f3f;
+}
+
+.groupHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+}
+
+.clearAllButton {
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #e74c3c;
+    cursor: pointer;
+}
+
+.clearAllButton:hover {
+    text-decoration: underline;
+}
+
+.recentItem {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.recentKeywordRow {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 0.4rem;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    color: #212f3f;
+    transition: background-color 0.2s ease;
+}
+
+.recentKeywordRow:hover {
+    background-color: #f4f6f8;
+}
+
+.recentKeywordInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+}
+
+.recentKeywordName {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #212f3f;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.recentKeywordCount {
+    font-size: 1.1rem;
+    color: #7a7a7a;
+}
+
+.removeKeywordButton {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #b0b0b0;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.removeKeywordButton:hover {
+    background-color: #f4f6f8;
+    color: #e74c3c;
+}
+
+.removeIcon {
+    font-size: 1.6rem !important;
+}
+
+.keywordList,
+.jobList {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.keywordRow {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 0.4rem;
+    border-radius: 0.6rem;
+    font-size: 1.3rem;
+    color: #212f3f;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.keywordRow:hover {
+    background-color: #f4f6f8;
+}
+
+.keywordIcon {
+    flex-shrink: 0;
+    font-size: 1.6rem !important;
+    color: #7a7a7a !important;
+}
+
+.jobRow {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 0.8rem 0.4rem;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.jobRow:hover {
+    background-color: #f4f6f8;
+}
+
+.jobLogo {
+    flex-shrink: 0;
+    width: 4rem !important;
+    height: 4rem !important;
+    background-color: #00b14f !important;
+    font-size: 1.4rem !important;
+    font-weight: 700;
+}
+
+.jobInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.jobTitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #212f3f;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.jobCompany {
+    font-size: 1.2rem;
+    color: #7a7a7a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.jobSalary {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #00b14f;
+}
+
+.emptyGroup {
+    padding: 0.8rem 0.4rem;
+    font-size: 1.2rem;
+    color: #7a7a7a;
+}
+
+.closeButton {
+    position: absolute;
+    bottom: -1.6rem;
+    right: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.2rem;
+    height: 3.2rem;
+    border: 0.1rem solid #d5d9de;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.1);
+    color: #212f3f;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.closeButton:hover {
+    border-color: #00b14f;
+    color: #00b14f;
+}
+
+.closeIcon {
+    font-size: 1.8rem !important;
+}
+
+@media (max-width: 768px) {
+    .panel {
+        flex-direction: column;
+    }
+
+    .column:first-child {
+        flex: 1;
+        padding-right: 0;
+    }
+
+    .divider {
+        display: none;
+    }
+}

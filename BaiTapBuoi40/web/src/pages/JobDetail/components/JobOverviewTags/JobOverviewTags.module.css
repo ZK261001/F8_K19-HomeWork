@@ -1,0 +1,41 @@
+.section {
+    padding: 2.4rem;
+    border: 0.1rem solid #eee;
+    border-radius: 1.2rem;
+    background-color: #fff;
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.6rem;
+    padding-left: 1rem;
+    border-left: 0.4rem solid #00b14f;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #212f3f;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: 999px;
+    background-color: #f4f6f8;
+    color: #212f3f;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.tagIcon {
+    font-size: 1.6rem !important;
+    color: #00b14f !important;
+}

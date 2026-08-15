@@ -1,0 +1,74 @@
+.card {
+    padding: 2rem;
+    border: 0.1rem solid #eee;
+    border-radius: 1.2rem;
+    background-color: #fff;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.6rem;
+}
+
+.logo {
+    width: 5.6rem !important;
+    height: 5.6rem !important;
+    background-color: #00b14f !important;
+    font-size: 2rem !important;
+    font-weight: 700;
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #212f3f;
+}
+
+.infoList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 1.6rem;
+}
+
+.infoRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.3rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.infoIcon {
+    flex-shrink: 0;
+    font-size: 1.8rem !important;
+    color: #00b14f !important;
+    margin-top: 0.1rem;
+}
+
+.websiteLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1rem;
+    border: 0.1rem solid #00b14f;
+    border-radius: 0.8rem;
+    color: #00b14f;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.websiteLink:hover {
+    background-color: #eafaf1;
+}
+
+.websiteLinkIcon {
+    font-size: 1.6rem !important;
+}

@@ -1,0 +1,73 @@
+.wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.6rem 2rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.fieldIcon {
+    flex-shrink: 0;
+    color: #7a7a7a !important;
+}
+
+.input,
+.select {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.4rem;
+    color: #212f3f;
+    background: transparent;
+}
+
+.select {
+    cursor: pointer;
+}
+
+.divider {
+    width: 0.1rem;
+    height: 3.2rem;
+    background-color: #e5e5e5;
+    flex-shrink: 0;
+}
+
+.submitButton {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-shrink: 0;
+    height: 100%;
+    padding: 1.6rem 3.2rem;
+    border: none;
+    background-color: #00b14f;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submitButton:hover {
+    background-color: #009645;
+}
+
+.submitIcon {
+    font-size: 1.8rem !important;
+}

@@ -1,0 +1,126 @@
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border: 0.1rem solid #eee;
+    border-radius: 1.2rem;
+    background-color: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    border-color: #00b14f;
+    box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.08);
+}
+
+.saveButton {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #7a7a7a;
+    cursor: pointer;
+}
+
+.saveIcon {
+    font-size: 2rem !important;
+}
+
+.top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin-bottom: 1.4rem;
+}
+
+.logo {
+    width: 4.8rem !important;
+    height: 4.8rem !important;
+    background-color: #00b14f !important;
+    font-size: 1.8rem !important;
+    font-weight: 700;
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    padding-right: 2.8rem;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.badgeIcon {
+    font-size: 1.2rem !important;
+}
+
+.badgeTop {
+    background-color: #00b14f;
+}
+
+.badgeHot {
+    background-color: #ff424e;
+}
+
+.badgeUrgent {
+    background-color: #ff9800;
+}
+
+.title {
+    margin-bottom: 0.6rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #212f3f;
+}
+
+.company {
+    margin-bottom: 1.4rem;
+    font-size: 1.3rem;
+    color: #7a7a7a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: auto;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.6rem;
+    background-color: #f4f6f8;
+    color: #212f3f;
+    font-size: 1.2rem;
+}
+
+.tagIcon {
+    font-size: 1.4rem !important;
+    color: #00b14f !important;
+}

@@ -1,0 +1,102 @@
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.4rem;
+    flex: 1.4;
+    min-width: 36rem;
+    padding: 2.8rem 3.2rem;
+    border-radius: 1.2rem;
+    background: linear-gradient(120deg, #e8f3ff 0%, #f4faf7 100%);
+    box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.eyebrow {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #4a4a4a;
+}
+
+.title {
+    max-width: 32rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #212f3f;
+}
+
+.highlight {
+    color: #00b14f;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    list-style: none;
+    margin: 0.4rem 0;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1rem;
+    border-radius: 0.8rem;
+    background-color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #212f3f;
+}
+
+.featureIcon {
+    font-size: 1.8rem !important;
+    color: #00b14f !important;
+}
+
+.cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 999px;
+    background-color: #00b14f;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.cta:hover {
+    background-color: #009645;
+}
+
+.ctaIcon {
+    font-size: 1.6rem !important;
+}
+
+.illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.illustrationIcon {
+    font-size: 6.4rem !important;
+    color: #00b14f !important;
+}

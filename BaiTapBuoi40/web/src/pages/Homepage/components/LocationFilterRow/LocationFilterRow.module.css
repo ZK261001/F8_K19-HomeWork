@@ -1,0 +1,38 @@
+.row {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+
+.filterButton {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+    padding: 0.9rem 1.4rem;
+    border: 0.1rem solid #e5e5e5;
+    border-radius: 0.6rem;
+    background-color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #212f3f;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.filterIcon {
+    font-size: 1.6rem !important;
+    color: #00b14f !important;
+}
+
+.chips {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.chips::-webkit-scrollbar {
+    display: none;
+}

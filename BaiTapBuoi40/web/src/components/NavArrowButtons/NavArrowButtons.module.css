@@ -1,0 +1,33 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.arrowButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.2rem;
+    height: 3.2rem;
+    border: 0.1rem solid #d5d9de;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #212f3f;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.arrowButton:hover:not(:disabled) {
+    border-color: #00b14f;
+    color: #00b14f;
+}
+
+.arrowButton:disabled {
+    color: #c2c8ce;
+    cursor: not-allowed;
+}
+
+.icon {
+    font-size: 2rem !important;
+}

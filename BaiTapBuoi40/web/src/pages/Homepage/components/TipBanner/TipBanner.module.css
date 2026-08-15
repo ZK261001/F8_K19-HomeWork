@@ -1,0 +1,26 @@
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: 1rem 1.6rem;
+    border-radius: 0.8rem;
+    background-color: #e8f3ff;
+    color: #1a5fb4;
+    font-size: 1.3rem;
+}
+
+.closeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: none;
+    background: transparent;
+    color: #1a5fb4;
+    cursor: pointer;
+}
+
+.closeIcon {
+    font-size: 1.8rem !important;
+}

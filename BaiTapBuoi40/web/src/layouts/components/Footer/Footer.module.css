@@ -1,0 +1,343 @@
+.footer {
+    background-color: #fff;
+    border-top: 0.1rem solid #eee;
+    color: #212f3f;
+    font-size: 1.2rem;
+}
+
+.top {
+    display: flex;
+    gap: 4rem;
+    max-width: 128rem;
+    margin: 0 auto;
+    padding: 4rem 2.4rem;
+}
+
+/* Brand column */
+.brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 22rem;
+}
+
+.logo {
+    display: block;
+}
+
+.logoText {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #00b14f;
+    line-height: 1.2;
+}
+
+.logoTagline {
+    margin-top: 0.4rem;
+    font-size: 1.1rem;
+    color: #4a4a4a;
+}
+
+.badges {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.badgeImg {
+    height: 3.6rem;
+    padding: 0.4rem 0.8rem;
+    border: 0.1rem solid #e5e5e5;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.dmcaBadge {
+    width: 3.6rem;
+    height: 3.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.6rem;
+    background-color: #1c8dcc;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.sectionTitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    line-height: 1.6;
+}
+
+.contact strong {
+    font-weight: 700;
+}
+
+.appDownload {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.storeBadges {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.storeBadge {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #000;
+    color: #fff;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    line-height: 1.2;
+}
+
+.storeBadgeIcon {
+    font-size: 1.8rem !important;
+}
+
+.storeBadgeText {
+    display: flex;
+    flex-direction: column;
+}
+
+.storeBadgeHint {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.storeBadgeName {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.social {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.socialIcons {
+    display: flex;
+    gap: 1rem;
+}
+
+.socialIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 50%;
+    background-color: #eef1f3;
+    color: #4a4a4a;
+    text-decoration: none;
+}
+
+.socialIcon:hover {
+    background-color: #00b14f;
+    color: #fff;
+}
+
+.socialIcon svg {
+    font-size: 1.5rem;
+}
+
+/* Link columns */
+.linkColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    flex: 1;
+}
+
+.linkGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.linkGroupTitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #212f3f;
+}
+
+.linkList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.linkItem {
+    color: #4a4a4a;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.linkItem:hover {
+    color: #00b14f;
+}
+
+/* Bottom section */
+.bottom {
+    border-top: 0.1rem solid #eee;
+}
+
+.bottomInner {
+    max-width: 128rem;
+    margin: 0 auto;
+    padding: 3.2rem 2.4rem 2.4rem;
+}
+
+.companyRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+.companyName {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+}
+
+.companyInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.companyInfoLine {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    color: #4a4a4a;
+}
+
+.companyInfoIcon {
+    font-size: 1.4rem !important;
+    color: #00b14f;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+}
+
+.companyInfoLine strong {
+    color: #212f3f;
+}
+
+.qrBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+}
+
+.qrFrame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 9rem;
+    height: 9rem;
+    border: 0.1rem solid #e5e5e5;
+    border-radius: 0.6rem;
+}
+
+.qrFrame svg {
+    font-size: 5.5rem !important;
+    color: #212f3f;
+}
+
+.qrCaption {
+    font-size: 1.1rem;
+    color: #4a4a4a;
+}
+
+.ecosystem {
+    margin-top: 3.2rem;
+}
+
+.ecosystemTitle {
+    font-size: 1.2rem;
+    color: #4a4a4a;
+    margin-bottom: 1.2rem;
+}
+
+.ecosystemCards {
+    display: flex;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+}
+
+.ecosystemCard {
+    flex: 1;
+    min-width: 20rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem 1.6rem;
+    border-radius: 0.8rem;
+    color: #fff;
+}
+
+.ecosystemLogo {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.ecosystemDesc {
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.ecosystem-topcv {
+    background: linear-gradient(135deg, #0b3d2e, #14532d);
+}
+
+.ecosystem-happytime {
+    background: linear-gradient(135deg, #ff9142, #f6742a);
+}
+
+.ecosystem-testcenter {
+    background: linear-gradient(135deg, #1b2a4a, #16213e);
+}
+
+.ecosystem-shiring {
+    background: linear-gradient(135deg, #16a37a, #0f8f6a);
+}
+
+.copyright {
+    margin-top: 2.4rem;
+    padding-top: 1.6rem;
+    border-top: 0.1rem solid #eee;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #7a7a7a;
+}
+
+@media (max-width: 992px) {
+    .top {
+        flex-wrap: wrap;
+    }
+
+    .companyRow {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

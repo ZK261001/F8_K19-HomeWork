@@ -1,0 +1,66 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 32rem;
+    padding: 1.6rem;
+    background-color: #fff;
+    border-radius: 1.2rem;
+    box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.1);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3.6rem;
+    padding: 0.9rem 0.8rem;
+    border-radius: 0.6rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #212f3f;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.item:hover,
+.itemActive {
+    background-color: #e6f7ee;
+    color: #00b14f;
+}
+
+.itemActive .itemIcon {
+    color: #00b14f;
+}
+
+.itemIcon {
+    font-size: 1.8rem !important;
+    color: #99a1ab;
+}
+
+.itemPlaceholder {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.pager {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.2rem;
+    margin-top: 0.8rem;
+    padding-top: 1.2rem;
+    border-top: 0.1rem solid #eee;
+}
+
+.pagerLabel {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #7a7a7a;
+}

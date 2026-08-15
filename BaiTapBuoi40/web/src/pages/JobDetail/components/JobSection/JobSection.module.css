@@ -1,0 +1,35 @@
+.section {
+    padding: 2.4rem;
+    border: 0.1rem solid #eee;
+    border-radius: 1.2rem;
+    background-color: #fff;
+}
+
+.heading {
+    margin-bottom: 1.6rem;
+    padding-left: 1rem;
+    border-left: 0.4rem solid #00b14f;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #212f3f;
+}
+
+.leadLine {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #212f3f;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding-left: 2rem;
+}
+
+.listItem {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #444;
+}
