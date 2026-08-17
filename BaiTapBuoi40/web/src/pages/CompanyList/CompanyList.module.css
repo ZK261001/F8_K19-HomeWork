@@ -5,10 +5,79 @@
 }
 
 .heading {
-    margin-bottom: 2.4rem;
+    margin-bottom: 0.4rem;
     font-size: 2rem;
     font-weight: 700;
     color: #212f3f;
+}
+
+.subheading {
+    margin-bottom: 2.4rem;
+    font-size: 1.4rem;
+    color: #7a7a7a;
+}
+
+.searchRow {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.6rem;
+}
+
+.searchInput {
+    flex: 1;
+    min-width: 24rem;
+    height: 4.4rem;
+    padding: 0 1.6rem;
+    border: 0.1rem solid #e5e5e5;
+    border-radius: 0.6rem;
+    outline: none;
+    font-size: 1.4rem;
+    color: #212f3f;
+    background-color: #fff;
+}
+
+.searchInput:focus {
+    border-color: #00b14f;
+}
+
+.searchButton {
+    flex-shrink: 0;
+    height: 4.4rem;
+    padding: 0 2.4rem;
+    border: none;
+    border-radius: 0.6rem;
+    background-color: #00b14f;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.searchButton:hover {
+    background-color: #009645;
+}
+
+.fieldSelect {
+    flex-shrink: 0;
+    min-width: 20rem;
+    height: 4.4rem;
+    padding: 0 1.6rem;
+    border: 0.1rem solid #e5e5e5;
+    border-radius: 0.6rem;
+    outline: none;
+    font-size: 1.4rem;
+    color: #212f3f;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.count {
+    margin-bottom: 1.6rem;
+    font-size: 1.3rem;
+    color: #7a7a7a;
 }
 
 .grid {
@@ -18,10 +87,23 @@
 }
 
 .empty {
-    padding: 4rem 0;
+    padding: 5.6rem 2.4rem;
     text-align: center;
-    color: #7a7a7a;
+    background-color: #fff;
+    border: 0.1rem solid #e5e5e5;
+    border-radius: 0.8rem;
+}
+
+.emptyTitle {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #212f3f;
+}
+
+.emptyHint {
+    margin-top: 0.4rem;
     font-size: 1.4rem;
+    color: #7a7a7a;
 }
 
 @media (max-width: 992px) {
