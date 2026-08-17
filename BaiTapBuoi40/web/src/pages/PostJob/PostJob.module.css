@@ -1,0 +1,27 @@
+.wrapper {
+    max-width: 60rem;
+    margin: 6rem auto;
+    padding: 4rem;
+    background-color: #fff;
+    border-radius: 1.2rem;
+    box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.06);
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #212f3f;
+    margin-bottom: 1.2rem;
+}
+
+.greeting {
+    font-size: 1.4rem;
+    color: #212f3f;
+    margin-bottom: 0.8rem;
+}
+
+.message {
+    font-size: 1.3rem;
+    color: #7a7a7a;
+}

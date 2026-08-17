@@ -1,0 +1,121 @@
+.page {
+    max-width: 128rem;
+    margin: 0 auto;
+    padding: 0 2.4rem 4.8rem;
+}
+
+.loading,
+.notFound {
+    padding: 6rem 0;
+    text-align: center;
+    color: #7a7a7a;
+    font-size: 1.5rem;
+}
+
+.notFoundLink {
+    color: #00b14f;
+    font-weight: 700;
+}
+
+.cover {
+    height: 24rem;
+    margin: 0 -2.4rem 2.4rem;
+    background-color: #e9edf1;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 0 1.2rem 1.2rem;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 34rem;
+    align-items: start;
+    gap: 2.4rem;
+}
+
+.main {
+    min-width: 0;
+}
+
+.name {
+    margin-bottom: 2rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #212f3f;
+}
+
+.section {
+    margin-bottom: 2.4rem;
+    padding: 2rem;
+    border: 0.1rem solid #eee;
+    border-radius: 1.2rem;
+    background-color: #fff;
+}
+
+.sectionTitle {
+    margin-bottom: 1.4rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #212f3f;
+}
+
+.description {
+    font-size: 1.4rem;
+    line-height: 1.7;
+    color: #444;
+    white-space: pre-line;
+}
+
+.detailList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    list-style: none;
+}
+
+.detailRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.3rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.detailIcon {
+    flex-shrink: 0;
+    font-size: 1.8rem !important;
+    color: #00b14f !important;
+    margin-top: 0.1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+}
+
+.empty {
+    color: #7a7a7a;
+    font-size: 1.3rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    position: sticky;
+    top: 2rem;
+}
+
+@media (max-width: 992px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        position: static;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

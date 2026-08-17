@@ -63,79 +63,20 @@
     color: #00b14f;
 }
 
-.navIcon {
-    font-size: 1.6rem !important;
+.navLinkActive {
+    color: #00b14f;
+    position: relative;
 }
 
-.proBadge {
-    padding: 0.1rem 0.6rem;
-    border-radius: 999px;
-    background-color: #ff9800;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.megaMenu {
+.navLinkActive::after {
+    content: "";
     position: absolute;
-    top: 100%;
-    left: 0;
-    display: flex;
-    gap: 4rem;
-    padding: 2.4rem 3.2rem;
-    background-color: #fff;
-    border-radius: 0 0 0.8rem 0.8rem;
-    box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.15);
-}
-
-.megaMenuColumn {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    min-width: 20rem;
-}
-
-.megaMenuColumnWide {
-    flex-direction: row;
-    gap: 4rem;
-}
-
-.megaMenuGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.megaMenuGroupTitle {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #99a1ab;
-    letter-spacing: 0.03em;
-}
-
-.megaMenuList {
-    display: flex;
-    flex-direction: column;
-    gap: 1.4rem;
-    list-style: none;
-}
-
-.megaMenuLink {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-size: 1.2rem;
-    color: #212f3f;
-    text-decoration: none;
-}
-
-.megaMenuLink:hover {
-    color: #00b14f;
-}
-
-.megaMenuLinkIcon {
-    font-size: 1.6rem !important;
-    color: #00b14f;
+    left: 1.4rem;
+    right: 1.4rem;
+    bottom: 0;
+    height: 0.3rem;
+    border-radius: 0.3rem 0.3rem 0 0;
+    background-color: #00b14f;
 }
 
 .actions {
@@ -165,6 +106,55 @@
     height: 3.6rem !important;
     background-color: #00b14f !important;
     font-size: 1.3rem !important;
+}
+
+.authArea {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    white-space: nowrap;
+}
+
+.loginLink {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #212f3f;
+    text-decoration: none;
+}
+
+.loginLink:hover {
+    color: #00b14f;
+}
+
+.registerLink {
+    padding: 0.8rem 1.6rem;
+    border-radius: 0.6rem;
+    background-color: #00b14f;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.registerLink:hover {
+    background-color: #009a44;
+}
+
+.logoutButton {
+    padding: 0.7rem 1.4rem;
+    border: 0.1rem solid #d9dde3;
+    border-radius: 0.6rem;
+    background-color: transparent;
+    color: #212f3f;
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.logoutButton:hover {
+    border-color: #00b14f;
+    color: #00b14f;
 }
 
 .employer {

@@ -46,105 +46,384 @@
       "id": "1",
       "name": "Công nghệ thông tin",
       "slug": "cong-nghe-thong-tin",
-      "popularKeywords": ["Software Tester", "Data Engineer", "IT Helpdesk", "IT Comtor", "PHP", "React.js", "Node.js", ".NET", "Java", "Flutter", "Python", "Unity Developer"],
+      "popularKeywords": [
+        "Software Tester",
+        "Data Engineer",
+        "IT Helpdesk",
+        "IT Comtor",
+        "PHP",
+        "React.js",
+        "Node.js",
+        ".NET",
+        "Java",
+        "Flutter",
+        "Python",
+        "Unity Developer"
+      ],
       "groups": [
-        { "title": "Software Engineering", "jobs": ["Software Engineer", "Backend Developer", "Frontend Developer", "Mobile Developer", "Fullstack Developer", "Blockchain Engineer"] },
-        { "title": "Software Testing", "jobs": ["Software Tester (Automation & Manual)", "Automation Tester", "Manual Tester", "Game Tester", "QA Engineer"] },
-        { "title": "Data & AI", "jobs": ["Data Engineer", "Data Analyst", "Data Scientist", "AI Engineer", "Machine Learning Engineer"] },
-        { "title": "IT Support & Hạ tầng", "jobs": ["IT Helpdesk", "IT Comtor", "System Admin", "DevOps Engineer", "Network Engineer"] },
-        { "title": "Quản lý dự án CNTT", "jobs": ["IT Project Manager", "Product Owner", "Scrum Master", "Business Analyst"] }
+        {
+          "title": "Software Engineering",
+          "jobs": [
+            "Software Engineer",
+            "Backend Developer",
+            "Frontend Developer",
+            "Mobile Developer",
+            "Fullstack Developer",
+            "Blockchain Engineer"
+          ]
+        },
+        {
+          "title": "Software Testing",
+          "jobs": [
+            "Software Tester (Automation & Manual)",
+            "Automation Tester",
+            "Manual Tester",
+            "Game Tester",
+            "QA Engineer"
+          ]
+        },
+        {
+          "title": "Data & AI",
+          "jobs": [
+            "Data Engineer",
+            "Data Analyst",
+            "Data Scientist",
+            "AI Engineer",
+            "Machine Learning Engineer"
+          ]
+        },
+        {
+          "title": "IT Support & Hạ tầng",
+          "jobs": [
+            "IT Helpdesk",
+            "IT Comtor",
+            "System Admin",
+            "DevOps Engineer",
+            "Network Engineer"
+          ]
+        },
+        {
+          "title": "Quản lý dự án CNTT",
+          "jobs": [
+            "IT Project Manager",
+            "Product Owner",
+            "Scrum Master",
+            "Business Analyst"
+          ]
+        }
       ]
     },
     {
       "id": "2",
       "name": "Kinh doanh / Bán hàng",
       "slug": "kinh-doanh-ban-hang",
-      "popularKeywords": ["Nhân viên kinh doanh", "Sales B2B", "Account Manager", "Telesales", "Sales Admin", "Sales Executive", "Trade Marketing"],
+      "popularKeywords": [
+        "Nhân viên kinh doanh",
+        "Sales B2B",
+        "Account Manager",
+        "Telesales",
+        "Sales Admin",
+        "Sales Executive",
+        "Trade Marketing"
+      ],
       "groups": [
-        { "title": "Kinh doanh trực tiếp", "jobs": ["Nhân viên kinh doanh", "Sales B2B", "Sales B2C", "Account Manager", "Sales Executive"] },
-        { "title": "Hỗ trợ bán hàng", "jobs": ["Telesales", "Sales Admin", "Chăm sóc khách hàng bán hàng", "Trade Marketing", "Giám sát bán hàng"] }
+        {
+          "title": "Kinh doanh trực tiếp",
+          "jobs": [
+            "Nhân viên kinh doanh",
+            "Sales B2B",
+            "Sales B2C",
+            "Account Manager",
+            "Sales Executive"
+          ]
+        },
+        {
+          "title": "Hỗ trợ bán hàng",
+          "jobs": [
+            "Telesales",
+            "Sales Admin",
+            "Chăm sóc khách hàng bán hàng",
+            "Trade Marketing",
+            "Giám sát bán hàng"
+          ]
+        }
       ]
     },
     {
       "id": "3",
       "name": "Marketing / PR / Quảng cáo",
       "slug": "marketing-pr-quang-cao",
-      "popularKeywords": ["Content Marketing", "SEO", "Digital Marketing", "Social Media", "Copywriter", "Branding", "Media Planner"],
+      "popularKeywords": [
+        "Content Marketing",
+        "SEO",
+        "Digital Marketing",
+        "Social Media",
+        "Copywriter",
+        "Branding",
+        "Media Planner"
+      ],
       "groups": [
-        { "title": "Digital Marketing", "jobs": ["Digital Marketing Executive", "SEO Specialist", "Performance Marketing", "Social Media Executive", "Email Marketing"] },
-        { "title": "Content & Sáng tạo", "jobs": ["Content Creator", "Copywriter", "Content Strategist", "Graphic Content Designer"] },
-        { "title": "Truyền thông & PR", "jobs": ["PR Executive", "Media Planner", "Brand Executive", "Event Executive"] }
+        {
+          "title": "Digital Marketing",
+          "jobs": [
+            "Digital Marketing Executive",
+            "SEO Specialist",
+            "Performance Marketing",
+            "Social Media Executive",
+            "Email Marketing"
+          ]
+        },
+        {
+          "title": "Content & Sáng tạo",
+          "jobs": [
+            "Content Creator",
+            "Copywriter",
+            "Content Strategist",
+            "Graphic Content Designer"
+          ]
+        },
+        {
+          "title": "Truyền thông & PR",
+          "jobs": [
+            "PR Executive",
+            "Media Planner",
+            "Brand Executive",
+            "Event Executive"
+          ]
+        }
       ]
     },
     {
       "id": "4",
       "name": "Kế toán / Kiểm toán",
       "slug": "ke-toan-kiem-toan",
-      "popularKeywords": ["Kế toán tổng hợp", "Kế toán thuế", "Kiểm toán nội bộ", "Kế toán công nợ", "Kế toán trưởng", "Kế toán kho"],
+      "popularKeywords": [
+        "Kế toán tổng hợp",
+        "Kế toán thuế",
+        "Kiểm toán nội bộ",
+        "Kế toán công nợ",
+        "Kế toán trưởng",
+        "Kế toán kho"
+      ],
       "groups": [
-        { "title": "Kế toán doanh nghiệp", "jobs": ["Kế toán tổng hợp", "Kế toán thuế", "Kế toán công nợ", "Kế toán kho", "Kế toán thanh toán"] },
-        { "title": "Kiểm toán & Tài chính", "jobs": ["Kiểm toán nội bộ", "Kiểm toán độc lập", "Kế toán trưởng", "Chuyên viên tài chính"] }
+        {
+          "title": "Kế toán doanh nghiệp",
+          "jobs": [
+            "Kế toán tổng hợp",
+            "Kế toán thuế",
+            "Kế toán công nợ",
+            "Kế toán kho",
+            "Kế toán thanh toán"
+          ]
+        },
+        {
+          "title": "Kiểm toán & Tài chính",
+          "jobs": [
+            "Kiểm toán nội bộ",
+            "Kiểm toán độc lập",
+            "Kế toán trưởng",
+            "Chuyên viên tài chính"
+          ]
+        }
       ]
     },
     {
       "id": "5",
       "name": "Nhân sự / Hành chính",
       "slug": "nhan-su-hanh-chinh",
-      "popularKeywords": ["Tuyển dụng", "C&B", "HR Generalist", "Đào tạo nhân sự", "HR Admin", "HRBP"],
+      "popularKeywords": [
+        "Tuyển dụng",
+        "C&B",
+        "HR Generalist",
+        "Đào tạo nhân sự",
+        "HR Admin",
+        "HRBP"
+      ],
       "groups": [
-        { "title": "Tuyển dụng & Đào tạo", "jobs": ["Chuyên viên tuyển dụng", "HR Generalist", "Chuyên viên đào tạo", "HRBP"] },
-        { "title": "Hành chính nhân sự", "jobs": ["Chuyên viên C&B", "HR Admin", "Chuyên viên hành chính nhân sự", "Trợ lý nhân sự"] }
+        {
+          "title": "Tuyển dụng & Đào tạo",
+          "jobs": [
+            "Chuyên viên tuyển dụng",
+            "HR Generalist",
+            "Chuyên viên đào tạo",
+            "HRBP"
+          ]
+        },
+        {
+          "title": "Hành chính nhân sự",
+          "jobs": [
+            "Chuyên viên C&B",
+            "HR Admin",
+            "Chuyên viên hành chính nhân sự",
+            "Trợ lý nhân sự"
+          ]
+        }
       ]
     },
     {
       "id": "6",
       "name": "Hành chính / Văn phòng",
       "slug": "hanh-chinh-van-phong",
-      "popularKeywords": ["Thư ký", "Lễ tân", "Trợ lý giám đốc", "Nhân viên văn phòng", "Hành chính tổng hợp"],
+      "popularKeywords": [
+        "Thư ký",
+        "Lễ tân",
+        "Trợ lý giám đốc",
+        "Nhân viên văn phòng",
+        "Hành chính tổng hợp"
+      ],
       "groups": [
-        { "title": "Văn phòng", "jobs": ["Nhân viên hành chính văn phòng", "Thư ký", "Lễ tân", "Trợ lý giám đốc"] },
-        { "title": "Hỗ trợ vận hành", "jobs": ["Nhân viên hành chính tổng hợp", "Nhân viên lưu trữ hồ sơ", "Nhân viên văn thư"] }
+        {
+          "title": "Văn phòng",
+          "jobs": [
+            "Nhân viên hành chính văn phòng",
+            "Thư ký",
+            "Lễ tân",
+            "Trợ lý giám đốc"
+          ]
+        },
+        {
+          "title": "Hỗ trợ vận hành",
+          "jobs": [
+            "Nhân viên hành chính tổng hợp",
+            "Nhân viên lưu trữ hồ sơ",
+            "Nhân viên văn thư"
+          ]
+        }
       ]
     },
     {
       "id": "7",
       "name": "Thiết kế / Sáng tạo",
       "slug": "thiet-ke-sang-tao",
-      "popularKeywords": ["Graphic Designer", "UI/UX Designer", "Motion Designer", "3D Designer", "Illustrator", "Art Director"],
+      "popularKeywords": [
+        "Graphic Designer",
+        "UI/UX Designer",
+        "Motion Designer",
+        "3D Designer",
+        "Illustrator",
+        "Art Director"
+      ],
       "groups": [
-        { "title": "Thiết kế đồ hoạ", "jobs": ["Graphic Designer", "Illustrator", "Print Designer", "Packaging Designer"] },
-        { "title": "Thiết kế số", "jobs": ["UI/UX Designer", "Motion Designer", "3D Designer", "Web Designer"] },
-        { "title": "Quản lý sáng tạo", "jobs": ["Art Director", "Creative Director"] }
+        {
+          "title": "Thiết kế đồ hoạ",
+          "jobs": [
+            "Graphic Designer",
+            "Illustrator",
+            "Print Designer",
+            "Packaging Designer"
+          ]
+        },
+        {
+          "title": "Thiết kế số",
+          "jobs": [
+            "UI/UX Designer",
+            "Motion Designer",
+            "3D Designer",
+            "Web Designer"
+          ]
+        },
+        {
+          "title": "Quản lý sáng tạo",
+          "jobs": [
+            "Art Director",
+            "Creative Director"
+          ]
+        }
       ]
     },
     {
       "id": "8",
       "name": "Chăm sóc khách hàng",
       "slug": "cham-soc-khach-hang",
-      "popularKeywords": ["CSKH", "Customer Support", "Call Center", "Customer Success", "Tổng đài viên"],
+      "popularKeywords": [
+        "CSKH",
+        "Customer Support",
+        "Call Center",
+        "Customer Success",
+        "Tổng đài viên"
+      ],
       "groups": [
-        { "title": "Chăm sóc khách hàng", "jobs": ["Nhân viên CSKH", "Customer Support Executive", "Tổng đài viên", "Customer Success Executive"] },
-        { "title": "Hỗ trợ khách hàng", "jobs": ["Call Center Agent", "Nhân viên hỗ trợ kỹ thuật", "Live Chat Support"] }
+        {
+          "title": "Chăm sóc khách hàng",
+          "jobs": [
+            "Nhân viên CSKH",
+            "Customer Support Executive",
+            "Tổng đài viên",
+            "Customer Success Executive"
+          ]
+        },
+        {
+          "title": "Hỗ trợ khách hàng",
+          "jobs": [
+            "Call Center Agent",
+            "Nhân viên hỗ trợ kỹ thuật",
+            "Live Chat Support"
+          ]
+        }
       ]
     },
     {
       "id": "9",
       "name": "Xây dựng",
       "slug": "xay-dung",
-      "popularKeywords": ["Kỹ sư xây dựng", "Giám sát công trình", "Kỹ sư kết cấu", "Kiến trúc sư", "Kỹ sư MEP", "Chỉ huy trưởng"],
+      "popularKeywords": [
+        "Kỹ sư xây dựng",
+        "Giám sát công trình",
+        "Kỹ sư kết cấu",
+        "Kiến trúc sư",
+        "Kỹ sư MEP",
+        "Chỉ huy trưởng"
+      ],
       "groups": [
-        { "title": "Kỹ thuật công trình", "jobs": ["Kỹ sư xây dựng dân dụng", "Kỹ sư kết cấu", "Kỹ sư MEP", "Kỹ sư cầu đường"] },
-        { "title": "Quản lý dự án xây dựng", "jobs": ["Giám sát công trình", "Chỉ huy trưởng công trình", "Kỹ sư QS/Dự toán", "Kiến trúc sư"] }
+        {
+          "title": "Kỹ thuật công trình",
+          "jobs": [
+            "Kỹ sư xây dựng dân dụng",
+            "Kỹ sư kết cấu",
+            "Kỹ sư MEP",
+            "Kỹ sư cầu đường"
+          ]
+        },
+        {
+          "title": "Quản lý dự án xây dựng",
+          "jobs": [
+            "Giám sát công trình",
+            "Chỉ huy trưởng công trình",
+            "Kỹ sư QS/Dự toán",
+            "Kiến trúc sư"
+          ]
+        }
       ]
     },
     {
       "id": "10",
       "name": "Giáo dục / Đào tạo",
       "slug": "giao-duc-dao-tao",
-      "popularKeywords": ["Giáo viên tiếng Anh", "Giáo viên mầm non", "Trợ giảng", "Chuyên viên đào tạo", "Giảng viên"],
+      "popularKeywords": [
+        "Giáo viên tiếng Anh",
+        "Giáo viên mầm non",
+        "Trợ giảng",
+        "Chuyên viên đào tạo",
+        "Giảng viên"
+      ],
       "groups": [
-        { "title": "Giảng dạy", "jobs": ["Giáo viên tiếng Anh", "Giáo viên mầm non", "Giáo viên Toán", "Trợ giảng"] },
-        { "title": "Đào tạo doanh nghiệp", "jobs": ["Chuyên viên đào tạo nội bộ", "Giảng viên", "Chuyên viên phát triển chương trình đào tạo"] }
+        {
+          "title": "Giảng dạy",
+          "jobs": [
+            "Giáo viên tiếng Anh",
+            "Giáo viên mầm non",
+            "Giáo viên Toán",
+            "Trợ giảng"
+          ]
+        },
+        {
+          "title": "Đào tạo doanh nghiệp",
+          "jobs": [
+            "Chuyên viên đào tạo nội bộ",
+            "Giảng viên",
+            "Chuyên viên phát triển chương trình đào tạo"
+          ]
+        }
       ]
     }
   ],
