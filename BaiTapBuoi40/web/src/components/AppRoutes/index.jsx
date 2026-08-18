@@ -4,6 +4,7 @@ import JobSearchResults from "../../pages/JobSearchResults";
 import JobDetail from "../../pages/JobDetail";
 import CompanyList from "../../pages/CompanyList";
 import CompanyDetail from "../../pages/CompanyDetail";
+import CategoryDetail from "../../pages/CategoryDetail";
 import Profile from "../../pages/Profile";
 import Register from "../../pages/Register";
 import Login from "../../pages/Login";
@@ -21,6 +22,7 @@ function AppRoutes() {
                     <Route path="viec-lam/:slug" element={<JobDetail />} />
                     <Route path="danh-sach-cong-ty" element={<CompanyList />} />
                     <Route path="cong-ty/:id" element={<CompanyDetail />} />
+                    <Route path="linh-vuc/:slug" element={<CategoryDetail />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path="nha-tuyen-dung" element={<PostJob />} />
                         <Route path="ho-so" element={<Profile />} />

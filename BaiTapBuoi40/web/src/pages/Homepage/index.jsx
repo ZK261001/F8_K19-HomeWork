@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import TopPromoBanner from "./components/TopPromoBanner";
 import HeroSection from "./components/HeroSection";
 import CategoryList from "./components/CategoryList";
-import CategoryDetailPanel from "./components/CategoryDetailPanel";
+import CategoryDetailPanel from "../../components/CategoryDetailPanel";
 import FeatureBanner from "./components/FeatureBanner";
 import JobListingSection from "./components/JobListingSection";
 import styles from "./Homepage.module.css";
