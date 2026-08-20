@@ -59,3 +59,51 @@
     color: #00b14f !important;
     margin-top: 0.1rem;
 }
+
+.appliedSection {
+    max-width: 96rem;
+    margin: 3.2rem auto 0;
+}
+
+.appliedTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #212f3f;
+    margin-bottom: 1.6rem;
+}
+
+.appliedEmpty {
+    font-size: 1.4rem;
+    color: #777;
+    padding: 2rem 0;
+}
+
+.appliedGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+}
+
+.appliedItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.appliedStatus {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #00b14f;
+}
+
+@media (max-width: 960px) {
+    .appliedGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .appliedGrid {
+        grid-template-columns: 1fr;
+    }
+}

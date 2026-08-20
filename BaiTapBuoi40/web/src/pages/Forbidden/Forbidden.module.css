@@ -1,0 +1,42 @@
+.page {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem;
+    background-color: #f4f6f8;
+}
+
+.card {
+    width: 100%;
+    max-width: 40rem;
+    background-color: #fff;
+    border-radius: 1.2rem;
+    box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.08);
+    padding: 3.2rem;
+    text-align: center;
+}
+
+.title {
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: #e53935;
+    margin-bottom: 1rem;
+}
+
+.message {
+    font-size: 1.5rem;
+    color: #4a4a4a;
+    margin-bottom: 2rem;
+}
+
+.homeLink {
+    display: inline-block;
+    color: #00b14f;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.homeLink:hover {
+    text-decoration: underline;
+}

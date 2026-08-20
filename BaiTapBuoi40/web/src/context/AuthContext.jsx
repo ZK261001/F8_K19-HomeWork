@@ -35,24 +35,52 @@ export function AuthProvider({ children }) {
         return matches[0];
     }
 
-    async function register({ fullName, email, phone, password }) {
+    async function register({ role = "candidate", fullName, email, phone, password, company }) {
         const existingRes = await fetch(`${API_URL}/users?email=${encodeURIComponent(email)}`);
         const existing = await existingRes.json();
         if (existing.length > 0) {
             throw new Error("Email này đã được đăng ký");
         }
 
+        let companyId = null;
+        if (role === "recruiter") {
+            const companyRes = await fetch(`${API_URL}/companies`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    mst: company.mst,
+                    name: company.name,
+                    internationalName: company.internationalName || "",
+                    director: company.director,
+                    phone: company.phone,
+                    email: company.email,
+                    logo: "",
+                    coverImage: "",
+                    address: "",
+                    scale: "",
+                    field: "",
+                    description: "",
+                    website: "",
+                    foundedYear: null,
+                    status: "pending",
+                    createdAt: new Date().toISOString(),
+                }),
+            });
+            const newCompany = await companyRes.json();
+            companyId = newCompany.id;
+        }
+
         const res = await fetch(`${API_URL}/users`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                role: "candidate",
+                role,
                 fullName,
                 email,
                 phone: phone || "",
                 password,
                 avatar: "",
-                companyId: null,
+                companyId,
                 createdAt: new Date().toISOString(),
             }),
         });

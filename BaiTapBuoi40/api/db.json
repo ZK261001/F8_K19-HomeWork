@@ -1149,6 +1149,24 @@
       "status": "rejected",
       "appliedDate": "2026-07-20",
       "note": "Không phù hợp vị trí yêu cầu kinh nghiệm bán hàng B2B."
+    },
+    {
+      "jobId": 7,
+      "candidateId": 8,
+      "cvId": 4,
+      "status": "pending",
+      "appliedDate": "2026-08-20",
+      "note": "",
+      "id": "jYNF-TUmppk"
+    },
+    {
+      "jobId": 3,
+      "candidateId": 8,
+      "cvId": 4,
+      "status": "pending",
+      "appliedDate": "2026-08-20",
+      "note": "",
+      "id": "ZkLJvQ_Uow0"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

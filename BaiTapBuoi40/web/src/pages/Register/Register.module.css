@@ -39,6 +39,10 @@
     margin-bottom: 2.4rem;
 }
 
+.tabsWrapper {
+    margin-bottom: 2rem;
+}
+
 .card {
     width: 100%;
     background-color: #fff;

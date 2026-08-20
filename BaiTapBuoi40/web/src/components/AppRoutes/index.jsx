@@ -6,6 +6,7 @@ import CompanyList from "../../pages/CompanyList";
 import CompanyDetail from "../../pages/CompanyDetail";
 import CategoryDetail from "../../pages/CategoryDetail";
 import Profile from "../../pages/Profile";
+import Forbidden from "../../pages/Forbidden";
 import Register from "../../pages/Register";
 import Login from "../../pages/Login";
 import PostJob from "../../pages/PostJob";
@@ -20,12 +21,15 @@ function AppRoutes() {
                     <Route index element={<Homepage />} />
                     <Route path="viec-lam" element={<JobSearchResults />} />
                     <Route path="viec-lam/:slug" element={<JobDetail />} />
-                    <Route path="danh-sach-cong-ty" element={<CompanyList />} />
                     <Route path="cong-ty/:id" element={<CompanyDetail />} />
                     <Route path="linh-vuc/:slug" element={<CategoryDetail />} />
+                    <Route path="khong-co-quyen" element={<Forbidden />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path="nha-tuyen-dung" element={<PostJob />} />
                         <Route path="ho-so" element={<Profile />} />
+                    </Route>
+                    <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+                        <Route path="danh-sach-cong-ty" element={<CompanyList />} />
                     </Route>
                 </Route>
                 <Route path="dang-ky" element={<Register />} />

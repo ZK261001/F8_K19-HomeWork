@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useLocation, useNavigate, useParams } from "react-router";
 
+import { useAuth } from "../../context/AuthContext";
 import { useSavedJobs } from "../../context/SavedJobsContext";
-import { CURRENT_USER_ID } from "../../utils/currentUser";
 import Breadcrumb from "./components/Breadcrumb";
 import ShareRail from "./components/ShareRail";
 import JobHeader from "./components/JobHeader";
@@ -19,6 +19,9 @@ const RELATED_LIMIT = 5;
 
 function JobDetail() {
     const { slug } = useParams();
+    const routerLocation = useLocation();
+    const navigate = useNavigate();
+    const { isAuthenticated, user } = useAuth();
 
     const [status, setStatus] = useState("loading");
     const [job, setJob] = useState(null);
@@ -76,22 +79,31 @@ function JobDetail() {
         fetch(`${API_URL}/jobs`)
             .then((res) => res.json())
             .then(setAllJobs);
-        fetch(`${API_URL}/cvs?candidateId=${CURRENT_USER_ID}`)
-            .then((res) => res.json())
-            .then(setCvs);
     }, []);
 
     useEffect(() => {
-        if (!job) return;
-        fetch(`${API_URL}/applications?candidateId=${CURRENT_USER_ID}&jobId=${job.id}`)
+        if (!isAuthenticated) return;
+        fetch(`${API_URL}/cvs?candidateId=${user.id}`)
+            .then((res) => res.json())
+            .then(setCvs);
+    }, [isAuthenticated, user]);
+
+    useEffect(() => {
+        if (!isAuthenticated || !job) return;
+        fetch(`${API_URL}/applications?candidateId=${user.id}&jobId=${job.id}`)
             .then((res) => res.json())
             .then((results) => {
                 if (results.length > 0) setApplied(true);
             });
-    }, [job]);
+    }, [job, isAuthenticated, user]);
 
     const handleApply = () => {
         if (applied || !job) return;
+
+        if (!isAuthenticated) {
+            navigate("/dang-nhap", { state: { from: routerLocation } });
+            return;
+        }
 
         const latestCv = [...cvs].sort(
             (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt),
@@ -102,7 +114,7 @@ function JobDetail() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 jobId: Number(job.id),
-                candidateId: CURRENT_USER_ID,
+                candidateId: Number(user.id),
                 cvId: latestCv ? Number(latestCv.id) : null,
                 status: "pending",
                 appliedDate: new Date().toISOString().slice(0, 10),

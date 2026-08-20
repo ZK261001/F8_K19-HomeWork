@@ -44,14 +44,16 @@ function Header() {
                         </Link>
                     </li>
 
-                    <li className={styles.navItemWrapper}>
-                        <Link
-                            to="/danh-sach-cong-ty"
-                            className={`${styles.navLink} ${isCompanyActive ? styles.navLinkActive : ""}`}
-                        >
-                            Công ty
-                        </Link>
-                    </li>
+                    {isAuthenticated && user?.role === "admin" && (
+                        <li className={styles.navItemWrapper}>
+                            <Link
+                                to="/danh-sach-cong-ty"
+                                className={`${styles.navLink} ${isCompanyActive ? styles.navLinkActive : ""}`}
+                            >
+                                Công ty
+                            </Link>
+                        </li>
+                    )}
 
                     {isAuthenticated && (
                         <li className={styles.navItemWrapper}>
