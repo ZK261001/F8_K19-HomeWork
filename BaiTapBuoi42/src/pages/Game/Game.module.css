@@ -1,0 +1,36 @@
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-x: hidden;
+    font-family: "Montserrat", sans-serif;
+    background: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 60%, #020617 100%);
+    color: #fff;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.6rem;
+}
+
+@media (min-width: 768px) {
+    .main {
+        padding: 2.4rem;
+    }
+}
+
+.footer {
+    width: 100%;
+    padding: 1.2rem 0;
+    background: #020617;
+    border-top: 1px solid #0f172a;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #64748b;
+}

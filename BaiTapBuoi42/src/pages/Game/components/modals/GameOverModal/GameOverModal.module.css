@@ -1,0 +1,82 @@
+.iconCircle {
+    width: 8rem;
+    height: 8rem;
+    margin: 0 auto 1.6rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.2rem;
+    box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.4);
+}
+
+.win {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.5);
+}
+
+.walkaway {
+    background: rgba(14, 165, 233, 0.2);
+    color: #38bdf8;
+    border: 1px solid rgba(14, 165, 233, 0.5);
+}
+
+.lose {
+    background: rgba(244, 63, 94, 0.2);
+    color: #fb7185;
+    border: 1px solid rgba(244, 63, 94, 0.5);
+}
+
+.title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #fcd34d;
+    margin-bottom: 0.8rem;
+}
+
+.desc {
+    color: #cbd5e1;
+    font-size: 1.4rem;
+    margin-bottom: 2.4rem;
+}
+
+.prizeBox {
+    background: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 1.2rem;
+    padding: 1.6rem;
+    margin-bottom: 2.4rem;
+}
+
+.prizeLabel {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin-bottom: 0.4rem;
+}
+
+.prizeAmount {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #fbbf24;
+}
+
+.restartBtn {
+    width: 100%;
+    padding: 1.4rem;
+    background: linear-gradient(90deg, #f59e0b, #eab308, #d97706);
+    color: #020617;
+    border: none;
+    border-radius: 1.2rem;
+    font-weight: 800;
+    font-size: 1.6rem;
+    cursor: pointer;
+    box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.restartBtn:hover {
+    transform: scale(1.05);
+}

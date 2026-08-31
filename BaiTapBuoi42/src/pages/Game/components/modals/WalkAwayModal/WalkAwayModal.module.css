@@ -1,0 +1,70 @@
+.iconCircle {
+    width: 6.4rem;
+    height: 6.4rem;
+    margin: 0 auto 1.6rem;
+    background: rgba(244, 63, 94, 0.1);
+    border: 1px solid rgba(244, 63, 94, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fb7185;
+    font-size: 2.4rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 0.8rem;
+}
+
+.desc {
+    color: #cbd5e1;
+    font-size: 1.4rem;
+    margin-bottom: 2.4rem;
+}
+
+.amount {
+    color: #fbbf24;
+}
+
+.actions {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+}
+
+.secondaryBtn {
+    flex: 1;
+    padding: 1rem;
+    background: #1e293b;
+    color: #cbd5e1;
+    border: none;
+    border-radius: 1.2rem;
+    font-weight: 600;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.secondaryBtn:hover {
+    background: #334155;
+}
+
+.primaryBtn {
+    flex: 1;
+    padding: 1rem;
+    background: #e11d48;
+    color: #fff;
+    border: none;
+    border-radius: 1.2rem;
+    font-weight: 700;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.primaryBtn:hover {
+    background: #f43f5e;
+}

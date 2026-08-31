@@ -1,0 +1,38 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.8);
+    backdrop-filter: blur(0.8rem);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.6rem;
+}
+
+.card {
+    background: #0f172a;
+    border-radius: 1.6rem;
+    padding: 2.4rem;
+    width: 100%;
+    max-width: 44.8rem;
+    text-align: center;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.5);
+    border: 2px solid transparent;
+}
+
+.amber {
+    border-color: rgba(245, 158, 11, 0.8);
+}
+
+.sky {
+    border-color: rgba(14, 165, 233, 0.5);
+}
+
+.emerald {
+    border-color: rgba(16, 185, 129, 0.5);
+}
+
+.rose {
+    border-color: rgba(244, 63, 94, 0.5);
+}

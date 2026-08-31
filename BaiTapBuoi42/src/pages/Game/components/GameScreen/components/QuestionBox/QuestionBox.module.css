@@ -1,0 +1,39 @@
+.box {
+    position: relative;
+    background: linear-gradient(180deg, #0f172a, #1e1b4b);
+    border: 2px solid rgba(99, 102, 241, 0.6);
+    border-radius: 1.6rem;
+    padding: 2.4rem;
+    min-height: 16rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
+}
+
+.badge {
+    position: absolute;
+    top: -1.2rem;
+    left: 2.4rem;
+    background: #4f46e5;
+    color: #f1f5f9;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.4rem 1.2rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.3);
+}
+
+.badgeNumber {
+    color: #fde047;
+}
+
+.text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    line-height: 1.5;
+}

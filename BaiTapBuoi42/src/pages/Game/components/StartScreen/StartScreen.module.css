@@ -1,0 +1,92 @@
+.card {
+    max-width: 64rem;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 1.6rem;
+    padding: 4rem 2.4rem;
+    text-align: center;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.badge {
+    width: 11.2rem;
+    height: 11.2rem;
+    margin: 0 auto 2.4rem;
+    border-radius: 50%;
+    background: linear-gradient(to top right, #d97706, #facc15, #fde68a);
+    padding: 0.4rem;
+    box-shadow: 0 0 3rem rgba(245, 158, 11, 0.3);
+}
+
+.badgeInner {
+    width: 100%;
+    height: 100%;
+    background: #020617;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #0f172a;
+    font-size: 4rem;
+    color: #fbbf24;
+}
+
+.title {
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: #fcd34d;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05rem;
+}
+
+.desc {
+    color: #cbd5e1;
+    font-size: 1.5rem;
+    margin: 0 auto 3.2rem;
+    max-width: 48rem;
+    line-height: 1.6;
+}
+
+.rules {
+    background: rgba(2, 6, 23, 0.6);
+    border-radius: 1.2rem;
+    padding: 1.6rem;
+    margin-bottom: 3.2rem;
+    text-align: left;
+    border: 1px solid #1e293b;
+    font-size: 1.3rem;
+    color: #cbd5e1;
+}
+
+.rulesTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #fbbf24;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.rules p {
+    margin: 0.4rem 0;
+}
+
+.startBtn {
+    padding: 1.6rem 4rem;
+    background: linear-gradient(90deg, #f59e0b, #eab308, #d97706);
+    color: #020617;
+    font-weight: 800;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 0.8rem 1.6rem rgba(245, 158, 11, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.startBtn:hover {
+    transform: scale(1.05);
+}

@@ -1,0 +1,26 @@
+.layout {
+    width: 100%;
+    max-width: 128rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+    align-items: start;
+}
+
+@media (min-width: 1024px) {
+    .layout {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+@media (min-width: 1024px) {
+    .left {
+        grid-column: span 3;
+    }
+}

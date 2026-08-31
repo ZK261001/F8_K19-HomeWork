@@ -1,0 +1,99 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.optionBtn {
+    position: relative;
+    background: linear-gradient(180deg, #1e293b, #0f172a);
+    border: 2px solid #3b82f6;
+    border-radius: 1.2rem;
+    padding: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow:
+        0 0.4rem 1.5rem rgba(0, 0, 0, 0.4),
+        inset 0 0 1rem rgba(59, 130, 246, 0.2);
+}
+
+.optionBtn:hover:not(:disabled) {
+    border-color: #f59e0b;
+    background: linear-gradient(180deg, #1e3a8a, #1e293b);
+    box-shadow: 0 0 2rem rgba(245, 158, 11, 0.4);
+    transform: translateY(-0.2rem);
+}
+
+.optionBtn:disabled {
+    cursor: default;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.letter {
+    font-weight: 800;
+    color: #fbbf24;
+    font-size: 1.6rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 0.8rem;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.answerText {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.selected {
+    background: linear-gradient(180deg, #d97706, #78350f) !important;
+    border-color: #fbbf24 !important;
+    animation: pulseOrange 0.8s infinite alternate;
+}
+
+.correct {
+    background: linear-gradient(180deg, #15803d, #14532d) !important;
+    border-color: #4ade80 !important;
+    animation: pulseGreen 0.5s 3 alternate;
+}
+
+.wrong {
+    background: linear-gradient(180deg, #b91c1c, #7f1d1d) !important;
+    border-color: #f87171 !important;
+}
+
+@keyframes pulseOrange {
+    0% {
+        box-shadow: 0 0 1rem rgba(245, 158, 11, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 2.5rem rgba(245, 158, 11, 0.9);
+    }
+}
+
+@keyframes pulseGreen {
+    0% {
+        box-shadow: 0 0 1rem rgba(74, 222, 128, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 3rem rgba(74, 222, 128, 1);
+    }
+}
