@@ -8,6 +8,7 @@ import TrendingUpOutlined from "@mui/icons-material/TrendingUpOutlined";
 
 import { normalizeSearchText } from "../../../utils/text";
 import { filterJobsByKeyword, getPopularKeywords, getTopJobs } from "../../../utils/jobSearch";
+import { formatSalary } from "../../../utils/format";
 import styles from "./SearchOverlay.module.css";
 
 const SUGGESTED_LIMIT = 6;
@@ -20,7 +21,6 @@ function SearchOverlay({
     keyword,
     categories = [],
     jobs = [],
-    companies = [],
     recentSearches = [],
     onClose,
     onRemoveRecent,
@@ -29,11 +29,6 @@ function SearchOverlay({
 }) {
     const normalizedKeyword = normalizeSearchText(keyword);
     const hasKeyword = normalizedKeyword.length > 0;
-
-    const companyById = useMemo(
-        () => new Map(companies.map((c) => [String(c.id), c])),
-        [companies],
-    );
 
     const { suggested, related } = useMemo(() => {
         const names = categories.map((c) => c.name);
@@ -116,30 +111,24 @@ function SearchOverlay({
                 <span className={styles.groupTitle}>Việc làm có thể bạn quan tâm</span>
                 {jobsToShow.length > 0 ? (
                     <ul className={styles.jobList}>
-                        {jobsToShow.map((job) => {
-                            const company = companyById.get(String(job.companyId));
-                            return (
-                                <li key={job.id}>
-                                    <Link
-                                        to={`/viec-lam/${job.slug ?? job.id}`}
-                                        className={styles.jobRow}
-                                    >
-                                        <Avatar className={styles.jobLogo} variant="rounded">
-                                            {company?.name?.charAt(0)}
-                                        </Avatar>
-                                        <div className={styles.jobInfo}>
-                                            <span className={styles.jobTitle}>{job.title}</span>
-                                            <span className={styles.jobCompany}>
-                                                {company?.name}
-                                            </span>
-                                            <span className={styles.jobSalary}>
-                                                {job.salaryText}
-                                            </span>
-                                        </div>
-                                    </Link>
-                                </li>
-                            );
-                        })}
+                        {jobsToShow.map((job) => (
+                            <li key={job.id}>
+                                <Link to={`/viec-lam/${job.slug}`} className={styles.jobRow}>
+                                    <Avatar className={styles.jobLogo} variant="rounded">
+                                        {job.company?.company_name?.charAt(0)}
+                                    </Avatar>
+                                    <div className={styles.jobInfo}>
+                                        <span className={styles.jobTitle}>{job.title}</span>
+                                        <span className={styles.jobCompany}>
+                                            {job.company?.company_name}
+                                        </span>
+                                        <span className={styles.jobSalary}>
+                                            {formatSalary(job.salary)}
+                                        </span>
+                                    </div>
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
                 ) : (
                     <p className={styles.emptyGroup}>

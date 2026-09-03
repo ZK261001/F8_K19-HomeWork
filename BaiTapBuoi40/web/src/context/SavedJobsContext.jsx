@@ -1,13 +1,16 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { CURRENT_USER_ID } from "../utils/currentUser";
+import { useAuth } from "./AuthContext";
 
-const STORAGE_KEY = `savedJobIds_${CURRENT_USER_ID}`;
 const SavedJobsContext = createContext(null);
 
-function readStoredIds() {
+function storageKey(userId) {
+    return `savedJobIds_${userId ?? "guest"}`;
+}
+
+function readStoredIds(userId) {
     try {
-        const raw = localStorage.getItem(STORAGE_KEY);
+        const raw = localStorage.getItem(storageKey(userId));
         const parsed = raw ? JSON.parse(raw) : [];
         return new Set(Array.isArray(parsed) ? parsed : []);
     } catch {
@@ -16,11 +19,19 @@ function readStoredIds() {
 }
 
 export function SavedJobsProvider({ children }) {
-    const [savedIds, setSavedIds] = useState(readStoredIds);
+    const { user } = useAuth();
+    const userId = user?.id;
+    const [loadedUserId, setLoadedUserId] = useState(userId);
+    const [savedIds, setSavedIds] = useState(() => readStoredIds(userId));
+
+    if (userId !== loadedUserId) {
+        setLoadedUserId(userId);
+        setSavedIds(readStoredIds(userId));
+    }
 
     useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify([...savedIds]));
-    }, [savedIds]);
+        localStorage.setItem(storageKey(userId), JSON.stringify([...savedIds]));
+    }, [savedIds, userId]);
 
     const toggleSaved = (jobId) => {
         setSavedIds((prev) => {

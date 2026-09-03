@@ -2,28 +2,21 @@ import { normalizeSearchText } from "./text";
 
 export function filterJobsByKeyword(jobs, categories, keyword) {
     const normalizedKeyword = normalizeSearchText(keyword);
-    const categoryById = new Map(categories.map((c) => [String(c.id), c]));
 
     return jobs
-        .filter((job) => job.status === "active")
         .filter((job) => {
-            const category = categoryById.get(String(job.categoryId));
             const titleMatches = normalizeSearchText(job.title).includes(normalizedKeyword);
-            const categoryMatches = category
-                ? normalizeSearchText(category.name).includes(normalizedKeyword)
-                : false;
+            const categoryMatches = normalizeSearchText(job.category).includes(normalizedKeyword);
             return titleMatches || categoryMatches;
         })
-        .sort((a, b) => b.viewCount - a.viewCount);
+        .sort((a, b) => Number(b.is_hot) - Number(a.is_hot));
 }
 
 export function getPopularKeywords(categories, jobs, limit) {
     return categories
         .map((category) => ({
             keyword: category.name,
-            count: jobs.filter(
-                (job) => job.status === "active" && String(job.categoryId) === String(category.id),
-            ).length,
+            count: jobs.filter((job) => job.category === category.name).length,
         }))
         .filter((entry) => entry.count > 0)
         .sort((a, b) => b.count - a.count)
@@ -31,8 +24,5 @@ export function getPopularKeywords(categories, jobs, limit) {
 }
 
 export function getTopJobs(jobs, limit) {
-    return jobs
-        .filter((job) => job.status === "active")
-        .sort((a, b) => b.viewCount - a.viewCount)
-        .slice(0, limit);
+    return [...jobs].sort((a, b) => Number(b.is_hot) - Number(a.is_hot)).slice(0, limit);
 }

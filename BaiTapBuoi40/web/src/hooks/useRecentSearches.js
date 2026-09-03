@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { CURRENT_USER_ID } from "../utils/currentUser";
-
-const STORAGE_KEY = `recentSearchKeywords_${CURRENT_USER_ID}`;
+const STORAGE_KEY = "recentSearchKeywords";
 const MAX_ITEMS = 5;
 
 function readStored() {

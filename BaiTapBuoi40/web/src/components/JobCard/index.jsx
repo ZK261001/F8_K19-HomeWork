@@ -4,16 +4,17 @@ import BookmarkBorderOutlined from "@mui/icons-material/BookmarkBorderOutlined";
 import BookmarkOutlined from "@mui/icons-material/BookmarkOutlined";
 import TrendingUpOutlined from "@mui/icons-material/TrendingUpOutlined";
 import WhatshotOutlined from "@mui/icons-material/WhatshotOutlined";
-import BoltOutlined from "@mui/icons-material/BoltOutlined";
 import PlaceOutlined from "@mui/icons-material/PlaceOutlined";
 import PaymentsOutlined from "@mui/icons-material/PaymentsOutlined";
 
 import { useSavedJobs } from "../../context/SavedJobsContext";
+import { formatSalary, formatWorkLocation } from "../../utils/format";
 import styles from "./JobCard.module.css";
 
-function JobCard({ job, company, location, isTop = false }) {
+function JobCard({ job, company, isTop = false }) {
     const { isSaved, toggleSaved } = useSavedJobs();
     const saved = isSaved(job.id);
+    const companyInfo = company ?? job.company;
 
     return (
         <Link to={`/viec-lam/${job.slug ?? job.id}`} className={styles.card}>
@@ -36,7 +37,7 @@ function JobCard({ job, company, location, isTop = false }) {
 
             <div className={styles.top}>
                 <Avatar className={styles.logo} variant="rounded">
-                    {company?.name?.charAt(0)}
+                    {companyInfo?.company_name?.charAt(0)}
                 </Avatar>
 
                 <div className={styles.badges}>
@@ -46,32 +47,26 @@ function JobCard({ job, company, location, isTop = false }) {
                             TOP
                         </span>
                     )}
-                    {job.isHot && (
+                    {job.is_hot && (
                         <span className={`${styles.badge} ${styles.badgeHot}`}>
                             <WhatshotOutlined className={styles.badgeIcon} />
                             HOT
-                        </span>
-                    )}
-                    {job.isUrgent && (
-                        <span className={`${styles.badge} ${styles.badgeUrgent}`}>
-                            <BoltOutlined className={styles.badgeIcon} />
-                            Gấp
                         </span>
                     )}
                 </div>
             </div>
 
             <h3 className={styles.title}>{job.title}</h3>
-            <p className={styles.company}>{company?.name}</p>
+            <p className={styles.company}>{companyInfo?.company_name}</p>
 
             <div className={styles.tags}>
                 <span className={styles.tag}>
                     <PaymentsOutlined className={styles.tagIcon} />
-                    {job.salaryText}
+                    {formatSalary(job.salary)}
                 </span>
                 <span className={styles.tag}>
                     <PlaceOutlined className={styles.tagIcon} />
-                    {location?.name}
+                    {formatWorkLocation(job.work_location)}
                 </span>
             </div>
         </Link>

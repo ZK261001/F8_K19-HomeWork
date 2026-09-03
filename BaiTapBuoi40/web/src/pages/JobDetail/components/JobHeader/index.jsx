@@ -1,5 +1,4 @@
 import WhatshotOutlined from "@mui/icons-material/WhatshotOutlined";
-import BoltOutlined from "@mui/icons-material/BoltOutlined";
 import PlaceOutlined from "@mui/icons-material/PlaceOutlined";
 import PaymentsOutlined from "@mui/icons-material/PaymentsOutlined";
 import WorkHistoryOutlined from "@mui/icons-material/WorkHistoryOutlined";
@@ -9,24 +8,19 @@ import BookmarkBorderOutlined from "@mui/icons-material/BookmarkBorderOutlined";
 import BookmarkOutlined from "@mui/icons-material/BookmarkOutlined";
 
 import { formatDate, daysUntil } from "../../../../utils/date";
+import { formatSalary, formatWorkLocation } from "../../../../utils/format";
 import styles from "./JobHeader.module.css";
 
-function JobHeader({ job, location, saved, onToggleSave, applied, onApply }) {
+function JobHeader({ job, saved, onToggleSave, applied, canApply, onApply }) {
     const remainingDays = daysUntil(job.deadline);
 
     return (
         <div className={styles.header}>
             <div className={styles.badges}>
-                {job.isHot && (
+                {job.is_hot && (
                     <span className={`${styles.badge} ${styles.badgeHot}`}>
                         <WhatshotOutlined className={styles.badgeIcon} />
                         HOT
-                    </span>
-                )}
-                {job.isUrgent && (
-                    <span className={`${styles.badge} ${styles.badgeUrgent}`}>
-                        <BoltOutlined className={styles.badgeIcon} />
-                        Gấp
                     </span>
                 )}
             </div>
@@ -35,7 +29,7 @@ function JobHeader({ job, location, saved, onToggleSave, applied, onApply }) {
 
             <div className={styles.salary}>
                 <PaymentsOutlined className={styles.salaryIcon} />
-                {job.salaryText}
+                {formatSalary(job.salary)}
             </div>
 
             <div className={styles.metaRow}>
@@ -43,14 +37,18 @@ function JobHeader({ job, location, saved, onToggleSave, applied, onApply }) {
                     <PlaceOutlined className={styles.metaIcon} />
                     <div>
                         <span className={styles.metaLabel}>Địa điểm</span>
-                        <span className={styles.metaValue}>{location?.name}</span>
+                        <span className={styles.metaValue}>
+                            {formatWorkLocation(job.work_location)}
+                        </span>
                     </div>
                 </div>
                 <div className={styles.metaItem}>
                     <WorkHistoryOutlined className={styles.metaIcon} />
                     <div>
                         <span className={styles.metaLabel}>Kinh nghiệm</span>
-                        <span className={styles.metaValue}>{job.experience}</span>
+                        <span className={styles.metaValue}>
+                            {job.experience_level || "Không yêu cầu"}
+                        </span>
                     </div>
                 </div>
                 <div className={styles.metaItem}>
@@ -72,11 +70,16 @@ function JobHeader({ job, location, saved, onToggleSave, applied, onApply }) {
                     type="button"
                     className={styles.applyButton}
                     onClick={onApply}
-                    disabled={applied}
+                    disabled={applied || canApply === false}
                 >
                     <SendOutlined className={styles.applyIcon} />
                     {applied ? "Đã ứng tuyển" : "Ứng tuyển ngay"}
                 </button>
+                {canApply === false && !applied && (
+                    <span className={styles.metaLabel}>
+                        Chỉ tài khoản ứng viên mới ứng tuyển được
+                    </span>
+                )}
                 <button type="button" className={styles.saveButton} onClick={onToggleSave}>
                     {saved ? (
                         <BookmarkOutlined className={styles.saveIcon} />

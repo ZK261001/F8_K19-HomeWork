@@ -4,19 +4,19 @@ import { Link, useParams } from "react-router";
 import CategoryDetailPanel from "../../components/CategoryDetailPanel";
 import JobCard from "../../components/JobCard";
 import Pagination from "../../components/Pagination";
+import { listJobs } from "../../api/jobs";
+import { listCategoryGroups } from "../../api/categories";
 import styles from "./CategoryDetail.module.css";
 
-const API_URL = "http://localhost:3000";
-const PAGE_SIZE = 9;
+const PAGE_SIZE = 20;
 
 function CategoryDetail() {
     const { slug } = useParams();
 
-    const [categories, setCategories] = useState([]);
+    const [categoryGroups, setCategoryGroups] = useState([]);
     const [categoriesLoaded, setCategoriesLoaded] = useState(false);
     const [jobs, setJobs] = useState([]);
-    const [companies, setCompanies] = useState([]);
-    const [locations, setLocations] = useState([]);
+    const [total, setTotal] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
 
     const [prevSlug, setPrevSlug] = useState(slug);
@@ -30,49 +30,26 @@ function CategoryDetail() {
     }, [slug]);
 
     useEffect(() => {
-        fetch(`${API_URL}/categories`)
-            .then((res) => res.json())
-            .then((data) => {
-                setCategories(data);
-                setCategoriesLoaded(true);
-            });
-
-        fetch(`${API_URL}/jobs`)
-            .then((res) => res.json())
-            .then(setJobs);
-
-        fetch(`${API_URL}/companies`)
-            .then((res) => res.json())
-            .then(setCompanies);
-
-        fetch(`${API_URL}/locations`)
-            .then((res) => res.json())
-            .then(setLocations);
+        listCategoryGroups().then((data) => {
+            setCategoryGroups(data);
+            setCategoriesLoaded(true);
+        });
     }, []);
 
     const category = useMemo(
-        () =>
-            categories.find((c) => c.slug === slug) ??
-            categories.find((c) => String(c.id) === slug) ??
-            null,
-        [categories, slug],
+        () => categoryGroups.flatMap((group) => group.categories).find((c) => c.slug === slug),
+        [categoryGroups, slug],
     );
 
-    const companyById = useMemo(
-        () => new Map(companies.map((c) => [String(c.id), c])),
-        [companies],
-    );
-    const locationById = useMemo(
-        () => new Map(locations.map((l) => [String(l.id), l])),
-        [locations],
-    );
-
-    const categoryJobs = useMemo(() => {
-        if (!category) return [];
-        return jobs.filter(
-            (job) => job.status === "active" && String(job.categoryId) === String(category.id),
+    useEffect(() => {
+        if (!category) return;
+        listJobs({ page: currentPage, categorySlug: category.slug }).then(
+            ({ data, total: totalCount }) => {
+                setJobs(data);
+                setTotal(totalCount);
+            },
         );
-    }, [jobs, category]);
+    }, [category, currentPage]);
 
     if (!categoriesLoaded) {
         return (
@@ -95,34 +72,27 @@ function CategoryDetail() {
         );
     }
 
-    const totalPages = Math.max(1, Math.ceil(categoryJobs.length / PAGE_SIZE));
-    const start = (currentPage - 1) * PAGE_SIZE;
-    const visibleJobs = categoryJobs.slice(start, start + PAGE_SIZE);
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
     return (
         <div className={styles.page}>
             <h1 className={styles.heading}>
-                Việc làm {category.name} ({categoryJobs.length} việc làm)
+                Việc làm {category.name} ({total} việc làm)
             </h1>
 
             <CategoryDetailPanel category={category} />
 
-            {visibleJobs.length > 0 ? (
+            {jobs.length > 0 ? (
                 <div className={styles.grid}>
-                    {visibleJobs.map((job) => (
-                        <JobCard
-                            key={job.id}
-                            job={job}
-                            company={companyById.get(String(job.companyId))}
-                            location={locationById.get(String(job.locationId))}
-                        />
+                    {jobs.map((job) => (
+                        <JobCard key={job.id} job={job} />
                     ))}
                 </div>
             ) : (
                 <p className={styles.empty}>Chưa có việc làm nào trong lĩnh vực này.</p>
             )}
 
-            {categoryJobs.length > 0 && (
+            {total > 0 && (
                 <div className={styles.paginationWrapper}>
                     <Pagination
                         currentPage={currentPage}

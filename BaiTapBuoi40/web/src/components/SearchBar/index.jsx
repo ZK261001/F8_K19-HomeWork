@@ -7,10 +7,10 @@ import SearchOverlay from "./SearchOverlay";
 import { useRecentSearches } from "../../hooks/useRecentSearches";
 import styles from "./SearchBar.module.css";
 
-function SearchBar({ locations = [], categories = [], jobs = [], companies = [] }) {
+function SearchBar({ locations = [], categories = [], jobs = [] }) {
     const navigate = useNavigate();
     const [keyword, setKeyword] = useState("");
-    const [locationId, setLocationId] = useState("");
+    const [location, setLocation] = useState("");
     const [isFocused, setIsFocused] = useState(false);
     const [isDismissed, setIsDismissed] = useState(false);
     const { recentSearches, addRecentSearch, removeRecentSearch, clearRecentSearches } =
@@ -23,7 +23,7 @@ function SearchBar({ locations = [], categories = [], jobs = [], companies = [] 
 
         const params = new URLSearchParams();
         if (searchKeyword) params.set("keyword", searchKeyword);
-        if (locationId) params.set("locationId", locationId);
+        if (location) params.set("location", location);
         navigate(`/viec-lam?${params.toString()}`);
     };
 
@@ -65,13 +65,13 @@ function SearchBar({ locations = [], categories = [], jobs = [], companies = [] 
                     <PlaceOutlined className={styles.fieldIcon} />
                     <select
                         className={styles.select}
-                        value={locationId}
-                        onChange={(e) => setLocationId(e.target.value)}
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
                     >
                         <option value="">Địa điểm</option>
-                        {locations.map((location) => (
-                            <option key={location.id} value={location.id}>
-                                {location.name}
+                        {locations.map((loc) => (
+                            <option key={loc.id} value={loc.name}>
+                                {loc.name}
                             </option>
                         ))}
                     </select>
@@ -88,7 +88,6 @@ function SearchBar({ locations = [], categories = [], jobs = [], companies = [] 
                     keyword={keyword}
                     categories={categories}
                     jobs={jobs}
-                    companies={companies}
                     recentSearches={recentSearches}
                     onRemoveRecent={removeRecentSearch}
                     onClearRecent={clearRecentSearches}

@@ -1,14 +1,9 @@
+import { jobTypeLabel } from "../../../../utils/format";
 import styles from "./JobFilterSidebar.module.css";
 
-function JobFilterSidebar({
-    categoryOptions,
-    industryOptions,
-    workTypeOptions,
-    experienceOptions,
-    salaryOptions,
-    filters,
-    onFilterChange,
-}) {
+const JOB_TYPES = ["FULL_TIME", "PART_TIME", "FREELANCE", "INTERNSHIP"];
+
+function JobFilterSidebar({ categoryOptions, filters, onFilterChange }) {
     return (
         <aside className={styles.sidebar}>
             <h2 className={styles.title}>Bộ lọc</h2>
@@ -33,80 +28,22 @@ function JobFilterSidebar({
             </div>
 
             <div className={styles.field}>
-                <label className={styles.label} htmlFor="filter-industry">
-                    Ngành nghề
-                </label>
-                <select
-                    id="filter-industry"
-                    className={styles.select}
-                    value={filters.industry}
-                    onChange={(e) => onFilterChange("industry", e.target.value)}
-                >
-                    <option value="">Tất cả</option>
-                    {industryOptions.map((option) => (
-                        <option key={option} value={option}>
-                            {option}
-                        </option>
-                    ))}
-                </select>
-            </div>
-
-            <div className={styles.field}>
-                <label className={styles.label} htmlFor="filter-worktype">
+                <label className={styles.label} htmlFor="filter-jobtype">
                     Hình thức làm việc
                 </label>
                 <select
-                    id="filter-worktype"
+                    id="filter-jobtype"
                     className={styles.select}
-                    value={filters.workType}
-                    onChange={(e) => onFilterChange("workType", e.target.value)}
+                    value={filters.jobType}
+                    onChange={(e) => onFilterChange("jobType", e.target.value)}
                 >
                     <option value="">Tất cả</option>
-                    {workTypeOptions.map((option) => (
-                        <option key={option} value={option}>
-                            {option}
+                    {JOB_TYPES.map((type) => (
+                        <option key={type} value={type}>
+                            {jobTypeLabel(type)}
                         </option>
                     ))}
                 </select>
-            </div>
-
-            <div className={styles.field}>
-                <label className={styles.label} htmlFor="filter-experience">
-                    Kinh nghiệm
-                </label>
-                <select
-                    id="filter-experience"
-                    className={styles.select}
-                    value={filters.experience}
-                    onChange={(e) => onFilterChange("experience", e.target.value)}
-                >
-                    <option value="">Tất cả</option>
-                    {experienceOptions.map((option) => (
-                        <option key={option} value={option}>
-                            {option}
-                        </option>
-                    ))}
-                </select>
-            </div>
-
-            <div className={styles.field}>
-                <label className={styles.label} htmlFor="filter-salary">
-                    Mức lương từ
-                </label>
-                <select
-                    id="filter-salary"
-                    className={styles.select}
-                    value={filters.minSalary}
-                    onChange={(e) => onFilterChange("minSalary", e.target.value)}
-                >
-                    <option value="">Tất cả</option>
-                    {salaryOptions.map((option) => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-                <p className={styles.hint}>Tin lương thoả thuận sẽ không nằm trong kết quả</p>
             </div>
 
             <label className={styles.checkboxRow}>

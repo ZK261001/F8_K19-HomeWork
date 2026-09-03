@@ -44,16 +44,14 @@ function Header() {
                         </Link>
                     </li>
 
-                    {isAuthenticated && user?.role === "admin" && (
-                        <li className={styles.navItemWrapper}>
-                            <Link
-                                to="/danh-sach-cong-ty"
-                                className={`${styles.navLink} ${isCompanyActive ? styles.navLinkActive : ""}`}
-                            >
-                                Công ty
-                            </Link>
-                        </li>
-                    )}
+                    <li className={styles.navItemWrapper}>
+                        <Link
+                            to="/danh-sach-cong-ty"
+                            className={`${styles.navLink} ${isCompanyActive ? styles.navLinkActive : ""}`}
+                        >
+                            Công ty
+                        </Link>
+                    </li>
 
                     {isAuthenticated && (
                         <li className={styles.navItemWrapper}>
@@ -81,7 +79,9 @@ function Header() {
 
                     {isAuthenticated ? (
                         <div className={styles.authArea}>
-                            <Avatar className={styles.avatar}>{user?.fullName?.charAt(0)}</Avatar>
+                            <Avatar className={styles.avatar}>
+                                {user?.email?.charAt(0).toUpperCase()}
+                            </Avatar>
                             <button type="button" className={styles.logoutButton} onClick={handleLogout}>
                                 Đăng xuất
                             </button>

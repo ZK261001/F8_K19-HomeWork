@@ -10,6 +10,8 @@
     align-items: center;
     gap: 1.2rem;
     margin-bottom: 1.6rem;
+    text-decoration: none;
+    color: inherit;
 }
 
 .logo {

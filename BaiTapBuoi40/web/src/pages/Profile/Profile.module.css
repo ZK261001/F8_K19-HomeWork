@@ -79,31 +79,52 @@
 }
 
 .appliedGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    list-style: none;
 }
 
 .appliedItem {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+    padding: 1.6rem 2rem;
+    border: 0.1rem solid #eee;
+    border-radius: 1rem;
+    background-color: #fff;
+}
+
+.appliedLink {
+    display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.appliedJobTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #212f3f;
+}
+
+.appliedCompany {
+    font-size: 1.3rem;
+    color: #6b7280;
 }
 
 .appliedStatus {
+    flex-shrink: 0;
     font-size: 1.2rem;
     font-weight: 600;
     color: #00b14f;
 }
 
-@media (max-width: 960px) {
-    .appliedGrid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media (max-width: 640px) {
-    .appliedGrid {
-        grid-template-columns: 1fr;
+    .appliedItem {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }

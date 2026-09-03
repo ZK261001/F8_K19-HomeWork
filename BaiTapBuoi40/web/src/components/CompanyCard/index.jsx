@@ -4,37 +4,41 @@ import PeopleAltOutlined from "@mui/icons-material/PeopleAltOutlined";
 import CategoryOutlined from "@mui/icons-material/CategoryOutlined";
 import PlaceOutlined from "@mui/icons-material/PlaceOutlined";
 
+import { companyStatusLabel } from "../../utils/format";
 import styles from "./CompanyCard.module.css";
 
 function CompanyCard({ company }) {
     return (
         <Link to={`/cong-ty/${company.id}`} className={styles.card}>
             <div className={styles.top}>
-                <Avatar className={styles.logo} variant="rounded" src={company.logo}>
-                    {company.name?.charAt(0)}
+                <Avatar className={styles.logo} variant="rounded" src={company.logo_url}>
+                    {company.company_name?.charAt(0)}
                 </Avatar>
             </div>
 
-            <h3 className={styles.title}>{company.name}</h3>
+            <h3 className={styles.title}>{company.company_name}</h3>
 
             <div className={styles.tags}>
-                {company.scale && (
+                {company.company_size && (
                     <span className={styles.tag}>
                         <PeopleAltOutlined className={styles.tagIcon} />
-                        {company.scale}
+                        {company.company_size}
                     </span>
                 )}
-                {company.field && (
+                {company.category && (
                     <span className={styles.tag}>
                         <CategoryOutlined className={styles.tagIcon} />
-                        {company.field}
+                        {company.category}
                     </span>
                 )}
-                {company.address && (
+                {company.headquarters_address && (
                     <span className={styles.tag}>
                         <PlaceOutlined className={styles.tagIcon} />
-                        {company.address}
+                        {company.headquarters_address}
                     </span>
+                )}
+                {company.status !== "APPROVED" && (
+                    <span className={styles.tag}>{companyStatusLabel(company.status)}</span>
                 )}
             </div>
         </Link>

@@ -1,0 +1,116 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    z-index: 1000;
+}
+
+.modal {
+    width: 100%;
+    max-width: 48rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 1.2rem;
+    padding: 2.8rem;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #212f3f;
+    margin-bottom: 0.6rem;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+.formError {
+    background-color: #fdecea;
+    color: #c0392b;
+    border-radius: 0.6rem;
+    padding: 1rem 1.2rem;
+    font-size: 1.3rem;
+    margin-bottom: 1.6rem;
+}
+
+.field {
+    margin-bottom: 1.6rem;
+}
+
+.label {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #212f3f;
+    margin-bottom: 0.6rem;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    padding: 1rem 1.4rem;
+    font-size: 1.4rem;
+    font-family: inherit;
+    color: #212f3f;
+    border: 0.1rem solid #d9dde3;
+    border-radius: 0.8rem;
+    outline: none;
+}
+
+.input {
+    height: 4.4rem;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 8rem;
+}
+
+.input:focus,
+.textarea:focus {
+    border-color: #00b14f;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.2rem;
+    margin-top: 2.4rem;
+}
+
+.cancelButton {
+    height: 4.4rem;
+    padding: 0 2rem;
+    border: 0.1rem solid #d9dde3;
+    border-radius: 0.8rem;
+    background-color: #fff;
+    color: #212f3f;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.submitButton {
+    height: 4.4rem;
+    padding: 0 2.4rem;
+    border: none;
+    border-radius: 0.8rem;
+    background-color: #00b14f;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.submitButton:disabled {
+    background-color: #99d9b8;
+    cursor: not-allowed;
+}

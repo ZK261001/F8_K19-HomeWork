@@ -3,6 +3,15 @@ import { Link, useLocation, useNavigate, useParams } from "react-router";
 
 import { useAuth } from "../../context/AuthContext";
 import { useSavedJobs } from "../../context/SavedJobsContext";
+import { getJobBySlug, listJobs, applyToJob } from "../../api/jobs";
+import { createCv } from "../../api/candidate";
+import {
+    getStoredCvId,
+    setStoredCvId,
+    hasAppliedToJob,
+    addAppliedJob,
+} from "../../utils/applyStorage";
+import ApplyCvModal from "../../components/ApplyCvModal";
 import Breadcrumb from "./components/Breadcrumb";
 import ShareRail from "./components/ShareRail";
 import JobHeader from "./components/JobHeader";
@@ -14,7 +23,6 @@ import CompanyInfoCard from "./components/CompanyInfoCard";
 import RelatedJobs from "./components/RelatedJobs";
 import styles from "./JobDetail.module.css";
 
-const API_URL = "http://localhost:3000";
 const RELATED_LIMIT = 5;
 
 function JobDetail() {
@@ -25,12 +33,10 @@ function JobDetail() {
 
     const [status, setStatus] = useState("loading");
     const [job, setJob] = useState(null);
-    const [locations, setLocations] = useState([]);
-    const [categories, setCategories] = useState([]);
     const [allJobs, setAllJobs] = useState([]);
-    const [companies, setCompanies] = useState([]);
-    const [cvs, setCvs] = useState([]);
     const [applied, setApplied] = useState(false);
+    const [isCvModalOpen, setIsCvModalOpen] = useState(false);
+    const [applyError, setApplyError] = useState("");
 
     const { isSaved, toggleSaved } = useSavedJobs();
 
@@ -47,55 +53,36 @@ function JobDetail() {
     }, [slug]);
 
     useEffect(() => {
-        const isNumeric = /^\d+$/.test(slug);
-        const jobRequest = isNumeric
-            ? fetch(`${API_URL}/jobs/${slug}`).then((res) => (res.ok ? res.json() : null))
-            : fetch(`${API_URL}/jobs?slug=${encodeURIComponent(slug)}`)
-                  .then((res) => res.json())
-                  .then((results) => results[0] ?? null);
-
-        jobRequest
+        getJobBySlug(slug)
             .then((foundJob) => {
-                if (!foundJob) {
-                    setStatus("not-found");
-                    return;
-                }
                 setJob(foundJob);
                 setStatus("found");
+                if (isAuthenticated && hasAppliedToJob(user.id, foundJob.slug)) {
+                    setApplied(true);
+                }
             })
             .catch(() => setStatus("not-found"));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [slug]);
 
     useEffect(() => {
-        fetch(`${API_URL}/companies`)
-            .then((res) => res.json())
-            .then(setCompanies);
-        fetch(`${API_URL}/locations`)
-            .then((res) => res.json())
-            .then(setLocations);
-        fetch(`${API_URL}/categories`)
-            .then((res) => res.json())
-            .then(setCategories);
-        fetch(`${API_URL}/jobs`)
-            .then((res) => res.json())
-            .then(setAllJobs);
+        listJobs({ page: 1 }).then(({ data }) => setAllJobs(data));
     }, []);
 
-    useEffect(() => {
-        if (!isAuthenticated) return;
-        fetch(`${API_URL}/cvs?candidateId=${user.id}`)
-            .then((res) => res.json())
-            .then(setCvs);
-    }, [isAuthenticated, user]);
-
-    useEffect(() => {
-        if (!isAuthenticated || !job) return;
-        fetch(`${API_URL}/applications?candidateId=${user.id}&jobId=${job.id}`)
-            .then((res) => res.json())
-            .then((results) => {
-                if (results.length > 0) setApplied(true);
+    async function submitApplication(cvId) {
+        setApplyError("");
+        try {
+            await applyToJob(job.id, { cvId, coverLetter: "" });
+            setApplied(true);
+            addAppliedJob(user.id, {
+                jobSlug: job.slug,
+                jobTitle: job.title,
+                companyName: job.company?.company_name,
             });
-    }, [job, isAuthenticated, user]);
+        } catch (error) {
+            setApplyError(error.message || "Ứng tuyển thất bại, vui lòng thử lại");
+        }
+    }
 
     const handleApply = () => {
         if (applied || !job) return;
@@ -105,49 +92,28 @@ function JobDetail() {
             return;
         }
 
-        const latestCv = [...cvs].sort(
-            (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt),
-        )[0];
+        if (user.role !== "CANDIDATE") return;
 
-        fetch(`${API_URL}/applications`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                jobId: Number(job.id),
-                candidateId: Number(user.id),
-                cvId: latestCv ? Number(latestCv.id) : null,
-                status: "pending",
-                appliedDate: new Date().toISOString().slice(0, 10),
-                note: "",
-            }),
-        })
-            .then((res) => (res.ok ? setApplied(true) : null))
-            .catch(() => {});
+        const storedCvId = getStoredCvId(user.id);
+        if (storedCvId) {
+            submitApplication(storedCvId);
+        } else {
+            setIsCvModalOpen(true);
+        }
     };
 
-    const companyById = useMemo(
-        () => new Map(companies.map((c) => [String(c.id), c])),
-        [companies],
-    );
-    const locationById = useMemo(
-        () => new Map(locations.map((l) => [String(l.id), l])),
-        [locations],
-    );
-    const categoryById = useMemo(
-        () => new Map(categories.map((c) => [String(c.id), c])),
-        [categories],
-    );
+    async function handleCreateCvAndApply(cvForm) {
+        const { cv_id } = await createCv(cvForm);
+        setStoredCvId(user.id, cv_id);
+        setIsCvModalOpen(false);
+        await submitApplication(cv_id);
+    }
 
     const relatedJobs = useMemo(() => {
         if (!job) return [];
         return allJobs
-            .filter(
-                (j) =>
-                    j.id !== job.id &&
-                    j.status === "active" &&
-                    String(j.categoryId) === String(job.categoryId),
-            )
-            .sort((a, b) => b.viewCount - a.viewCount)
+            .filter((j) => j.id !== job.id && j.category === job.category)
+            .sort((a, b) => Number(b.is_hot) - Number(a.is_hot))
             .slice(0, RELATED_LIMIT);
     }, [allJobs, job]);
 
@@ -172,15 +138,13 @@ function JobDetail() {
         );
     }
 
-    const location = locationById.get(String(job.locationId));
-    const category = categoryById.get(String(job.categoryId));
-    const company = companyById.get(String(job.companyId));
     const saved = isSaved(job.id);
+    const canApply = !isAuthenticated || user.role === "CANDIDATE";
     const pageUrl = typeof window !== "undefined" ? window.location.href : "";
 
     return (
         <div className={styles.page}>
-            <Breadcrumb categoryName={category?.name} jobTitle={job.title} />
+            <Breadcrumb categoryName={job.category} jobTitle={job.title} />
 
             <div className={styles.layout}>
                 <div className={styles.main}>
@@ -188,22 +152,23 @@ function JobDetail() {
                         <ShareRail url={pageUrl} title={job.title} />
 
                         <div className={styles.contentMain}>
+                            {applyError && <p className={styles.notFound}>{applyError}</p>}
                             <JobHeader
                                 job={job}
-                                location={location}
                                 saved={saved}
                                 onToggleSave={() => toggleSaved(job.id)}
                                 applied={applied}
+                                canApply={canApply}
                                 onApply={handleApply}
                             />
                             <JobOverviewTags job={job} />
-                            <JobSection title="Mô tả công việc" text={job.description} />
-                            <JobSection title="Yêu cầu ứng viên" text={job.requirements} />
-                            <JobSection title="Quyền lợi ứng viên" text={job.benefits} />
+                            <JobSection title="Mô tả công việc" html={job.description_html} />
+                            <JobSection title="Yêu cầu ứng viên" html={job.requirements_html} />
+                            <JobSection title="Quyền lợi ứng viên" html={job.benefits_html} />
                             <LocationTimePanel
-                                location={location}
-                                company={company}
+                                job={job}
                                 applied={applied}
+                                canApply={canApply}
                                 onApply={handleApply}
                             />
                         </div>
@@ -211,11 +176,19 @@ function JobDetail() {
                 </div>
 
                 <div className={styles.sidebar}>
-                    <CompanyInfoCard company={company} />
+                    <CompanyInfoCard company={job.company} />
                     <GeneralInfoPanel job={job} />
-                    <RelatedJobs jobs={relatedJobs} companyById={companyById} />
+                    <RelatedJobs jobs={relatedJobs} />
                 </div>
             </div>
+
+            {isCvModalOpen && (
+                <ApplyCvModal
+                    defaultEmail={user?.email}
+                    onClose={() => setIsCvModalOpen(false)}
+                    onSubmit={handleCreateCvAndApply}
+                />
+            )}
         </div>
     );
 }

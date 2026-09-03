@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const API_URL = "http://localhost:3000";
+import * as authApi from "../api/auth";
+import { setToken } from "../api/client";
+
 const STORAGE_KEY = "authUser";
 const AuthContext = createContext(null);
 
@@ -24,72 +26,48 @@ export function AuthProvider({ children }) {
         }
     }, [user]);
 
+    function persistSession({ access_token, user: authUser }) {
+        setToken(access_token);
+        setUser(authUser);
+        return authUser;
+    }
+
     async function login(email, password) {
-        const params = new URLSearchParams({ email, password });
-        const res = await fetch(`${API_URL}/users?${params.toString()}`);
-        const matches = await res.json();
-        if (matches.length === 0) {
+        try {
+            const result = await authApi.login(email, password);
+            return persistSession(result);
+        } catch {
             throw new Error("Email hoặc mật khẩu không đúng");
         }
-        setUser(matches[0]);
-        return matches[0];
     }
 
-    async function register({ role = "candidate", fullName, email, phone, password, company }) {
-        const existingRes = await fetch(`${API_URL}/users?email=${encodeURIComponent(email)}`);
-        const existing = await existingRes.json();
-        if (existing.length > 0) {
-            throw new Error("Email này đã được đăng ký");
-        }
-
-        let companyId = null;
+    async function register({ role = "candidate", fullName, email, password, company }) {
         if (role === "recruiter") {
-            const companyRes = await fetch(`${API_URL}/companies`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    mst: company.mst,
-                    name: company.name,
-                    internationalName: company.internationalName || "",
-                    director: company.director,
-                    phone: company.phone,
-                    email: company.email,
-                    logo: "",
-                    coverImage: "",
-                    address: "",
-                    scale: "",
-                    field: "",
-                    description: "",
-                    website: "",
-                    foundedYear: null,
-                    status: "pending",
-                    createdAt: new Date().toISOString(),
-                }),
+            await authApi.registerCompany({
+                taxCode: company.mst,
+                companyName: company.name,
+                internationalName: company.internationalName,
+                director: company.director,
+                phoneNumber: company.phone,
+                email,
+                password,
             });
-            const newCompany = await companyRes.json();
-            companyId = newCompany.id;
+            // POST /companies/register không trả token, nên đăng nhập lại
+            // ngay để giữ trải nghiệm "đăng ký xong tự vào" như trước.
+            return login(email, password);
         }
 
-        const res = await fetch(`${API_URL}/users`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                role,
-                fullName,
-                email,
-                phone: phone || "",
-                password,
-                avatar: "",
-                companyId,
-                createdAt: new Date().toISOString(),
-            }),
-        });
-        const newUser = await res.json();
-        setUser(newUser);
-        return newUser;
+        const result = await authApi.registerCandidate({ email, password, fullName });
+        return persistSession(result);
     }
 
-    function logout() {
+    async function logout() {
+        try {
+            await authApi.logout();
+        } catch {
+            // stateless JWT — logout phía server chỉ mang tính hình thức
+        }
+        setToken(null);
         setUser(null);
     }
 

@@ -1,16 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import BadgeOutlined from "@mui/icons-material/BadgeOutlined";
 import PersonOutlined from "@mui/icons-material/PersonOutlined";
 import PhoneOutlined from "@mui/icons-material/PhoneOutlined";
 import EmailOutlined from "@mui/icons-material/EmailOutlined";
-import EventOutlined from "@mui/icons-material/EventOutlined";
 
 import JobCard from "../../components/JobCard";
 import CompanyInfoCard from "../JobDetail/components/CompanyInfoCard";
+import { findCompanyById } from "../../api/companies";
+import { fetchAllJobsByCompanyId } from "../../api/jobs";
 import styles from "./CompanyDetail.module.css";
-
-const API_URL = "http://localhost:3000";
 
 function CompanyDetail() {
     const { id } = useParams();
@@ -18,7 +17,6 @@ function CompanyDetail() {
     const [status, setStatus] = useState("loading");
     const [company, setCompany] = useState(null);
     const [jobs, setJobs] = useState([]);
-    const [locations, setLocations] = useState([]);
 
     const [prevId, setPrevId] = useState(id);
     if (id !== prevId) {
@@ -32,8 +30,7 @@ function CompanyDetail() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`${API_URL}/companies/${id}`)
-            .then((res) => (res.ok ? res.json() : null))
+        findCompanyById(id)
             .then((found) => {
                 if (!found) {
                     setStatus("not-found");
@@ -46,27 +43,10 @@ function CompanyDetail() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`${API_URL}/jobs`)
-            .then((res) => res.json())
-            .then(setJobs);
+        fetchAllJobsByCompanyId(id).then(setJobs);
+    }, [id]);
 
-        fetch(`${API_URL}/locations`)
-            .then((res) => res.json())
-            .then(setLocations);
-    }, []);
-
-    const locationById = useMemo(
-        () => new Map(locations.map((l) => [String(l.id), l])),
-        [locations],
-    );
-
-    const companyJobs = useMemo(
-        () =>
-            jobs.filter(
-                (job) => String(job.companyId) === String(id) && job.status === "active",
-            ),
-        [jobs, id],
-    );
+    const companyJobs = jobs;
 
     if (status === "loading") {
         return (
@@ -91,32 +71,28 @@ function CompanyDetail() {
 
     return (
         <div className={styles.page}>
-            {company.coverImage && (
-                <div
-                    className={styles.cover}
-                    style={{ backgroundImage: `url(${company.coverImage})` }}
-                />
-            )}
-
             <div className={styles.layout}>
                 <div className={styles.main}>
-                    <h1 className={styles.name}>{company.name}</h1>
+                    <h1 className={styles.name}>{company.company_name}</h1>
 
-                    {company.description && (
+                    {company.description_html && (
                         <section className={styles.section}>
                             <h2 className={styles.sectionTitle}>Giới thiệu công ty</h2>
-                            <p className={styles.description}>{company.description}</p>
+                            <div
+                                className={styles.description}
+                                dangerouslySetInnerHTML={{ __html: company.description_html }}
+                            />
                         </section>
                     )}
 
                     <section className={styles.section}>
                         <h2 className={styles.sectionTitle}>Thông tin doanh nghiệp</h2>
                         <ul className={styles.detailList}>
-                            {company.internationalName && (
+                            {company.international_name && (
                                 <li className={styles.detailRow}>
                                     <BadgeOutlined className={styles.detailIcon} />
                                     <span>
-                                        Tên quốc tế: <strong>{company.internationalName}</strong>
+                                        Tên quốc tế: <strong>{company.international_name}</strong>
                                     </span>
                                 </li>
                             )}
@@ -128,11 +104,11 @@ function CompanyDetail() {
                                     </span>
                                 </li>
                             )}
-                            {company.phone && (
+                            {company.phone_number && (
                                 <li className={styles.detailRow}>
                                     <PhoneOutlined className={styles.detailIcon} />
                                     <span>
-                                        Điện thoại: <strong>{company.phone}</strong>
+                                        Điện thoại: <strong>{company.phone_number}</strong>
                                     </span>
                                 </li>
                             )}
@@ -141,14 +117,6 @@ function CompanyDetail() {
                                     <EmailOutlined className={styles.detailIcon} />
                                     <span>
                                         Email: <strong>{company.email}</strong>
-                                    </span>
-                                </li>
-                            )}
-                            {company.foundedYear && (
-                                <li className={styles.detailRow}>
-                                    <EventOutlined className={styles.detailIcon} />
-                                    <span>
-                                        Thành lập năm: <strong>{company.foundedYear}</strong>
                                     </span>
                                 </li>
                             )}
@@ -162,12 +130,7 @@ function CompanyDetail() {
                         {companyJobs.length > 0 ? (
                             <div className={styles.grid}>
                                 {companyJobs.map((job) => (
-                                    <JobCard
-                                        key={job.id}
-                                        job={job}
-                                        company={company}
-                                        location={locationById.get(String(job.locationId))}
-                                    />
+                                    <JobCard key={job.id} job={job} company={company} />
                                 ))}
                             </div>
                         ) : (

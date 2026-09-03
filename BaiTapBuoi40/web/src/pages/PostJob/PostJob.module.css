@@ -1,27 +1,158 @@
-.wrapper {
-    max-width: 60rem;
-    margin: 6rem auto;
-    padding: 4rem;
+.page {
+    max-width: 80rem;
+    margin: 4rem auto 6rem;
+    padding: 0 2rem;
+}
+
+.card {
+    padding: 3.2rem;
     background-color: #fff;
     border-radius: 1.2rem;
     box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.06);
-    text-align: center;
 }
 
 .title {
     font-size: 2rem;
     font-weight: 700;
     color: #212f3f;
+    margin-bottom: 0.6rem;
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: #6b7280;
+    margin-bottom: 2.4rem;
+}
+
+.formError {
+    background-color: #fdecea;
+    color: #c0392b;
+    border-radius: 0.6rem;
+    padding: 1rem 1.2rem;
+    font-size: 1.3rem;
+    margin-bottom: 1.6rem;
+}
+
+.section {
+    margin-bottom: 2.4rem;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #212f3f;
+    margin-bottom: 1.4rem;
+    padding-left: 1rem;
+    border-left: 0.4rem solid #00b14f;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+}
+
+.field {
+    margin-bottom: 1.6rem;
+}
+
+.label {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #212f3f;
+    margin-bottom: 0.6rem;
+}
+
+.input,
+.select,
+.textarea {
+    width: 100%;
+    padding: 1rem 1.4rem;
+    font-size: 1.4rem;
+    font-family: inherit;
+    color: #212f3f;
+    border: 0.1rem solid #d9dde3;
+    border-radius: 0.8rem;
+    outline: none;
+}
+
+.input,
+.select {
+    height: 4.4rem;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 10rem;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+    border-color: #00b14f;
+}
+
+.checkboxRow {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.4rem;
+    color: #212f3f;
+    margin-bottom: 1.6rem;
+}
+
+.locationRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1.2rem;
+    align-items: center;
     margin-bottom: 1.2rem;
 }
 
-.greeting {
-    font-size: 1.4rem;
-    color: #212f3f;
-    margin-bottom: 0.8rem;
+.removeLocationButton {
+    height: 4.4rem;
+    padding: 0 1.4rem;
+    border: 0.1rem solid #d9dde3;
+    border-radius: 0.8rem;
+    background-color: #fff;
+    color: #c0392b;
+    font-size: 1.3rem;
+    cursor: pointer;
 }
 
-.message {
+.addLocationButton {
+    border: 0.1rem dashed #00b14f;
+    border-radius: 0.8rem;
+    background-color: #fff;
+    color: #00b14f;
     font-size: 1.3rem;
-    color: #7a7a7a;
+    font-weight: 600;
+    padding: 1rem 1.4rem;
+    cursor: pointer;
+}
+
+.submitButton {
+    width: 100%;
+    height: 4.8rem;
+    border: none;
+    border-radius: 0.8rem;
+    background-color: #00b14f;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 0.8rem;
+}
+
+.submitButton:disabled {
+    background-color: #99d9b8;
+    cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+    .row,
+    .locationRow {
+        grid-template-columns: 1fr;
+    }
 }

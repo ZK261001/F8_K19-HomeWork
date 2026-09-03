@@ -1,26 +1,27 @@
-import BusinessCenterOutlined from "@mui/icons-material/BusinessCenterOutlined";
 import PeopleAltOutlined from "@mui/icons-material/PeopleAltOutlined";
 import ScheduleOutlined from "@mui/icons-material/ScheduleOutlined";
-import ApartmentOutlined from "@mui/icons-material/ApartmentOutlined";
+import WorkHistoryOutlined from "@mui/icons-material/WorkHistoryOutlined";
+import EventOutlined from "@mui/icons-material/EventOutlined";
 
+import { jobTypeLabel } from "../../../../utils/format";
+import { formatDate } from "../../../../utils/date";
 import styles from "./GeneralInfoPanel.module.css";
-
-const JOB_TYPE_LABELS = {
-    "van-phong": "Làm việc tại văn phòng / Onsite",
-    "pho-thong": "Phổ thông",
-};
 
 function GeneralInfoPanel({ job }) {
     const rows = [
-        { icon: BusinessCenterOutlined, label: "Cấp bậc", value: job.level },
-        { icon: PeopleAltOutlined, label: "Số lượng tuyển", value: `${job.quantity} người` },
-        { icon: ScheduleOutlined, label: "Hình thức làm việc", value: job.workType },
-        {
-            icon: ApartmentOutlined,
-            label: "Loại hình công việc",
-            value: JOB_TYPE_LABELS[job.jobType] ?? job.jobType,
+        job.quantity && {
+            icon: PeopleAltOutlined,
+            label: "Số lượng tuyển",
+            value: `${job.quantity} người`,
         },
-    ];
+        { icon: ScheduleOutlined, label: "Hình thức làm việc", value: jobTypeLabel(job.job_type) },
+        job.experience_level && {
+            icon: WorkHistoryOutlined,
+            label: "Kinh nghiệm",
+            value: job.experience_level,
+        },
+        { icon: EventOutlined, label: "Hạn nộp hồ sơ", value: formatDate(job.deadline) },
+    ].filter(Boolean);
 
     return (
         <div className={styles.panel}>

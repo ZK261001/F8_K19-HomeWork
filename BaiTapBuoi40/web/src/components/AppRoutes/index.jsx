@@ -24,12 +24,12 @@ function AppRoutes() {
                     <Route path="cong-ty/:id" element={<CompanyDetail />} />
                     <Route path="linh-vuc/:slug" element={<CategoryDetail />} />
                     <Route path="khong-co-quyen" element={<Forbidden />} />
+                    <Route path="danh-sach-cong-ty" element={<CompanyList />} />
                     <Route element={<ProtectedRoute />}>
-                        <Route path="nha-tuyen-dung" element={<PostJob />} />
                         <Route path="ho-so" element={<Profile />} />
                     </Route>
-                    <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
-                        <Route path="danh-sach-cong-ty" element={<CompanyList />} />
+                    <Route element={<ProtectedRoute allowedRoles={["EMPLOYER"]} />}>
+                        <Route path="nha-tuyen-dung" element={<PostJob />} />
                     </Route>
                 </Route>
                 <Route path="dang-ky" element={<Register />} />

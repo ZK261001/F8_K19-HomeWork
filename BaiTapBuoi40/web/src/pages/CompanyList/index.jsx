@@ -1,47 +1,34 @@
 import { useEffect, useMemo, useState } from "react";
 
 import CompanyCard from "../../components/CompanyCard";
-import { normalizeSearchText } from "../../utils/text";
+import { listCompanies } from "../../api/companies";
 import styles from "./CompanyList.module.css";
-
-const API_URL = "http://localhost:3000";
 
 function CompanyList() {
     const [companies, setCompanies] = useState([]);
+    const [total, setTotal] = useState(0);
     const [keywordInput, setKeywordInput] = useState("");
     const [keyword, setKeyword] = useState("");
-    const [field, setField] = useState("");
+    const [category, setCategory] = useState("");
 
     useEffect(() => {
-        fetch(`${API_URL}/companies`)
-            .then((res) => res.json())
-            .then(setCompanies);
-    }, []);
+        listCompanies({ page: 1, keyword: keyword || undefined }).then(({ data, total: t }) => {
+            setCompanies(data);
+            setTotal(t);
+        });
+    }, [keyword]);
 
-    const approvedCompanies = useMemo(
-        () => companies.filter((c) => c.status === "approved"),
+    const categoryOptions = useMemo(
+        () => [...new Set(companies.map((c) => c.category).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
         [companies],
     );
 
-    const fieldOptions = useMemo(
-        () =>
-            [...new Set(approvedCompanies.map((c) => c.field).filter(Boolean))].sort((a, b) =>
-                a.localeCompare(b),
-            ),
-        [approvedCompanies],
+    // API không có filter theo lĩnh vực công ty ở query string, nên chỉ lọc
+    // thêm trên trang dữ liệu hiện có.
+    const filteredCompanies = useMemo(
+        () => companies.filter((company) => !category || company.category === category),
+        [companies, category],
     );
-
-    const filteredCompanies = useMemo(() => {
-        const normalizedKeyword = normalizeSearchText(keyword);
-
-        return approvedCompanies.filter((company) => {
-            const matchesKeyword =
-                !normalizedKeyword || normalizeSearchText(company.name).includes(normalizedKeyword);
-            const matchesField = !field || company.field === field;
-
-            return matchesKeyword && matchesField;
-        });
-    }, [approvedCompanies, keyword, field]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -51,7 +38,7 @@ function CompanyList() {
     return (
         <div className={styles.page}>
             <h1 className={styles.heading}>Danh sách công ty</h1>
-            <p className={styles.subheading}>Các công ty đã được kiểm duyệt hồ sơ trên hệ thống.</p>
+            <p className={styles.subheading}>Các công ty đang tuyển dụng trên hệ thống.</p>
 
             <form className={styles.searchRow} onSubmit={handleSubmit}>
                 <input
@@ -66,11 +53,11 @@ function CompanyList() {
                 </button>
                 <select
                     className={styles.fieldSelect}
-                    value={field}
-                    onChange={(e) => setField(e.target.value)}
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
                 >
                     <option value="">Tất cả nhóm ngành</option>
-                    {fieldOptions.map((option) => (
+                    {categoryOptions.map((option) => (
                         <option key={option} value={option}>
                             {option}
                         </option>
@@ -78,7 +65,7 @@ function CompanyList() {
                 </select>
             </form>
 
-            <p className={styles.count}>{filteredCompanies.length} công ty</p>
+            <p className={styles.count}>{total} công ty</p>
 
             {filteredCompanies.length > 0 ? (
                 <div className={styles.grid}>

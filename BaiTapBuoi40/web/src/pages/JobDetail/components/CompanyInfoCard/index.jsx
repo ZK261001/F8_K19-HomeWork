@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { Avatar } from "@mui/material";
 import PeopleAltOutlined from "@mui/icons-material/PeopleAltOutlined";
 import CategoryOutlined from "@mui/icons-material/CategoryOutlined";
@@ -11,35 +12,35 @@ function CompanyInfoCard({ company }) {
 
     return (
         <div className={styles.card}>
-            <div className={styles.top}>
-                <Avatar className={styles.logo} variant="rounded" src={company.logo}>
-                    {company.name?.charAt(0)}
+            <Link to={`/cong-ty/${company.id}`} className={styles.top}>
+                <Avatar className={styles.logo} variant="rounded" src={company.logo_url}>
+                    {company.company_name?.charAt(0)}
                 </Avatar>
-                <h2 className={styles.name}>{company.name}</h2>
-            </div>
+                <h2 className={styles.name}>{company.company_name}</h2>
+            </Link>
 
             <ul className={styles.infoList}>
-                {company.scale && (
+                {company.company_size && (
                     <li className={styles.infoRow}>
                         <PeopleAltOutlined className={styles.infoIcon} />
                         <span>
-                            Quy mô: <strong>{company.scale}</strong>
+                            Quy mô: <strong>{company.company_size}</strong>
                         </span>
                     </li>
                 )}
-                {company.field && (
+                {company.category && (
                     <li className={styles.infoRow}>
                         <CategoryOutlined className={styles.infoIcon} />
                         <span>
-                            Lĩnh vực: <strong>{company.field}</strong>
+                            Lĩnh vực: <strong>{company.category}</strong>
                         </span>
                     </li>
                 )}
-                {company.address && (
+                {company.headquarters_address && (
                     <li className={styles.infoRow}>
                         <PlaceOutlined className={styles.infoIcon} />
                         <span>
-                            Địa điểm: <strong>{company.address}</strong>
+                            Địa điểm: <strong>{company.headquarters_address}</strong>
                         </span>
                     </li>
                 )}
