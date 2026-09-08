@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"let s='';process.stdin.on\\('data',d=>s+=d\\).on\\('end',\\(\\)=>{const o=JSON.parse\\(s\\);console.log\\('total='+o.total+' titles='+o.data.map\\(j=>j.title\\).join\\(' | '\\)\\)}\\)\")",
+      "Bash(npx eslint *)",
+      "Bash(npm run *)",
+      "Bash(node -e \"let s='';process.stdin.on\\('data',d=>s+=d\\).on\\('end',\\(\\)=>{const o=JSON.parse\\(s\\);console.log\\('total='+o.total+' -> '+o.data.map\\(j=>j.title\\).join\\(' | '\\)\\)}\\)\")"
+    ]
+  }
+}

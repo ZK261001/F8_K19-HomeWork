@@ -8,7 +8,7 @@ import { createCv } from "../../api/candidate";
 import {
     getStoredCvId,
     setStoredCvId,
-    hasAppliedToJob,
+    getAppliedJob,
     addAppliedJob,
 } from "../../utils/applyStorage";
 import ApplyCvModal from "../../components/ApplyCvModal";
@@ -35,8 +35,10 @@ function JobDetail() {
     const [job, setJob] = useState(null);
     const [allJobs, setAllJobs] = useState([]);
     const [applied, setApplied] = useState(false);
+    const [appliedAt, setAppliedAt] = useState(null);
     const [isCvModalOpen, setIsCvModalOpen] = useState(false);
     const [applyError, setApplyError] = useState("");
+    const [applySuccess, setApplySuccess] = useState("");
 
     const { isSaved, toggleSaved } = useSavedJobs();
 
@@ -46,6 +48,9 @@ function JobDetail() {
         setStatus("loading");
         setJob(null);
         setApplied(false);
+        setAppliedAt(null);
+        setApplyError("");
+        setApplySuccess("");
     }
 
     useEffect(() => {
@@ -57,8 +62,12 @@ function JobDetail() {
             .then((foundJob) => {
                 setJob(foundJob);
                 setStatus("found");
-                if (isAuthenticated && hasAppliedToJob(user.id, foundJob.slug)) {
+                const previousApply = isAuthenticated
+                    ? getAppliedJob(user.id, foundJob.slug)
+                    : null;
+                if (previousApply) {
                     setApplied(true);
+                    setAppliedAt(previousApply.appliedAt);
                 }
             })
             .catch(() => setStatus("not-found"));
@@ -71,21 +80,26 @@ function JobDetail() {
 
     async function submitApplication(cvId) {
         setApplyError("");
+        setApplySuccess("");
         try {
             await applyToJob(job.id, { cvId, coverLetter: "" });
             setApplied(true);
-            addAppliedJob(user.id, {
-                jobSlug: job.slug,
-                jobTitle: job.title,
-                companyName: job.company?.company_name,
-            });
+            setApplySuccess("Đã gửi hồ sơ ứng tuyển thành công!");
+            setAppliedAt(
+                addAppliedJob(user.id, {
+                    jobSlug: job.slug,
+                    jobTitle: job.title,
+                    companyName: job.company?.company_name,
+                }),
+            );
         } catch (error) {
             setApplyError(error.message || "Ứng tuyển thất bại, vui lòng thử lại");
         }
     }
 
     const handleApply = () => {
-        if (applied || !job) return;
+        // Không chặn khi đã ứng tuyển: API cho phép nộp lại hồ sơ cho cùng một tin.
+        if (!job) return;
 
         if (!isAuthenticated) {
             navigate("/dang-nhap", { state: { from: routerLocation } });
@@ -152,12 +166,14 @@ function JobDetail() {
                         <ShareRail url={pageUrl} title={job.title} />
 
                         <div className={styles.contentMain}>
-                            {applyError && <p className={styles.notFound}>{applyError}</p>}
+                            {applyError && <p className={styles.applyError}>{applyError}</p>}
+                            {applySuccess && <p className={styles.applySuccess}>{applySuccess}</p>}
                             <JobHeader
                                 job={job}
                                 saved={saved}
                                 onToggleSave={() => toggleSaved(job.id)}
                                 applied={applied}
+                                appliedAt={appliedAt}
                                 canApply={canApply}
                                 onApply={handleApply}
                             />
@@ -168,6 +184,7 @@ function JobDetail() {
                             <LocationTimePanel
                                 job={job}
                                 applied={applied}
+                                appliedAt={appliedAt}
                                 canApply={canApply}
                                 onApply={handleApply}
                             />

@@ -5,6 +5,8 @@ import JobDetail from "../../pages/JobDetail";
 import CompanyList from "../../pages/CompanyList";
 import CompanyDetail from "../../pages/CompanyDetail";
 import CategoryDetail from "../../pages/CategoryDetail";
+import SavedJobs from "../../pages/SavedJobs";
+import AdminCompanies from "../../pages/AdminCompanies";
 import Profile from "../../pages/Profile";
 import Forbidden from "../../pages/Forbidden";
 import Register from "../../pages/Register";
@@ -23,6 +25,9 @@ function AppRoutes() {
                     <Route path="viec-lam/:slug" element={<JobDetail />} />
                     <Route path="cong-ty/:id" element={<CompanyDetail />} />
                     <Route path="linh-vuc/:slug" element={<CategoryDetail />} />
+                    {/* Không bọc ProtectedRoute: SavedJobsContext có nhánh "guest"
+                        nên khách chưa đăng nhập vẫn lưu và xem lại được. */}
+                    <Route path="viec-lam-da-luu" element={<SavedJobs />} />
                     <Route path="khong-co-quyen" element={<Forbidden />} />
                     <Route path="danh-sach-cong-ty" element={<CompanyList />} />
                     <Route element={<ProtectedRoute />}>
@@ -30,6 +35,9 @@ function AppRoutes() {
                     </Route>
                     <Route element={<ProtectedRoute allowedRoles={["EMPLOYER"]} />}>
                         <Route path="nha-tuyen-dung" element={<PostJob />} />
+                    </Route>
+                    <Route element={<ProtectedRoute allowedRoles={["ADMIN"]} />}>
+                        <Route path="quan-tri/cong-ty" element={<AdminCompanies />} />
                     </Route>
                 </Route>
                 <Route path="dang-ky" element={<Register />} />

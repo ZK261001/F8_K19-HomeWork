@@ -17,6 +17,27 @@
     font-weight: 700;
 }
 
+.applyError,
+.applySuccess {
+    margin-bottom: 1.6rem;
+    padding: 1.2rem 1.6rem;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.applyError {
+    background-color: #fdecea;
+    border-left: 0.3rem solid #e53935;
+    color: #b71c1c;
+}
+
+.applySuccess {
+    background-color: #e8f7ee;
+    border-left: 0.3rem solid #00b14f;
+    color: #0a6b34;
+}
+
 .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 34rem;

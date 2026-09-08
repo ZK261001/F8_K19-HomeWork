@@ -3,7 +3,10 @@ import { useNavigate } from "react-router";
 
 import { listCategoryGroups } from "../../api/categories";
 import { createJob } from "../../api/employer";
+import { CITIES, findCityById } from "../../constants/cities";
+import RichTextEditor from "../../components/RichTextEditor";
 import { jobTypeLabel, genderLabel } from "../../utils/format";
+import { hasVisibleText } from "../../utils/richText";
 import styles from "./PostJob.module.css";
 
 const JOB_TYPES = ["FULL_TIME", "PART_TIME", "FREELANCE", "INTERNSHIP"];
@@ -15,7 +18,9 @@ const SALARY_TYPE_LABELS = {
     MINIMUM: "Tối thiểu",
 };
 
-const emptyLocation = () => ({ city_name: "", address_detail: "" });
+// Giữ city_id (không phải city_name) vì đó là thứ `GET /jobs?city_id=` lọc theo.
+// Thiếu nó thì tin đăng lên sẽ không bao giờ khớp bộ lọc địa điểm.
+const emptyLocation = () => ({ city_id: "", address_detail: "" });
 
 function PostJob() {
     const navigate = useNavigate();
@@ -59,6 +64,11 @@ function PostJob() {
         };
     }
 
+    // RichTextEditor trả thẳng chuỗi HTML chứ không phải event như <input>.
+    function handleRichTextChange(field) {
+        return (html) => setForm((prev) => ({ ...prev, [field]: html }));
+    }
+
     function handleLocationChange(index, field) {
         return (event) => {
             setLocations((prev) =>
@@ -79,7 +89,14 @@ function PostJob() {
         event.preventDefault();
         setError("");
 
-        if (!form.title.trim() || !form.category.trim() || !form.deadline || !form.description_html.trim()) {
+        // description_html là HTML từ contentEditable: rỗng vẫn còn "<br>" nên
+        // phải kiểm tra có chữ thật hay không thay vì trim() chuỗi.
+        if (
+            !form.title.trim() ||
+            !form.category.trim() ||
+            !form.deadline ||
+            !hasVisibleText(form.description_html)
+        ) {
             setError("Vui lòng điền đầy đủ các trường bắt buộc");
             return;
         }
@@ -102,12 +119,20 @@ function PostJob() {
                           max: form.salaryMax ? Number(form.salaryMax) : null,
                           is_negotiable: false,
                       },
-                work_location: locations.filter((loc) => loc.city_name.trim()),
+                work_location: locations
+                    .filter((loc) => loc.city_id)
+                    .map((loc) => ({
+                        city_id: Number(loc.city_id),
+                        city_name: findCityById(loc.city_id)?.name ?? null,
+                        address_detail: loc.address_detail.trim() || null,
+                    })),
                 deadline: form.deadline,
                 is_hot: form.is_hot,
-                description_html: form.description_html.trim(),
-                requirements_html: form.requirements_html.trim() || null,
-                benefits_html: form.benefits_html.trim() || null,
+                description_html: form.description_html,
+                requirements_html: hasVisibleText(form.requirements_html)
+                    ? form.requirements_html
+                    : null,
+                benefits_html: hasVisibleText(form.benefits_html) ? form.benefits_html : null,
             };
 
             const job = await createJob(payload);
@@ -149,20 +174,23 @@ function PostJob() {
                                 <label className={styles.label} htmlFor="category">
                                     Nhóm ngành *
                                 </label>
-                                <input
+                                {/* Bắt buộc chọn từ danh sách: server sinh
+                                    category_slug = slugify(category), gõ tự do sẽ
+                                    tạo tin không thuộc lĩnh vực nào trong
+                                    GET /categories nên không trang nào hiển thị. */}
+                                <select
                                     id="category"
-                                    className={styles.input}
-                                    type="text"
-                                    list="category-options"
-                                    placeholder="Ví dụ: Công nghệ thông tin"
+                                    className={styles.select}
                                     value={form.category}
                                     onChange={handleChange("category")}
-                                />
-                                <datalist id="category-options">
+                                >
+                                    <option value="">-- Chọn nhóm ngành --</option>
                                     {categoryOptions.map((c) => (
-                                        <option key={c.id} value={c.name} />
+                                        <option key={c.id} value={c.name}>
+                                            {c.name}
+                                        </option>
                                     ))}
-                                </datalist>
+                                </select>
                             </div>
 
                             <div className={styles.field}>
@@ -343,13 +371,18 @@ function PostJob() {
 
                         {locations.map((loc, index) => (
                             <div className={styles.locationRow} key={index}>
-                                <input
-                                    className={styles.input}
-                                    type="text"
-                                    placeholder="Tỉnh/thành phố"
-                                    value={loc.city_name}
-                                    onChange={handleLocationChange(index, "city_name")}
-                                />
+                                <select
+                                    className={styles.select}
+                                    value={loc.city_id}
+                                    onChange={handleLocationChange(index, "city_id")}
+                                >
+                                    <option value="">-- Tỉnh/thành phố --</option>
+                                    {CITIES.map((city) => (
+                                        <option key={city.id} value={city.id}>
+                                            {city.name}
+                                        </option>
+                                    ))}
+                                </select>
                                 <input
                                     className={styles.input}
                                     type="text"
@@ -381,11 +414,11 @@ function PostJob() {
                             <label className={styles.label} htmlFor="description_html">
                                 Mô tả công việc *
                             </label>
-                            <textarea
+                            <RichTextEditor
                                 id="description_html"
-                                className={styles.textarea}
                                 value={form.description_html}
-                                onChange={handleChange("description_html")}
+                                onChange={handleRichTextChange("description_html")}
+                                placeholder="Mô tả chi tiết công việc, trách nhiệm chính..."
                             />
                         </div>
 
@@ -393,11 +426,11 @@ function PostJob() {
                             <label className={styles.label} htmlFor="requirements_html">
                                 Yêu cầu ứng viên
                             </label>
-                            <textarea
+                            <RichTextEditor
                                 id="requirements_html"
-                                className={styles.textarea}
                                 value={form.requirements_html}
-                                onChange={handleChange("requirements_html")}
+                                onChange={handleRichTextChange("requirements_html")}
+                                placeholder="Kinh nghiệm, kỹ năng, bằng cấp yêu cầu..."
                             />
                         </div>
 
@@ -405,11 +438,11 @@ function PostJob() {
                             <label className={styles.label} htmlFor="benefits_html">
                                 Quyền lợi ứng viên
                             </label>
-                            <textarea
+                            <RichTextEditor
                                 id="benefits_html"
-                                className={styles.textarea}
                                 value={form.benefits_html}
-                                onChange={handleChange("benefits_html")}
+                                onChange={handleRichTextChange("benefits_html")}
+                                placeholder="Lương thưởng, bảo hiểm, môi trường làm việc..."
                             />
                         </div>
                     </div>

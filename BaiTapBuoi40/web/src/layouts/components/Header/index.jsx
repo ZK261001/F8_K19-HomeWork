@@ -1,10 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router";
-import { Avatar, Badge } from "@mui/material";
+import { Avatar } from "@mui/material";
 import KeyboardDoubleArrowRight from "@mui/icons-material/KeyboardDoubleArrowRight";
-import NotificationsNoneOutlined from "@mui/icons-material/NotificationsNoneOutlined";
-import ChatBubbleOutlineOutlined from "@mui/icons-material/ChatBubbleOutlineOutlined";
 
 import { useAuth } from "../../../context/AuthContext";
+import logo from "../../../assets/logo.svg";
 import styles from "./Header.module.css";
 
 function Header() {
@@ -20,6 +19,7 @@ function Header() {
         location.pathname.startsWith("/danh-sach-cong-ty") ||
         location.pathname.startsWith("/cong-ty/");
     const isProfileActive = location.pathname.startsWith("/ho-so");
+    const isAdminActive = location.pathname.startsWith("/quan-tri");
 
     function handleLogout() {
         logout();
@@ -30,8 +30,11 @@ function Header() {
         <header className={styles.header}>
             <div className={styles.inner}>
                 <Link to="/" className={styles.logo}>
-                    <span className={styles.logoText}>topcv</span>
-                    <span className={styles.logoTagline}>Tiếp lợi thế, nối thành công</span>
+                    <img src={logo} alt="TopCV" className={styles.logoMark} />
+                    <span className={styles.logoTextGroup}>
+                        <span className={styles.logoText}>topcv</span>
+                        <span className={styles.logoTagline}>Tiếp lợi thế, nối thành công</span>
+                    </span>
                 </Link>
 
                 <ul className={styles.nav}>
@@ -63,20 +66,20 @@ function Header() {
                             </Link>
                         </li>
                     )}
+
+                    {user?.role === "ADMIN" && (
+                        <li className={styles.navItemWrapper}>
+                            <Link
+                                to="/quan-tri/cong-ty"
+                                className={`${styles.navLink} ${isAdminActive ? styles.navLinkActive : ""}`}
+                            >
+                                Quản trị
+                            </Link>
+                        </li>
+                    )}
                 </ul>
 
                 <div className={styles.actions}>
-                    <Badge
-                        badgeContent={user?.unreadNotifications}
-                        color="error"
-                        className={styles.iconButton}
-                    >
-                        <NotificationsNoneOutlined className={styles.actionIcon} />
-                    </Badge>
-                    <ChatBubbleOutlineOutlined className={`${styles.iconButton} ${styles.actionIcon}`} />
-
-                    <span className={styles.divider} />
-
                     {isAuthenticated ? (
                         <div className={styles.authArea}>
                             <Avatar className={styles.avatar}>

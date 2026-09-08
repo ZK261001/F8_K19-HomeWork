@@ -7,6 +7,15 @@ export function formatDate(isoDate) {
     return `${dd}/${mm}/${date.getFullYear()}`;
 }
 
+export function formatDateTime(isoDate) {
+    if (!isoDate) return "";
+    const date = new Date(isoDate);
+    if (Number.isNaN(date.getTime())) return isoDate;
+    const hh = String(date.getHours()).padStart(2, "0");
+    const mi = String(date.getMinutes()).padStart(2, "0");
+    return `${hh}:${mi} ngày ${formatDate(isoDate)}`;
+}
+
 export function daysUntil(isoDate) {
     if (!isoDate) return null;
     const target = new Date(isoDate);

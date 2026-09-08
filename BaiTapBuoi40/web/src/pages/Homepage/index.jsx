@@ -9,10 +9,13 @@ import JobListingSection from "./components/JobListingSection";
 import { listJobs } from "../../api/jobs";
 import { listCompanies } from "../../api/companies";
 import { listCategoryGroups } from "../../api/categories";
+import { CITIES } from "../../constants/cities";
 import styles from "./Homepage.module.css";
 
 function Homepage() {
     const [jobs, setJobs] = useState([]);
+    const [cityJobs, setCityJobs] = useState([]);
+    const [selectedCityId, setSelectedCityId] = useState(null);
     const [companies, setCompanies] = useState([]);
     const [categoryGroups, setCategoryGroups] = useState([]);
     const [hoveredCategoryId, setHoveredCategoryId] = useState(null);
@@ -36,25 +39,28 @@ function Homepage() {
         listCategoryGroups().then(setCategoryGroups);
     }, []);
 
+    // Lọc địa điểm gọi lại API theo city_id thay vì lọc tay trên trang đầu —
+    // nếu không, việc làm ở trang 2 trở đi sẽ không bao giờ hiện ra.
+    useEffect(() => {
+        if (!selectedCityId) return;
+
+        let cancelled = false;
+        listJobs({ page: 1, cityId: selectedCityId }).then(({ data }) => {
+            if (!cancelled) setCityJobs(data);
+        });
+        return () => {
+            cancelled = true;
+        };
+    }, [selectedCityId]);
+
+    const listingJobs = selectedCityId ? cityJobs : jobs;
+
     // API trả danh mục theo nhóm (group -> categories con); trang chủ chỉ
     // cần danh sách lĩnh vực phẳng để hiển thị/liên kết như trước.
     const categories = useMemo(
         () => categoryGroups.flatMap((group) => group.categories),
         [categoryGroups],
     );
-
-    // Không còn endpoint /locations — suy ra địa điểm từ các job đã tải.
-    const locations = useMemo(() => {
-        const seen = new Map();
-        for (const job of jobs) {
-            for (const loc of job.work_location ?? []) {
-                if (loc.city_name && !seen.has(loc.city_name)) {
-                    seen.set(loc.city_name, { id: loc.city_name, name: loc.city_name });
-                }
-            }
-        }
-        return [...seen.values()];
-    }, [jobs]);
 
     const activeCategory = hoveredCategoryId
         ? categories.find((c) => c.id === hoveredCategoryId)
@@ -65,7 +71,7 @@ function Homepage() {
             <TopPromoBanner />
             <HeroSection
                 categories={categories}
-                locations={locations}
+                locations={CITIES}
                 jobs={jobs}
                 companies={companies}
             />
@@ -87,7 +93,12 @@ function Homepage() {
                 )}
             </div>
 
-            <JobListingSection jobs={jobs} locations={locations} />
+            <JobListingSection
+                jobs={listingJobs}
+                locations={CITIES}
+                selectedCityId={selectedCityId}
+                onSelectCity={setSelectedCityId}
+            />
         </div>
     );
 }

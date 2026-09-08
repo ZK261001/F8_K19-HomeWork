@@ -87,10 +87,11 @@ function Register() {
 
     const [activeTab, setActiveTab] = useState("candidate");
 
+    // Không có ô số điện thoại: POST /auth/register chỉ nhận
+    // email/password/full_name, gửi thêm cũng bị API bỏ đi.
     const [candidateForm, setCandidateForm] = useState({
         fullName: "",
         email: "",
-        phone: "",
         password: "",
         confirmPassword: "",
     });
@@ -98,7 +99,10 @@ function Register() {
         mst: "",
         name: "",
         internationalName: "",
+        shortName: "",
         director: "",
+        headquartersAddress: "",
+        website: "",
         phone: "",
         email: "",
         password: "",
@@ -143,7 +147,6 @@ function Register() {
                 role: "candidate",
                 fullName: candidateForm.fullName.trim(),
                 email: candidateForm.email.trim(),
-                phone: candidateForm.phone.trim(),
                 password: candidateForm.password,
             });
             navigate("/");
@@ -169,7 +172,10 @@ function Register() {
             const mst = employerForm.mst.trim();
             const name = employerForm.name.trim();
             const internationalName = employerForm.internationalName.trim();
+            const shortName = employerForm.shortName.trim();
             const director = employerForm.director.trim();
+            const headquartersAddress = employerForm.headquartersAddress.trim();
+            const website = employerForm.website.trim();
             const phone = employerForm.phone.trim();
             const email = employerForm.email.trim();
 
@@ -177,9 +183,18 @@ function Register() {
                 role: "recruiter",
                 fullName: director,
                 email,
-                phone,
                 password: employerForm.password,
-                company: { mst, name, internationalName, director, phone, email },
+                company: {
+                    mst,
+                    name,
+                    internationalName,
+                    shortName,
+                    director,
+                    headquartersAddress,
+                    website,
+                    phone,
+                    email,
+                },
             });
             navigate("/");
         } catch (error) {
@@ -243,21 +258,6 @@ function Register() {
                                     onChange={handleCandidateChange("email")}
                                 />
                                 {errors.email && <p className={styles.errorText}>{errors.email}</p>}
-                            </div>
-
-                            <div className={styles.field}>
-                                <label className={styles.label} htmlFor="phone">
-                                    Số điện thoại
-                                </label>
-                                <input
-                                    id="phone"
-                                    className={styles.input}
-                                    type="tel"
-                                    placeholder="0901234567"
-                                    value={candidateForm.phone}
-                                    onChange={handleCandidateChange("phone")}
-                                />
-                                <p className={styles.hint}>Không bắt buộc</p>
                             </div>
 
                             <div className={styles.field}>
@@ -348,6 +348,21 @@ function Register() {
                             </div>
 
                             <div className={styles.field}>
+                                <label className={styles.label} htmlFor="shortName">
+                                    Tên viết tắt
+                                </label>
+                                <input
+                                    id="shortName"
+                                    className={styles.input}
+                                    type="text"
+                                    placeholder="ABC Tech"
+                                    value={employerForm.shortName}
+                                    onChange={handleEmployerChange("shortName")}
+                                />
+                                <p className={styles.hint}>Không bắt buộc</p>
+                            </div>
+
+                            <div className={styles.field}>
                                 <label className={styles.label} htmlFor="director">
                                     Người đại diện <span className={styles.required}>*</span>
                                 </label>
@@ -390,6 +405,36 @@ function Register() {
                                     onChange={handleEmployerChange("email")}
                                 />
                                 {errors.email && <p className={styles.errorText}>{errors.email}</p>}
+                            </div>
+
+                            <div className={styles.field}>
+                                <label className={styles.label} htmlFor="headquartersAddress">
+                                    Địa chỉ trụ sở
+                                </label>
+                                <input
+                                    id="headquartersAddress"
+                                    className={styles.input}
+                                    type="text"
+                                    placeholder="Số 1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội"
+                                    value={employerForm.headquartersAddress}
+                                    onChange={handleEmployerChange("headquartersAddress")}
+                                />
+                                <p className={styles.hint}>Không bắt buộc</p>
+                            </div>
+
+                            <div className={styles.field}>
+                                <label className={styles.label} htmlFor="website">
+                                    Website
+                                </label>
+                                <input
+                                    id="website"
+                                    className={styles.input}
+                                    type="url"
+                                    placeholder="https://congty.vn"
+                                    value={employerForm.website}
+                                    onChange={handleEmployerChange("website")}
+                                />
+                                <p className={styles.hint}>Không bắt buộc</p>
                             </div>
 
                             <div className={styles.field}>

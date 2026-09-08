@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 import { useAuth } from "./AuthContext";
 
@@ -8,50 +8,67 @@ function storageKey(userId) {
     return `savedJobIds_${userId ?? "guest"}`;
 }
 
-function readStoredIds(userId) {
+function readStoredEntries(userId) {
     try {
         const raw = localStorage.getItem(storageKey(userId));
         const parsed = raw ? JSON.parse(raw) : [];
-        return new Set(Array.isArray(parsed) ? parsed : []);
+        if (!Array.isArray(parsed)) return [];
+
+        // Bản cũ lưu thẳng mảng id (chuỗi). Quy về dạng mới để dữ liệu người
+        // dùng đã lưu từ trước không bị mất, chỉ là không có mốc thời gian.
+        return parsed
+            .map((entry) =>
+                typeof entry === "string"
+                    ? { id: entry, savedAt: null }
+                    : { id: entry?.id, savedAt: entry?.savedAt ?? null },
+            )
+            .filter((entry) => Boolean(entry.id));
     } catch {
-        return new Set();
+        return [];
     }
+}
+
+function sortByNewest(entries) {
+    // Lưu gần nhất lên đầu; mục từ bản cũ (không có savedAt) xuống cuối.
+    return [...entries].sort((a, b) => {
+        if (!a.savedAt && !b.savedAt) return 0;
+        if (!a.savedAt) return 1;
+        if (!b.savedAt) return -1;
+        return new Date(b.savedAt) - new Date(a.savedAt);
+    });
 }
 
 export function SavedJobsProvider({ children }) {
     const { user } = useAuth();
     const userId = user?.id;
     const [loadedUserId, setLoadedUserId] = useState(userId);
-    const [savedIds, setSavedIds] = useState(() => readStoredIds(userId));
+    const [entries, setEntries] = useState(() => readStoredEntries(userId));
 
     if (userId !== loadedUserId) {
         setLoadedUserId(userId);
-        setSavedIds(readStoredIds(userId));
+        setEntries(readStoredEntries(userId));
     }
 
     useEffect(() => {
-        localStorage.setItem(storageKey(userId), JSON.stringify([...savedIds]));
-    }, [savedIds, userId]);
+        localStorage.setItem(storageKey(userId), JSON.stringify(entries));
+    }, [entries, userId]);
+
+    const savedIds = useMemo(() => new Set(entries.map((entry) => entry.id)), [entries]);
+    const savedJobs = useMemo(() => sortByNewest(entries), [entries]);
 
     const toggleSaved = (jobId) => {
-        setSavedIds((prev) => {
-            const next = new Set(prev);
-            if (next.has(jobId)) {
-                next.delete(jobId);
-            } else {
-                next.add(jobId);
-            }
-            return next;
-        });
+        setEntries((prev) =>
+            prev.some((entry) => entry.id === jobId)
+                ? prev.filter((entry) => entry.id !== jobId)
+                : [...prev, { id: jobId, savedAt: new Date().toISOString() }],
+        );
     };
 
     const isSaved = (jobId) => savedIds.has(jobId);
 
-    return (
-        <SavedJobsContext.Provider value={{ isSaved, toggleSaved }}>
-            {children}
-        </SavedJobsContext.Provider>
-    );
+    const value = { isSaved, toggleSaved, savedJobs, savedCount: entries.length };
+
+    return <SavedJobsContext.Provider value={value}>{children}</SavedJobsContext.Provider>;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components

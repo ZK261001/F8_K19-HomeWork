@@ -7,11 +7,11 @@ import SendOutlined from "@mui/icons-material/SendOutlined";
 import BookmarkBorderOutlined from "@mui/icons-material/BookmarkBorderOutlined";
 import BookmarkOutlined from "@mui/icons-material/BookmarkOutlined";
 
-import { formatDate, daysUntil } from "../../../../utils/date";
+import { formatDate, formatDateTime, daysUntil } from "../../../../utils/date";
 import { formatSalary, formatWorkLocation } from "../../../../utils/format";
 import styles from "./JobHeader.module.css";
 
-function JobHeader({ job, saved, onToggleSave, applied, canApply, onApply }) {
+function JobHeader({ job, saved, onToggleSave, applied, appliedAt, canApply, onApply }) {
     const remainingDays = daysUntil(job.deadline);
 
     return (
@@ -70,12 +70,12 @@ function JobHeader({ job, saved, onToggleSave, applied, canApply, onApply }) {
                     type="button"
                     className={styles.applyButton}
                     onClick={onApply}
-                    disabled={applied || canApply === false}
+                    disabled={canApply === false}
                 >
                     <SendOutlined className={styles.applyIcon} />
-                    {applied ? "Đã ứng tuyển" : "Ứng tuyển ngay"}
+                    {applied ? "Ứng tuyển lại" : "Ứng tuyển ngay"}
                 </button>
-                {canApply === false && !applied && (
+                {canApply === false && (
                     <span className={styles.metaLabel}>
                         Chỉ tài khoản ứng viên mới ứng tuyển được
                     </span>
@@ -89,6 +89,12 @@ function JobHeader({ job, saved, onToggleSave, applied, canApply, onApply }) {
                     {saved ? "Đã lưu" : "Lưu tin"}
                 </button>
             </div>
+
+            {applied && appliedAt && (
+                <p className={styles.appliedNote}>
+                    Bạn đã ứng tuyển tin này lúc {formatDateTime(appliedAt)}.
+                </p>
+            )}
         </div>
     );
 }

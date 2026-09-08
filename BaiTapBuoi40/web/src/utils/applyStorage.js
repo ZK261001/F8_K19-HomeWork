@@ -23,13 +23,23 @@ export function getAppliedJobs(userId) {
     return readAppliedJobs(userId);
 }
 
-export function hasAppliedToJob(userId, jobSlug) {
-    return readAppliedJobs(userId).some((entry) => entry.jobSlug === jobSlug);
+export function getAppliedJob(userId, jobSlug) {
+    return readAppliedJobs(userId).find((entry) => entry.jobSlug === jobSlug) ?? null;
 }
 
 export function addAppliedJob(userId, { jobSlug, jobTitle, companyName }) {
     const applied = readAppliedJobs(userId);
-    if (applied.some((entry) => entry.jobSlug === jobSlug)) return;
-    applied.push({ jobSlug, jobTitle, companyName, appliedAt: new Date().toISOString() });
+    const appliedAt = new Date().toISOString();
+    const existing = applied.find((entry) => entry.jobSlug === jobSlug);
+
+    if (existing) {
+        // Ứng tuyển lại cùng một tin: giữ một dòng duy nhất nhưng cập nhật mốc
+        // thời gian, để danh sách ở trang hồ sơ vẫn sắp đúng theo lần gần nhất.
+        existing.appliedAt = appliedAt;
+    } else {
+        applied.push({ jobSlug, jobTitle, companyName, appliedAt });
+    }
+
     localStorage.setItem(`appliedJobs_${userId}`, JSON.stringify(applied));
+    return appliedAt;
 }

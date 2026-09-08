@@ -15,10 +15,22 @@
 
 .logo {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
     margin-right: 3.2rem;
     white-space: nowrap;
+}
+
+.logoMark {
+    width: 3.6rem;
+    height: 3.6rem;
+    flex-shrink: 0;
+}
+
+.logoTextGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .logoText {
@@ -83,16 +95,6 @@
     display: flex;
     align-items: center;
     gap: 1.6rem;
-}
-
-.iconButton {
-    display: flex;
-    color: #4a4a4a;
-    cursor: pointer;
-}
-
-.actionIcon {
-    font-size: 2.4rem !important;
 }
 
 .divider {

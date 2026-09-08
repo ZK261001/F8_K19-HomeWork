@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 import * as authApi from "../api/auth";
-import { setToken } from "../api/client";
+import { setToken, setUnauthorizedHandler } from "../api/client";
 
 const STORAGE_KEY = "authUser";
 const AuthContext = createContext(null);
@@ -26,6 +26,13 @@ export function AuthProvider({ children }) {
         }
     }, [user]);
 
+    // Token hết hạn giữa chừng: client đã xoá token, ở đây chỉ cần dọn user để
+    // UI quay về trạng thái chưa đăng nhập.
+    useEffect(() => {
+        setUnauthorizedHandler(() => setUser(null));
+        return () => setUnauthorizedHandler(null);
+    }, []);
+
     function persistSession({ access_token, user: authUser }) {
         setToken(access_token);
         setUser(authUser);
@@ -36,8 +43,13 @@ export function AuthProvider({ children }) {
         try {
             const result = await authApi.login(email, password);
             return persistSession(result);
-        } catch {
-            throw new Error("Email hoặc mật khẩu không đúng");
+        } catch (error) {
+            // Chỉ 401 mới là sai thông tin đăng nhập. API sập hay mất mạng mà
+            // cũng báo "sai mật khẩu" thì người dùng không có đường xử lý.
+            if (error.status === 401) {
+                throw new Error("Email hoặc mật khẩu không đúng", { cause: error });
+            }
+            throw error;
         }
     }
 
@@ -47,14 +59,26 @@ export function AuthProvider({ children }) {
                 taxCode: company.mst,
                 companyName: company.name,
                 internationalName: company.internationalName,
+                shortName: company.shortName,
                 director: company.director,
+                headquartersAddress: company.headquartersAddress,
+                website: company.website,
                 phoneNumber: company.phone,
                 email,
                 password,
             });
             // POST /companies/register không trả token, nên đăng nhập lại
             // ngay để giữ trải nghiệm "đăng ký xong tự vào" như trước.
-            return login(email, password);
+            try {
+                return await login(email, password);
+            } catch (error) {
+                // Công ty đã được tạo thành công rồi, không được để lỗi ở bước
+                // đăng nhập tự động hiện thành "đăng ký thất bại".
+                throw new Error(
+                    "Đăng ký thành công nhưng đăng nhập tự động thất bại. Vui lòng đăng nhập lại.",
+                    { cause: error },
+                );
+            }
         }
 
         const result = await authApi.registerCandidate({ email, password, fullName });

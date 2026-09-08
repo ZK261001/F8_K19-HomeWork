@@ -1,9 +1,10 @@
 import PlaceOutlined from "@mui/icons-material/PlaceOutlined";
 import SendOutlined from "@mui/icons-material/SendOutlined";
 
+import { formatDateTime } from "../../../../utils/date";
 import styles from "./LocationTimePanel.module.css";
 
-function LocationTimePanel({ job, applied, canApply, onApply }) {
+function LocationTimePanel({ job, applied, appliedAt, canApply, onApply }) {
     const locations = job.work_location ?? [];
 
     return (
@@ -31,11 +32,17 @@ function LocationTimePanel({ job, applied, canApply, onApply }) {
                 type="button"
                 className={styles.applyButton}
                 onClick={onApply}
-                disabled={applied || canApply === false}
+                disabled={canApply === false}
             >
                 <SendOutlined className={styles.applyIcon} />
-                {applied ? "Đã ứng tuyển" : "Ứng tuyển ngay"}
+                {applied ? "Ứng tuyển lại" : "Ứng tuyển ngay"}
             </button>
+
+            {applied && appliedAt && (
+                <p className={styles.appliedNote}>
+                    Bạn đã ứng tuyển tin này lúc {formatDateTime(appliedAt)}.
+                </p>
+            )}
         </div>
     );
 }

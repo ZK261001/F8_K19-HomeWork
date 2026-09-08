@@ -24,12 +24,49 @@
     margin-bottom: 1rem;
 }
 
+/* reset.css gỡ `font: inherit` lên strong/b/em/i/u và `list-style: none` lên
+   ul/ol, nên phải trả lại ở đây — không thì mọi định dạng nhà tuyển dụng soạn
+   ra đều hiển thị thành chữ thường. */
+.richText strong,
+.richText b {
+    font-weight: 700;
+}
+
+.richText em,
+.richText i {
+    font-style: italic;
+}
+
+.richText u {
+    text-decoration: underline;
+}
+
+.richText h3 {
+    margin: 1.6rem 0 0.8rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #212f3f;
+}
+
 .richText ul,
 .richText ol {
     padding-left: 2rem;
     margin-bottom: 1rem;
 }
 
+.richText ul {
+    list-style: disc;
+}
+
+.richText ol {
+    list-style: decimal;
+}
+
 .richText li {
     margin-bottom: 0.6rem;
+}
+
+.richText a {
+    color: #00b14f;
+    text-decoration: underline;
 }

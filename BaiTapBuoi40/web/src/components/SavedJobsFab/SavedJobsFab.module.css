@@ -1,0 +1,82 @@
+.fab {
+    position: fixed;
+    right: 2.4rem;
+    bottom: 3.2rem;
+    z-index: 1200;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5.2rem;
+    height: 5.2rem;
+    border: 0.1rem solid #d9f0e2;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.12);
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.fab:hover {
+    border-color: #00b14f;
+    box-shadow: 0 0.6rem 2rem rgba(0, 177, 79, 0.28);
+}
+
+.icon {
+    font-size: 2.6rem !important;
+    color: #00b14f;
+}
+
+.tooltip {
+    position: absolute;
+    top: 50%;
+    right: calc(100% + 1.2rem);
+    transform: translateY(-50%);
+
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.6rem;
+    background-color: #3c3c3c;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.15s ease,
+        visibility 0.15s ease;
+}
+
+/* Mũi tên là con của chính hộp chữ nên luôn dính đúng mép phải của nó. */
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border: 0.6rem solid transparent;
+    border-left-color: #3c3c3c;
+}
+
+.fab:hover .tooltip,
+.fab:focus-visible .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 560px) {
+    .fab {
+        right: 1.6rem;
+        bottom: 2rem;
+        width: 4.6rem;
+        height: 4.6rem;
+    }
+
+    .icon {
+        font-size: 2.2rem !important;
+    }
+}

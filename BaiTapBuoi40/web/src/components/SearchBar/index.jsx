@@ -7,10 +7,11 @@ import SearchOverlay from "./SearchOverlay";
 import { useRecentSearches } from "../../hooks/useRecentSearches";
 import styles from "./SearchBar.module.css";
 
-function SearchBar({ locations = [], categories = [], jobs = [] }) {
+function SearchBar({ locations = [], categories = [], jobs = [], initialCityId = "" }) {
     const navigate = useNavigate();
     const [keyword, setKeyword] = useState("");
-    const [location, setLocation] = useState("");
+    // Giữ city id chứ không phải tên: `GET /jobs` lọc theo `city_id`.
+    const [cityId, setCityId] = useState(String(initialCityId ?? ""));
     const [isFocused, setIsFocused] = useState(false);
     const [isDismissed, setIsDismissed] = useState(false);
     const { recentSearches, addRecentSearch, removeRecentSearch, clearRecentSearches } =
@@ -23,7 +24,7 @@ function SearchBar({ locations = [], categories = [], jobs = [] }) {
 
         const params = new URLSearchParams();
         if (searchKeyword) params.set("keyword", searchKeyword);
-        if (location) params.set("location", location);
+        if (cityId) params.set("city", cityId);
         navigate(`/viec-lam?${params.toString()}`);
     };
 
@@ -65,12 +66,12 @@ function SearchBar({ locations = [], categories = [], jobs = [] }) {
                     <PlaceOutlined className={styles.fieldIcon} />
                     <select
                         className={styles.select}
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
+                        value={cityId}
+                        onChange={(e) => setCityId(e.target.value)}
                     >
                         <option value="">Địa điểm</option>
                         {locations.map((loc) => (
-                            <option key={loc.id} value={loc.name}>
+                            <option key={loc.id} value={loc.id}>
                                 {loc.name}
                             </option>
                         ))}

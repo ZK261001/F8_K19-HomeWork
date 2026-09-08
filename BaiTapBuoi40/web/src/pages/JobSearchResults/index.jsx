@@ -7,6 +7,7 @@ import Pagination from "../../components/Pagination";
 import JobFilterSidebar from "./components/JobFilterSidebar";
 import { listJobs } from "../../api/jobs";
 import { listCategoryGroups } from "../../api/categories";
+import { CITIES, findCityById } from "../../constants/cities";
 import styles from "./JobSearchResults.module.css";
 
 const PAGE_SIZE = 20;
@@ -14,7 +15,7 @@ const PAGE_SIZE = 20;
 function JobSearchResults() {
     const [searchParams] = useSearchParams();
     const keyword = searchParams.get("keyword") ?? "";
-    const location = searchParams.get("location") ?? "";
+    const cityId = searchParams.get("city") ?? "";
 
     const [jobs, setJobs] = useState([]);
     const [total, setTotal] = useState(0);
@@ -31,20 +32,9 @@ function JobSearchResults() {
         [categoryGroups],
     );
     const selectedCategory = categories.find((c) => c.id === filters.categoryId);
+    const selectedCity = findCityById(cityId);
 
-    const locations = useMemo(() => {
-        const seen = new Map();
-        for (const job of jobs) {
-            for (const loc of job.work_location ?? []) {
-                if (loc.city_name && !seen.has(loc.city_name)) {
-                    seen.set(loc.city_name, { id: loc.city_name, name: loc.city_name });
-                }
-            }
-        }
-        return [...seen.values()];
-    }, [jobs]);
-
-    const queryKey = `${keyword}|${location}|${filters.categoryId}|${filters.jobType}|${filters.hotOnly}`;
+    const queryKey = `${keyword}|${cityId}|${filters.categoryId}|${filters.jobType}|${filters.hotOnly}`;
     const [prevQueryKey, setPrevQueryKey] = useState(queryKey);
     if (queryKey !== prevQueryKey) {
         setPrevQueryKey(queryKey);
@@ -60,33 +50,44 @@ function JobSearchResults() {
             page: currentPage,
             keyword: keyword || undefined,
             categorySlug: selectedCategory?.slug,
+            cityId: cityId || undefined,
         }).then(({ data, total: totalCount }) => {
             setJobs(data);
             setTotal(totalCount);
         });
         // selectedCategory được suy ra từ categoryGroups nên chỉ cần theo dõi id đã chọn
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPage, keyword, filters.categoryId, categoryGroups]);
+    }, [currentPage, keyword, cityId, filters.categoryId, categoryGroups]);
 
-    // API không có filter theo địa điểm/loại hình/is_hot ở query string, nên chỉ
-    // lọc thêm trên trang dữ liệu hiện có (không đảm bảo đúng trên toàn bộ kết quả).
+    // keyword / category_slug / city_id đã lọc ở server. Còn job_type và is_hot
+    // thì API không có tham số nào, đành lọc trên trang dữ liệu hiện tại.
+    const isLocalFilterActive = Boolean(filters.jobType) || filters.hotOnly;
+
     const visibleJobs = useMemo(() => {
+        if (!isLocalFilterActive) return jobs;
         return jobs.filter((job) => {
-            if (location && !(job.work_location ?? []).some((loc) => loc.city_name === location)) {
-                return false;
-            }
             if (filters.jobType && job.job_type !== filters.jobType) return false;
             if (filters.hotOnly && !job.is_hot) return false;
             return true;
         });
-    }, [jobs, location, filters.jobType, filters.hotOnly]);
+    }, [jobs, isLocalFilterActive, filters.jobType, filters.hotOnly]);
 
     const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+
+    const headingSuffix = selectedCity ? ` tại ${selectedCity.name}` : "";
+    const heading = keyword
+        ? `Kết quả tìm kiếm cho "${keyword}"${headingSuffix} (${total} việc làm)`
+        : `Tất cả công việc${headingSuffix} (${total} việc làm)`;
 
     return (
         <div className={styles.page}>
             <div className={styles.searchBarWrapper}>
-                <SearchBar locations={locations} categories={categories} jobs={jobs} />
+                <SearchBar
+                    locations={CITIES}
+                    categories={categories}
+                    jobs={jobs}
+                    initialCityId={cityId}
+                />
             </div>
 
             <div className={styles.layout}>
@@ -97,11 +98,14 @@ function JobSearchResults() {
                 />
 
                 <div className={styles.content}>
-                    <h1 className={styles.heading}>
-                        {keyword
-                            ? `Kết quả tìm kiếm cho "${keyword}" (${total} việc làm)`
-                            : `Tất cả công việc (${total} việc làm)`}
-                    </h1>
+                    <h1 className={styles.heading}>{heading}</h1>
+
+                    {isLocalFilterActive && (
+                        <p className={styles.filterNote}>
+                            Đang lọc hình thức làm việc / tin nổi bật trong trang hiện tại:{" "}
+                            {visibleJobs.length}/{jobs.length} việc làm.
+                        </p>
+                    )}
 
                     {visibleJobs.length > 0 ? (
                         <div className={styles.grid}>
