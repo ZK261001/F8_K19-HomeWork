@@ -1,15 +1,13 @@
 .card {
-    padding: 2rem;
-    border: 0.1rem solid #eee;
-    border-radius: 1.2rem;
-    background-color: #fff;
+    composes: surface from "../../../../styles/shared.module.css";
+    padding: var(--sp-5);
 }
 
 .top {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1.6rem;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-4);
     text-decoration: none;
     color: inherit;
 }
@@ -17,60 +15,60 @@
 .logo {
     width: 5.6rem !important;
     height: 5.6rem !important;
-    background-color: #00b14f !important;
+    background-color: var(--c-brand-solid) !important;
     font-size: 2rem !important;
     font-weight: 700;
 }
 
 .name {
-    font-size: 1.5rem;
+    font-size: var(--fs-lg);
     font-weight: 700;
-    line-height: 1.4;
-    color: #212f3f;
+    line-height: var(--lh-snug);
+    color: var(--c-ink-900);
+}
+
+.top:hover .name {
+    color: var(--c-brand-solid);
 }
 
 .infoList {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
-    margin-bottom: 1.6rem;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-4);
 }
 
 .infoRow {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
-    font-size: 1.3rem;
-    color: #444;
-    line-height: 1.5;
+    gap: var(--sp-3);
+    font-size: var(--fs-base);
+    color: var(--c-ink-600);
+    line-height: var(--lh-snug);
 }
 
 .infoIcon {
     flex-shrink: 0;
-    font-size: 1.8rem !important;
-    color: #00b14f !important;
+    font-size: var(--fs-xl) !important;
+    color: var(--c-brand) !important;
     margin-top: 0.1rem;
 }
 
 .websiteLink {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    padding: 1rem;
-    border: 0.1rem solid #00b14f;
-    border-radius: 0.8rem;
-    color: #00b14f;
-    font-size: 1.4rem;
+    composes: btn from "../../../../styles/shared.module.css";
+    width: 100%;
+    border-color: var(--c-brand);
+    border-radius: var(--r-md);
+    color: var(--c-brand-solid);
+    font-size: var(--fs-md);
     font-weight: 700;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
 }
 
 .websiteLink:hover {
-    background-color: #eafaf1;
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-hover);
 }
 
 .websiteLinkIcon {
-    font-size: 1.6rem !important;
+    font-size: var(--fs-lg) !important;
 }

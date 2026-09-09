@@ -1,12 +1,12 @@
 .overlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(16, 24, 40, 0.55);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
-    z-index: 1000;
+    padding: var(--sp-5);
+    z-index: var(--z-modal);
 }
 
 .modal {
@@ -14,103 +14,89 @@
     max-width: 48rem;
     max-height: 90vh;
     overflow-y: auto;
-    background-color: #fff;
-    border-radius: 1.2rem;
-    padding: 2.8rem;
+    background-color: var(--c-surface);
+    border-radius: var(--r-lg);
+    box-shadow: var(--sh-3);
+    padding: var(--sp-8);
 }
 
 .title {
-    font-size: 1.8rem;
+    font-size: var(--fs-xl);
     font-weight: 700;
-    color: #212f3f;
-    margin-bottom: 0.6rem;
+    color: var(--c-ink-900);
+    margin-bottom: var(--sp-1);
 }
 
 .subtitle {
-    font-size: 1.3rem;
-    color: #6b7280;
-    margin-bottom: 2rem;
+    font-size: var(--fs-base);
+    color: var(--c-ink-500);
+    margin-bottom: var(--sp-5);
 }
 
 .formError {
-    background-color: #fdecea;
-    color: #c0392b;
-    border-radius: 0.6rem;
-    padding: 1rem 1.2rem;
-    font-size: 1.3rem;
-    margin-bottom: 1.6rem;
+    background-color: var(--c-danger-soft);
+    border: 0.1rem solid var(--c-danger-border);
+    color: var(--c-danger);
+    border-radius: var(--r-sm);
+    padding: var(--sp-3);
+    font-size: var(--fs-base);
+    margin-bottom: var(--sp-4);
 }
 
 .field {
-    margin-bottom: 1.6rem;
+    margin-bottom: var(--sp-4);
 }
 
 .label {
-    display: block;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #212f3f;
-    margin-bottom: 0.6rem;
-}
-
-.input,
-.textarea {
-    width: 100%;
-    padding: 1rem 1.4rem;
-    font-size: 1.4rem;
-    font-family: inherit;
-    color: #212f3f;
-    border: 0.1rem solid #d9dde3;
-    border-radius: 0.8rem;
-    outline: none;
+    composes: label from "../../styles/shared.module.css";
 }
 
 .input {
+    composes: input from "../../styles/shared.module.css";
     height: 4.4rem;
+    border-radius: var(--r-md);
 }
 
 .textarea {
-    resize: vertical;
+    composes: textarea from "../../styles/shared.module.css";
     min-height: 8rem;
-}
-
-.input:focus,
-.textarea:focus {
-    border-color: #00b14f;
+    border-radius: var(--r-md);
 }
 
 .actions {
     display: flex;
     justify-content: flex-end;
-    gap: 1.2rem;
-    margin-top: 2.4rem;
+    gap: var(--sp-3);
+    margin-top: var(--sp-6);
 }
 
 .cancelButton {
+    composes: btnSecondary from "../../styles/shared.module.css";
     height: 4.4rem;
-    padding: 0 2rem;
-    border: 0.1rem solid #d9dde3;
-    border-radius: 0.8rem;
-    background-color: #fff;
-    color: #212f3f;
-    font-size: 1.4rem;
-    font-weight: 600;
-    cursor: pointer;
+    padding: 0 var(--sp-5);
+    border-radius: var(--r-md);
+    font-size: var(--fs-md);
 }
 
 .submitButton {
+    composes: btnPrimary from "../../styles/shared.module.css";
     height: 4.4rem;
-    padding: 0 2.4rem;
-    border: none;
-    border-radius: 0.8rem;
-    background-color: #00b14f;
-    color: #fff;
-    font-size: 1.4rem;
+    padding: 0 var(--sp-6);
+    border-radius: var(--r-md);
+    font-size: var(--fs-md);
     font-weight: 700;
-    cursor: pointer;
 }
 
-.submitButton:disabled {
-    background-color: #99d9b8;
-    cursor: not-allowed;
+@media (max-width: 640px) {
+    .modal {
+        padding: var(--sp-5);
+    }
+
+    .actions {
+        flex-direction: column-reverse;
+    }
+
+    .actions > * {
+        width: 100%;
+    }
 }

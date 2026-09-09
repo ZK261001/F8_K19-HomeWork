@@ -1,73 +1,58 @@
 .page {
-    max-width: 128rem;
-    margin: 0 auto;
-    padding: 3.2rem 2.4rem 4.8rem;
+    composes: container from "../../styles/shared.module.css";
+    padding-top: var(--sp-8);
+    padding-bottom: var(--sp-12);
 }
 
 .heading {
-    font-size: 2rem;
+    font-size: var(--fs-2xl);
     font-weight: 700;
-    color: #212f3f;
+    color: var(--c-ink-900);
 }
 
 .subheading {
-    margin-top: 0.8rem;
-    font-size: 1.4rem;
-    color: #7a7a7a;
+    margin-top: var(--sp-2);
+    font-size: var(--fs-md);
+    color: var(--c-ink-500);
 }
 
 .searchRow {
     display: flex;
-    gap: 1.2rem;
-    margin-top: 2.4rem;
+    gap: var(--sp-3);
+    margin-top: var(--sp-6);
 }
 
 .searchInput {
+    composes: input from "../../styles/shared.module.css";
     flex: 1;
     max-width: 40rem;
+    width: auto;
     height: 4.4rem;
-    padding: 0 1.4rem;
-    border: 0.1rem solid #d9dde3;
-    border-radius: 0.8rem;
-    font-size: 1.4rem;
-    font-family: inherit;
-    color: #212f3f;
-    outline: none;
-}
-
-.searchInput:focus {
-    border-color: #00b14f;
+    padding: 0 var(--sp-4);
+    border-radius: var(--r-md);
 }
 
 .searchButton {
+    composes: btnPrimary from "../../styles/shared.module.css";
     height: 4.4rem;
-    padding: 0 2.4rem;
-    border: none;
-    border-radius: 0.8rem;
-    background-color: #00b14f;
-    color: #fff;
-    font-size: 1.4rem;
+    padding: 0 var(--sp-6);
+    border-radius: var(--r-md);
+    font-size: var(--fs-md);
     font-weight: 700;
-    font-family: inherit;
-    cursor: pointer;
-}
-
-.searchButton:hover {
-    background-color: #009645;
 }
 
 .count {
-    margin: 2rem 0 1.2rem;
-    font-size: 1.4rem;
-    color: #7a7a7a;
+    margin: var(--sp-5) 0 var(--sp-3);
+    font-size: var(--fs-md);
+    color: var(--c-ink-500);
 }
 
 /* Bảng nhiều cột — cho cuộn ngang trong khối riêng để trang không bị đẩy rộng. */
 .tableWrapper {
-    overflow-x: auto;
-    border: 0.1rem solid #eceff3;
-    border-radius: 1.2rem;
-    background-color: #fff;
+    composes: scrollX from "../../styles/shared.module.css";
+    border: 0.1rem solid var(--c-line-200);
+    border-radius: var(--r-lg);
+    background-color: var(--c-surface);
 }
 
 .table {
@@ -77,29 +62,29 @@
 }
 
 .th {
-    padding: 1.4rem 1.6rem;
-    border-bottom: 0.1rem solid #eceff3;
-    background-color: #f7f8fa;
+    padding: var(--sp-4);
+    border-bottom: 0.1rem solid var(--c-line-200);
+    background-color: var(--c-bg-subtle);
     text-align: left;
-    font-size: 1.3rem;
+    font-size: var(--fs-base);
     font-weight: 700;
-    color: #212f3f;
+    color: var(--c-ink-900);
     white-space: nowrap;
 }
 
 .row:not(:last-child) .td {
-    border-bottom: 0.1rem solid #f2f4f7;
+    border-bottom: 0.1rem solid var(--c-line-100);
 }
 
 .td {
-    padding: 1.4rem 1.6rem;
-    font-size: 1.4rem;
-    color: #444;
+    padding: var(--sp-4);
+    font-size: var(--fs-md);
+    color: var(--c-ink-600);
     vertical-align: middle;
 }
 
 .companyLink {
-    color: #00b14f;
+    color: var(--c-brand-solid);
     font-weight: 600;
 }
 
@@ -108,40 +93,82 @@
 }
 
 .status {
-    display: inline-block;
-    padding: 0.4rem 1rem;
-    border-radius: 999rem;
-    font-size: 1.2rem;
+    composes: badgeNeutral from "../../styles/shared.module.css";
+    padding: var(--sp-1) var(--sp-3);
+    font-size: var(--fs-sm);
     font-weight: 600;
-    background-color: #f2f4f7;
-    color: #4a4a4a;
-    white-space: nowrap;
 }
 
 .statusAPPROVED {
-    background-color: #e6f7ee;
-    color: #0a6b34;
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-hover);
 }
 
 .statusPENDING {
-    background-color: #fff8e6;
-    color: #6b5300;
+    background-color: var(--c-warn-soft);
+    color: var(--c-warn);
 }
 
 .statusREJECTED {
-    background-color: #fdecea;
-    color: #b71c1c;
+    background-color: var(--c-danger-soft);
+    color: var(--c-danger);
+}
+
+.actions {
+    display: flex;
+    gap: var(--sp-2);
+}
+
+.actionButton {
+    composes: btn from "../../styles/shared.module.css";
+    height: 3.4rem;
+    padding: 0 var(--sp-4);
+    font-size: var(--fs-base);
+    font-weight: 600;
+}
+
+.approveButton {
+    border-color: var(--c-brand-solid);
+    background-color: var(--c-brand-solid);
+    color: var(--c-on-brand);
+}
+
+.approveButton:hover:not(:disabled) {
+    background-color: var(--c-brand-hover);
+    border-color: var(--c-brand-hover);
+}
+
+.rejectButton {
+    border-color: var(--c-danger);
+    background-color: var(--c-surface);
+    color: var(--c-danger);
+}
+
+.rejectButton:hover:not(:disabled) {
+    background-color: var(--c-danger-soft);
 }
 
 .empty {
-    padding: 4rem 0;
-    text-align: center;
-    color: #7a7a7a;
-    font-size: 1.4rem;
+    composes: emptyState from "../../styles/shared.module.css";
 }
 
 .paginationWrapper {
     display: flex;
     justify-content: center;
-    margin-top: 2.4rem;
+    margin-top: var(--sp-6);
+}
+
+@media (max-width: 640px) {
+    .heading {
+        font-size: var(--fs-xl);
+    }
+
+    .searchRow {
+        flex-wrap: wrap;
+    }
+
+    .searchInput {
+        flex: 1 1 100%;
+        max-width: none;
+    }
 }

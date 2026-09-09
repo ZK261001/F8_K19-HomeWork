@@ -1,10 +1,11 @@
 .rail {
     position: sticky;
-    top: 2rem;
+    /* leave room for the sticky header */
+    top: calc(var(--header-h) + var(--sp-4));
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2rem;
+    gap: var(--sp-3);
     flex-shrink: 0;
     width: 4.4rem;
 }
@@ -15,17 +16,19 @@
     justify-content: center;
     width: 4rem;
     height: 4rem;
-    border: 0.1rem solid #eee;
+    border: 0.1rem solid var(--c-line-200);
     border-radius: 50%;
-    background-color: #fff;
-    color: #7a7a7a;
+    background-color: var(--c-surface);
+    color: var(--c-ink-500);
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition:
+        border-color var(--dur) var(--ease),
+        color var(--dur) var(--ease);
 }
 
 .iconButton:hover {
-    border-color: #00b14f;
-    color: #00b14f;
+    border-color: var(--c-brand);
+    color: var(--c-brand-solid);
 }
 
 .icon {
@@ -33,11 +36,11 @@
 }
 
 .tooltip {
-    padding: 0.4rem 0.8rem;
-    border-radius: 0.6rem;
-    background-color: #212f3f;
-    color: #fff;
-    font-size: 1.1rem;
+    padding: var(--sp-1) var(--sp-2);
+    border-radius: var(--r-sm);
+    background-color: var(--c-ink-900);
+    color: var(--c-on-brand);
+    font-size: var(--fs-xs);
     white-space: nowrap;
 }
 

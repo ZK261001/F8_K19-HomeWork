@@ -1,26 +1,27 @@
 .hero {
     width: 100%;
     padding-bottom: 9.6rem;
-    background: linear-gradient(180deg, #00693a 0%, #00b14f 100%);
+    background: linear-gradient(180deg, var(--c-brand-deep) 0%, var(--c-brand-solid) 100%);
 }
 
 .inner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.4rem;
+    gap: var(--sp-6);
     max-width: 96rem;
     margin: 0 auto;
-    padding: 4.8rem 2.4rem 0;
+    padding: var(--sp-12) var(--gutter) 0;
 }
 
 .title {
     max-width: 70rem;
-    font-size: 2.8rem;
+    font-size: var(--fs-3xl);
     font-weight: 700;
-    color: #fff;
+    color: var(--c-on-brand);
     text-align: center;
-    line-height: 1.3;
+    line-height: var(--lh-snug);
+    text-wrap: balance;
 }
 
 .suggestions {
@@ -28,12 +29,27 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: var(--sp-3);
     width: 100%;
 }
 
 .suggestionsLabel {
-    font-size: 1.3rem;
+    font-size: var(--fs-base);
     font-weight: 600;
-    color: #fff;
+    color: var(--c-on-brand);
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-bottom: 7.2rem;
+    }
+
+    .inner {
+        padding-top: var(--sp-8);
+        gap: var(--sp-5);
+    }
+
+    .title {
+        font-size: var(--fs-2xl);
+    }
 }

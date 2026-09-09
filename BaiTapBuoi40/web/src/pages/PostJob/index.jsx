@@ -2,15 +2,17 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { listCategoryGroups } from "../../api/categories";
+import { findCompanyByEmail } from "../../api/companies";
 import { createJob } from "../../api/employer";
 import { CITIES, findCityById } from "../../constants/cities";
+import { GENDERS, JOB_TYPES } from "../../constants/jobFilters";
+import EmployerTabs from "../../components/EmployerTabs";
 import RichTextEditor from "../../components/RichTextEditor";
+import { useAuth } from "../../context/AuthContext";
 import { jobTypeLabel, genderLabel } from "../../utils/format";
 import { hasVisibleText } from "../../utils/richText";
 import styles from "./PostJob.module.css";
 
-const JOB_TYPES = ["FULL_TIME", "PART_TIME", "FREELANCE", "INTERNSHIP"];
-const GENDERS = ["NOT_REQUIRED", "MALE", "FEMALE"];
 const SALARY_TYPES = ["RANGE", "UP_TO", "MINIMUM"];
 const SALARY_TYPE_LABELS = {
     RANGE: "Khoảng lương",
@@ -24,7 +26,10 @@ const emptyLocation = () => ({ city_id: "", address_detail: "" });
 
 function PostJob() {
     const navigate = useNavigate();
+    const { user } = useAuth();
     const [categoryGroups, setCategoryGroups] = useState([]);
+    // undefined = chưa tra xong, null = tra rồi mà không có, object = tìm thấy.
+    const [company, setCompany] = useState(undefined);
 
     const [form, setForm] = useState({
         title: "",
@@ -51,6 +56,20 @@ function PostJob() {
     useEffect(() => {
         listCategoryGroups().then(setCategoryGroups);
     }, []);
+
+    const isAdmin = user?.role === "ADMIN";
+
+    // Chỉ để hiển thị tin sẽ đứng tên công ty nào — KHÔNG dùng để chặn đăng tin.
+    // Backend (POST /employer/jobs) chỉ đòi role EMPLOYER + user.company_id, nó
+    // không hề kiểm tra công ty đã được duyệt hay chưa. Tài khoản admin không
+    // gắn với công ty nào nên bỏ qua luôn bước tra cứu này.
+    useEffect(() => {
+        if (!user?.email || isAdmin) return;
+
+        findCompanyByEmail(user.email)
+            .then((found) => setCompany(found ?? null))
+            .catch(() => setCompany(null));
+    }, [user?.email, isAdmin]);
 
     const categoryOptions = useMemo(
         () => categoryGroups.flatMap((group) => group.categories),
@@ -138,6 +157,16 @@ function PostJob() {
             const job = await createJob(payload);
             navigate(`/viec-lam/${job.slug}`);
         } catch (submitError) {
+            // Backend trả 403 cho hai nguyên nhân khác hẳn nhau, gộp chung một
+            // câu thì người dùng không biết đường xử lý.
+            if (submitError.status === 403) {
+                setError(
+                    isAdmin
+                        ? "Tài khoản quản trị chưa đăng tin được: API POST /employer/jobs hiện chỉ nhận role EMPLOYER."
+                        : "Tài khoản của bạn chưa gắn với công ty nào. Hãy đăng ký lại bằng luồng dành cho nhà tuyển dụng.",
+                );
+                return;
+            }
             setError(submitError.message || "Đăng tuyển thất bại, vui lòng thử lại");
         } finally {
             setIsSubmitting(false);
@@ -146,9 +175,33 @@ function PostJob() {
 
     return (
         <div className={styles.page}>
+            <EmployerTabs />
+
             <div className={styles.card}>
                 <h1 className={styles.title}>Đăng tuyển việc làm</h1>
                 <p className={styles.subtitle}>Điền thông tin tin tuyển dụng để đăng lên hệ thống.</p>
+
+                {isAdmin && (
+                    <p className={styles.noticeWarn}>
+                        Bạn đang đăng nhập bằng tài khoản quản trị. Backend hiện chỉ cho phép role
+                        EMPLOYER gọi <code>POST /employer/jobs</code>, nên form này sẽ trả lỗi 403
+                        khi gửi. Cần mở quyền ở backend để admin đăng tin được.
+                    </p>
+                )}
+
+                {!isAdmin && company && (
+                    <p className={styles.noticeInfo}>
+                        Tin sẽ được đăng dưới tên công ty <strong>{company.company_name}</strong>.
+                    </p>
+                )}
+
+                {!isAdmin && company === null && (
+                    <p className={styles.noticeWarn}>
+                        Không tìm thấy công ty gắn với email <strong>{user?.email}</strong>. Nếu tài
+                        khoản chưa được tạo qua luồng đăng ký nhà tuyển dụng thì việc đăng tin sẽ bị
+                        từ chối.
+                    </p>
+                )}
 
                 <form onSubmit={handleSubmit} noValidate>
                     {error && <p className={styles.formError}>{error}</p>}

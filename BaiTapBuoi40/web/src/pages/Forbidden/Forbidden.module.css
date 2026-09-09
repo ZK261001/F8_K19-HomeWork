@@ -3,36 +3,36 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 6rem 2rem;
-    background-color: #f4f6f8;
+    padding: var(--sp-16) var(--sp-5);
+    background-color: var(--c-bg-page);
 }
 
 .card {
+    composes: surface from "../../styles/shared.module.css";
     width: 100%;
     max-width: 40rem;
-    background-color: #fff;
-    border-radius: 1.2rem;
-    box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.08);
-    padding: 3.2rem;
+    box-shadow: var(--sh-2);
+    padding: var(--sp-8);
     text-align: center;
 }
 
 .title {
-    font-size: 3.6rem;
+    font-size: var(--fs-4xl);
     font-weight: 700;
-    color: #e53935;
-    margin-bottom: 1rem;
+    color: var(--c-danger);
+    margin-bottom: var(--sp-3);
 }
 
 .message {
-    font-size: 1.5rem;
-    color: #4a4a4a;
-    margin-bottom: 2rem;
+    font-size: var(--fs-lg);
+    line-height: var(--lh-normal);
+    color: var(--c-ink-600);
+    margin-bottom: var(--sp-5);
 }
 
 .homeLink {
     display: inline-block;
-    color: #00b14f;
+    color: var(--c-brand-solid);
     font-weight: 700;
     text-decoration: none;
 }

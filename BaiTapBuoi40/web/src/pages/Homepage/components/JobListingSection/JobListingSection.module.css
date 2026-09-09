@@ -1,7 +1,7 @@
 .section {
-    max-width: 128rem;
-    margin: 0 auto;
-    padding: 4.8rem 2.4rem;
+    composes: container from "../../../../styles/shared.module.css";
+    padding-top: var(--sp-12);
+    padding-bottom: var(--sp-12);
 }
 
 .header {
@@ -9,42 +9,43 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1.6rem;
-    margin-bottom: 2.4rem;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-6);
 }
 
 .headerLeft {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: var(--sp-5);
     flex-wrap: wrap;
 }
 
 .heading {
-    font-size: 2.2rem;
+    font-size: var(--fs-2xl);
     font-weight: 700;
-    color: #00b14f;
+    color: var(--c-brand-solid);
 }
 
 .viewAll {
-    font-size: 1.4rem;
+    font-size: var(--fs-md);
     font-weight: 600;
-    color: #212f3f;
+    color: var(--c-ink-800);
     text-decoration: underline;
+}
+
+.viewAll:hover {
+    color: var(--c-brand-solid);
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.6rem;
-    margin-bottom: 3.2rem;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-8);
 }
 
 .empty {
-    padding: 4rem 0;
-    text-align: center;
-    color: #7a7a7a;
-    font-size: 1.4rem;
+    composes: emptyState from "../../../../styles/shared.module.css";
 }
 
 .paginationWrapper {
@@ -59,7 +60,16 @@
 }
 
 @media (max-width: 640px) {
+    .section {
+        padding-top: var(--sp-8);
+        padding-bottom: var(--sp-8);
+    }
+
     .grid {
         grid-template-columns: 1fr;
+    }
+
+    .heading {
+        font-size: var(--fs-xl);
     }
 }

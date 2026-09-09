@@ -2,14 +2,15 @@ import { Outlet } from "react-router";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SavedJobsFab from "../../components/SavedJobsFab";
+import styles from "./DefaultLayout.module.css";
 
 function DefaultLayout() {
     return (
-        <div>
+        <div className={styles.page}>
             <Header />
-            <div className="container">
+            <main className={styles.main}>
                 <Outlet />
-            </div>
+            </main>
             <Footer />
             <SavedJobsFab />
         </div>

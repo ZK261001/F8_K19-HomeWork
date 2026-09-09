@@ -1,36 +1,33 @@
 .page {
-    max-width: 128rem;
-    margin: 0 auto;
-    padding: 0 2.4rem 4.8rem;
+    composes: container from "../../styles/shared.module.css";
+    padding-bottom: var(--sp-12);
 }
 
 .loading,
 .notFound {
-    padding: 6rem 0;
-    text-align: center;
-    color: #7a7a7a;
-    font-size: 1.5rem;
+    composes: emptyState from "../../styles/shared.module.css";
 }
 
 .notFoundLink {
-    color: #00b14f;
+    color: var(--c-brand-solid);
     font-weight: 700;
 }
 
 .cover {
     height: 24rem;
-    margin: 0 -2.4rem 2.4rem;
-    background-color: #e9edf1;
+    /* bleed out to the container edges */
+    margin: 0 calc(var(--gutter) * -1) var(--sp-6);
+    background-color: var(--c-line-100);
     background-size: cover;
     background-position: center;
-    border-radius: 0 0 1.2rem 1.2rem;
+    border-radius: 0 0 var(--r-lg) var(--r-lg);
 }
 
 .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 34rem;
     align-items: start;
-    gap: 2.4rem;
+    gap: var(--sp-6);
 }
 
 .main {
@@ -38,74 +35,73 @@
 }
 
 .name {
-    margin-bottom: 2rem;
-    font-size: 2.4rem;
+    margin-bottom: var(--sp-5);
+    font-size: var(--fs-3xl);
     font-weight: 700;
-    color: #212f3f;
+    color: var(--c-ink-900);
 }
 
 .section {
-    margin-bottom: 2.4rem;
-    padding: 2rem;
-    border: 0.1rem solid #eee;
-    border-radius: 1.2rem;
-    background-color: #fff;
+    composes: surface from "../../styles/shared.module.css";
+    margin-bottom: var(--sp-6);
+    padding: var(--sp-5);
 }
 
 .sectionTitle {
-    margin-bottom: 1.4rem;
-    font-size: 1.6rem;
+    margin-bottom: var(--sp-4);
+    font-size: var(--fs-lg);
     font-weight: 700;
-    color: #212f3f;
+    color: var(--c-ink-900);
 }
 
 .description {
-    font-size: 1.4rem;
+    font-size: var(--fs-md);
     line-height: 1.7;
-    color: #444;
+    color: var(--c-ink-600);
     white-space: pre-line;
 }
 
 .detailList {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: var(--sp-3);
     list-style: none;
 }
 
 .detailRow {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
-    font-size: 1.3rem;
-    color: #444;
-    line-height: 1.5;
+    gap: var(--sp-3);
+    font-size: var(--fs-base);
+    color: var(--c-ink-600);
+    line-height: var(--lh-snug);
 }
 
 .detailIcon {
     flex-shrink: 0;
-    font-size: 1.8rem !important;
-    color: #00b14f !important;
+    font-size: var(--fs-xl) !important;
+    color: var(--c-brand) !important;
     margin-top: 0.1rem;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem;
+    gap: var(--sp-4);
 }
 
 .empty {
-    color: #7a7a7a;
-    font-size: 1.3rem;
+    color: var(--c-ink-500);
+    font-size: var(--fs-base);
 }
 
 .sidebar {
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+    gap: var(--sp-4);
     position: sticky;
-    top: 2rem;
+    /* leave room for the sticky header */
+    top: calc(var(--header-h) + var(--sp-4));
 }
 
 @media (max-width: 992px) {
@@ -117,5 +113,19 @@
     }
     .grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .cover {
+        height: 16rem;
+    }
+
+    .name {
+        font-size: var(--fs-2xl);
+    }
+
+    .section {
+        padding: var(--sp-4);
     }
 }

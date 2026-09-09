@@ -5,11 +5,12 @@
     right: 0;
     z-index: 10;
     display: flex;
-    margin-top: 0.8rem;
-    padding: 2rem 2.4rem;
-    background-color: #fff;
-    border-radius: 0.8rem;
-    box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.15);
+    margin-top: var(--sp-2);
+    padding: var(--sp-5) var(--sp-6);
+    background-color: var(--c-surface);
+    border: 0.1rem solid var(--c-line-200);
+    border-radius: var(--r-md);
+    box-shadow: var(--sh-3);
     text-align: left;
 }
 
@@ -18,37 +19,37 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+    gap: var(--sp-4);
 }
 
 .column:first-child {
     flex: 0 0 32rem;
-    padding-right: 2.4rem;
+    padding-right: var(--sp-6);
 }
 
 .divider {
     width: 0.1rem;
-    background-color: #e5e5e5;
-    margin: 0 2.4rem 0 0;
+    background-color: var(--c-line-200);
+    margin: 0 var(--sp-6) 0 0;
 }
 
 .group {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: var(--sp-1);
 }
 
 .groupTitle {
-    font-size: 1.3rem;
+    font-size: var(--fs-base);
     font-weight: 700;
-    color: #212f3f;
+    color: var(--c-ink-900);
 }
 
 .groupHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.8rem;
+    gap: var(--sp-2);
 }
 
 .clearAllButton {
@@ -56,9 +57,10 @@
     padding: 0;
     border: none;
     background: none;
-    font-size: 1.2rem;
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
     font-weight: 600;
-    color: #e74c3c;
+    color: var(--c-danger);
     cursor: pointer;
 }
 
@@ -69,7 +71,7 @@
 .recentItem {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: var(--sp-1);
 }
 
 .recentKeywordRow {
@@ -77,16 +79,16 @@
     min-width: 0;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    padding: 0.8rem 0.4rem;
-    border-radius: 0.6rem;
+    gap: var(--sp-2);
+    padding: var(--sp-2) var(--sp-1);
+    border-radius: var(--r-sm);
     text-decoration: none;
-    color: #212f3f;
-    transition: background-color 0.2s ease;
+    color: var(--c-ink-800);
+    transition: background-color var(--dur) var(--ease);
 }
 
 .recentKeywordRow:hover {
-    background-color: #f4f6f8;
+    background-color: var(--c-bg-subtle);
 }
 
 .recentKeywordInfo {
@@ -97,17 +99,17 @@
 }
 
 .recentKeywordName {
-    font-size: 1.3rem;
+    font-size: var(--fs-base);
     font-weight: 600;
-    color: #212f3f;
+    color: var(--c-ink-800);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .recentKeywordCount {
-    font-size: 1.1rem;
-    color: #7a7a7a;
+    font-size: var(--fs-xs);
+    color: var(--c-ink-500);
 }
 
 .removeKeywordButton {
@@ -120,18 +122,20 @@
     border: none;
     border-radius: 50%;
     background: transparent;
-    color: #b0b0b0;
+    color: var(--c-ink-500);
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition:
+        background-color var(--dur) var(--ease),
+        color var(--dur) var(--ease);
 }
 
 .removeKeywordButton:hover {
-    background-color: #f4f6f8;
-    color: #e74c3c;
+    background-color: var(--c-danger-soft);
+    color: var(--c-danger);
 }
 
 .removeIcon {
-    font-size: 1.6rem !important;
+    font-size: var(--fs-lg) !important;
 }
 
 .keywordList,
@@ -144,45 +148,45 @@
 .keywordRow {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    padding: 0.8rem 0.4rem;
-    border-radius: 0.6rem;
-    font-size: 1.3rem;
-    color: #212f3f;
+    gap: var(--sp-2);
+    padding: var(--sp-2) var(--sp-1);
+    border-radius: var(--r-sm);
+    font-size: var(--fs-base);
+    color: var(--c-ink-800);
     text-decoration: none;
-    transition: background-color 0.2s ease;
+    transition: background-color var(--dur) var(--ease);
 }
 
 .keywordRow:hover {
-    background-color: #f4f6f8;
+    background-color: var(--c-bg-subtle);
 }
 
 .keywordIcon {
     flex-shrink: 0;
-    font-size: 1.6rem !important;
-    color: #7a7a7a !important;
+    font-size: var(--fs-lg) !important;
+    color: var(--c-ink-500) !important;
 }
 
 .jobRow {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    padding: 0.8rem 0.4rem;
-    border-radius: 0.6rem;
+    gap: var(--sp-3);
+    padding: var(--sp-2) var(--sp-1);
+    border-radius: var(--r-sm);
     text-decoration: none;
-    transition: background-color 0.2s ease;
+    transition: background-color var(--dur) var(--ease);
 }
 
 .jobRow:hover {
-    background-color: #f4f6f8;
+    background-color: var(--c-bg-subtle);
 }
 
 .jobLogo {
     flex-shrink: 0;
     width: 4rem !important;
     height: 4rem !important;
-    background-color: #00b14f !important;
-    font-size: 1.4rem !important;
+    background-color: var(--c-brand-solid) !important;
+    font-size: var(--fs-md) !important;
     font-weight: 700;
 }
 
@@ -194,64 +198,69 @@
 }
 
 .jobTitle {
-    font-size: 1.3rem;
+    font-size: var(--fs-base);
     font-weight: 700;
-    color: #212f3f;
+    color: var(--c-ink-900);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .jobCompany {
-    font-size: 1.2rem;
-    color: #7a7a7a;
+    font-size: var(--fs-sm);
+    color: var(--c-ink-500);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .jobSalary {
-    font-size: 1.2rem;
+    font-size: var(--fs-sm);
     font-weight: 600;
-    color: #00b14f;
+    color: var(--c-brand-solid);
 }
 
 .emptyGroup {
-    padding: 0.8rem 0.4rem;
-    font-size: 1.2rem;
-    color: #7a7a7a;
+    padding: var(--sp-2) var(--sp-1);
+    font-size: var(--fs-sm);
+    color: var(--c-ink-500);
 }
 
 .closeButton {
     position: absolute;
     bottom: -1.6rem;
-    right: 1.6rem;
+    right: var(--sp-4);
     display: flex;
     align-items: center;
     justify-content: center;
     width: 3.2rem;
     height: 3.2rem;
-    border: 0.1rem solid #d5d9de;
+    border: 0.1rem solid var(--c-line-300);
     border-radius: 50%;
-    background-color: #fff;
-    box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.1);
-    color: #212f3f;
+    background-color: var(--c-surface);
+    box-shadow: var(--sh-2);
+    color: var(--c-ink-800);
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition:
+        border-color var(--dur) var(--ease),
+        color var(--dur) var(--ease);
 }
 
 .closeButton:hover {
-    border-color: #00b14f;
-    color: #00b14f;
+    border-color: var(--c-brand);
+    color: var(--c-brand-solid);
 }
 
 .closeIcon {
-    font-size: 1.8rem !important;
+    font-size: var(--fs-xl) !important;
 }
 
 @media (max-width: 768px) {
     .panel {
         flex-direction: column;
+        padding: var(--sp-4);
+        max-height: 70vh;
+        overflow-y: auto;
     }
 
     .column:first-child {

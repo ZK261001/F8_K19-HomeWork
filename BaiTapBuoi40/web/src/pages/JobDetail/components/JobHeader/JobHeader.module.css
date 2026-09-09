@@ -1,55 +1,57 @@
 .header {
-    padding: 2.4rem;
-    border: 0.1rem solid #eee;
-    border-radius: 1.2rem;
-    background-color: #fff;
+    composes: surface from "../../../../styles/shared.module.css";
+    padding: var(--sp-6);
 }
 
 .badges {
     display: flex;
-    gap: 0.6rem;
-    margin-bottom: 1.2rem;
+    gap: var(--sp-1);
+    margin-bottom: var(--sp-3);
 }
 
 .badge {
     display: flex;
     align-items: center;
     gap: 0.2rem;
-    padding: 0.3rem 0.8rem;
-    border-radius: 999px;
-    font-size: 1rem;
+    padding: 0.3rem var(--sp-2);
+    border-radius: var(--r-full);
+    font-size: var(--fs-xs);
     font-weight: 700;
-    color: #fff;
+    line-height: 1.5;
 }
 
 .badgeIcon {
-    font-size: 1.2rem !important;
+    font-size: var(--fs-sm) !important;
 }
 
+/* Soft badges — white text on #ff424e / #ff9800 fails WCAG AA */
 .badgeHot {
-    background-color: #ff424e;
+    background-color: var(--c-danger-soft);
+    color: var(--c-danger);
 }
 
 .badgeUrgent {
-    background-color: #ff9800;
+    background-color: var(--c-warn-soft);
+    color: var(--c-warn);
 }
 
 .title {
-    margin-bottom: 1.2rem;
-    font-size: 2.2rem;
+    margin-bottom: var(--sp-3);
+    font-size: var(--fs-2xl);
     font-weight: 700;
-    line-height: 1.4;
-    color: #212f3f;
+    line-height: var(--lh-snug);
+    color: var(--c-ink-900);
 }
 
 .salary {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 1.6rem;
-    font-size: 1.8rem;
+    gap: var(--sp-1);
+    margin-bottom: var(--sp-4);
+    font-size: var(--fs-xl);
     font-weight: 700;
-    color: #ff9800;
+    /* #ff9800 on white is only ~2.2:1 */
+    color: var(--c-warn);
 }
 
 .salaryIcon {
@@ -59,112 +61,112 @@
 .metaRow {
     display: flex;
     flex-wrap: wrap;
-    gap: 2.4rem;
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-    border-bottom: 0.1rem solid #eee;
+    gap: var(--sp-6);
+    padding-bottom: var(--sp-5);
+    margin-bottom: var(--sp-5);
+    border-bottom: 0.1rem solid var(--c-line-200);
 }
 
 .metaItem {
     display: flex;
     align-items: flex-start;
-    gap: 0.8rem;
+    gap: var(--sp-2);
 }
 
 .metaIcon {
     font-size: 2rem !important;
-    color: #00b14f !important;
+    color: var(--c-brand) !important;
     margin-top: 0.2rem;
 }
 
 .metaLabel {
     display: block;
-    font-size: 1.2rem;
-    color: #7a7a7a;
+    font-size: var(--fs-sm);
+    color: var(--c-ink-500);
 }
 
 .metaValue {
     display: block;
     margin-top: 0.2rem;
-    font-size: 1.4rem;
+    font-size: var(--fs-md);
     font-weight: 600;
-    color: #212f3f;
+    color: var(--c-ink-800);
 }
 
 .countdown {
     font-weight: 400;
-    color: #7a7a7a;
+    color: var(--c-ink-500);
 }
 
 .actions {
     display: flex;
-    gap: 1.2rem;
+    gap: var(--sp-3);
 }
 
 .applyButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
+    composes: btnPrimary from "../../../../styles/shared.module.css";
     flex: 1;
     max-width: 30rem;
-    padding: 1.2rem 2rem;
-    border: none;
-    border-radius: 0.8rem;
-    background-color: #00b14f;
-    color: #fff;
-    font-size: 1.5rem;
+    height: 4.8rem;
+    padding: 0 var(--sp-5);
+    border-radius: var(--r-md);
+    font-size: var(--fs-lg);
     font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.applyButton:hover:not(:disabled) {
-    background-color: #009645;
 }
 
 .applyButton:disabled {
-    background-color: #7a7a7a;
+    background-color: var(--c-ink-500);
     cursor: default;
 }
 
 .applyIcon {
-    font-size: 1.8rem !important;
+    font-size: var(--fs-xl) !important;
 }
 
 .saveButton {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 1.2rem 2rem;
-    border: 0.1rem solid #00b14f;
-    border-radius: 0.8rem;
-    background-color: #fff;
-    color: #00b14f;
-    font-size: 1.5rem;
+    composes: btn from "../../../../styles/shared.module.css";
+    height: 4.8rem;
+    padding: 0 var(--sp-5);
+    border-color: var(--c-brand);
+    border-radius: var(--r-md);
+    background-color: var(--c-surface);
+    color: var(--c-brand-solid);
+    font-size: var(--fs-lg);
     font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
 }
 
 .saveButton:hover {
-    background-color: #eafaf1;
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-hover);
 }
 
 .saveIcon {
-    font-size: 1.8rem !important;
+    font-size: var(--fs-xl) !important;
 }
 
 .appliedNote {
-    margin-top: 1.2rem;
-    font-size: 1.3rem;
-    color: #7a7a7a;
+    margin-top: var(--sp-3);
+    font-size: var(--fs-base);
+    color: var(--c-ink-500);
 }
 
-@media (max-width: 560px) {
+@media (max-width: 640px) {
+    .header {
+        padding: var(--sp-4);
+    }
+
+    .title {
+        font-size: var(--fs-xl);
+    }
+
+    .metaRow {
+        gap: var(--sp-4);
+    }
+
     .actions {
         flex-direction: column;
     }
+
     .applyButton {
         max-width: none;
     }

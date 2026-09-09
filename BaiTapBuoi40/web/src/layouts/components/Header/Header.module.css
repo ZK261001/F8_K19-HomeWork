@@ -1,24 +1,27 @@
 .header {
-    position: relative;
-    z-index: 100;
-    background-color: #fff;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background-color: var(--c-surface);
+    border-bottom: 0.1rem solid var(--c-line-200);
+    box-shadow: var(--sh-1);
 }
 
 .inner {
+    composes: container from "../../../styles/shared.module.css";
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 6.4rem;
-    padding: 0 2.4rem;
+    height: var(--header-h);
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    margin-right: 3.2rem;
+    gap: var(--sp-2);
+    margin-right: var(--sp-8);
     white-space: nowrap;
+    text-decoration: none;
 }
 
 .logoMark {
@@ -34,15 +37,16 @@
 }
 
 .logoText {
-    font-size: 1.8rem;
+    font-size: var(--fs-xl);
     font-weight: 700;
-    color: #00b14f;
-    line-height: 1.2;
+    line-height: var(--lh-tight);
+    color: var(--c-brand-solid);
 }
 
 .logoTagline {
-    font-size: 1rem;
-    color: #7a7a7a;
+    font-size: var(--fs-xs);
+    line-height: var(--lh-snug);
+    color: var(--c-ink-500);
 }
 
 .nav {
@@ -61,127 +65,235 @@
 .navLink {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: var(--sp-1);
     height: 100%;
-    padding: 0 1.4rem;
-    font-size: 1.3rem;
+    padding: 0 var(--sp-3);
+    font-size: var(--fs-base);
     font-weight: 600;
-    color: #212f3f;
+    color: var(--c-ink-800);
     text-decoration: none;
     cursor: pointer;
+    transition: color var(--dur) var(--ease);
 }
 
 .navItemWrapper:hover .navLink {
-    color: #00b14f;
+    color: var(--c-brand-solid);
 }
 
 .navLinkActive {
-    color: #00b14f;
     position: relative;
+    color: var(--c-brand-solid);
 }
 
 .navLinkActive::after {
     content: "";
     position: absolute;
-    left: 1.4rem;
-    right: 1.4rem;
+    left: var(--sp-3);
+    right: var(--sp-3);
     bottom: 0;
     height: 0.3rem;
     border-radius: 0.3rem 0.3rem 0 0;
-    background-color: #00b14f;
+    background-color: var(--c-brand);
 }
 
 .actions {
     display: flex;
     align-items: center;
-    gap: 1.6rem;
+    gap: var(--sp-4);
 }
 
 .divider {
     width: 0.1rem;
     height: 3.2rem;
-    background-color: #e5e5e5;
+    background-color: var(--c-line-200);
 }
 
 .avatar {
     width: 3.6rem !important;
     height: 3.6rem !important;
-    background-color: #00b14f !important;
-    font-size: 1.3rem !important;
+    background-color: var(--c-brand-solid) !important;
+    font-size: var(--fs-base) !important;
 }
 
 .authArea {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: var(--sp-3);
     white-space: nowrap;
 }
 
 .loginLink {
-    font-size: 1.3rem;
+    font-size: var(--fs-base);
     font-weight: 600;
-    color: #212f3f;
+    color: var(--c-ink-800);
     text-decoration: none;
+    transition: color var(--dur) var(--ease);
 }
 
 .loginLink:hover {
-    color: #00b14f;
+    color: var(--c-brand-solid);
 }
 
 .registerLink {
-    padding: 0.8rem 1.6rem;
-    border-radius: 0.6rem;
-    background-color: #00b14f;
-    color: #fff;
-    font-size: 1.3rem;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.registerLink:hover {
-    background-color: #009a44;
+    composes: btnPrimary from "../../../styles/shared.module.css";
+    height: 3.6rem;
 }
 
 .logoutButton {
-    padding: 0.7rem 1.4rem;
-    border: 0.1rem solid #d9dde3;
-    border-radius: 0.6rem;
-    background-color: transparent;
-    color: #212f3f;
-    font-size: 1.3rem;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-}
-
-.logoutButton:hover {
-    border-color: #00b14f;
-    color: #00b14f;
+    composes: btnSecondary from "../../../styles/shared.module.css";
+    height: 3.6rem;
 }
 
 .employer {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    line-height: 1.4;
+    line-height: var(--lh-snug);
     white-space: nowrap;
 }
 
 .employerHint {
-    font-size: 1.1rem;
-    color: #7a7a7a;
+    font-size: var(--fs-xs);
+    color: var(--c-ink-500);
 }
 
 .employerCta {
     display: flex;
     align-items: center;
     gap: 0.2rem;
-    font-size: 1.2rem;
+    font-size: var(--fs-sm);
     font-weight: 700;
-    color: #212f3f;
+    color: var(--c-ink-800);
     text-decoration: none;
+    transition: color var(--dur) var(--ease);
+}
+
+.employerCta:hover {
+    color: var(--c-brand-solid);
 }
 
 .employerCtaIcon {
-    font-size: 1.4rem !important;
+    font-size: var(--fs-md) !important;
+}
+
+/* ===== Mobile menu ===== */
+.menuToggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border: 0.1rem solid var(--c-line-200);
+    border-radius: var(--r-sm);
+    background-color: var(--c-surface);
+    color: var(--c-ink-800);
+    cursor: pointer;
+    transition: border-color var(--dur) var(--ease);
+}
+
+.menuToggle:hover {
+    border-color: var(--c-brand);
+    color: var(--c-brand-solid);
+}
+
+.menuToggleIcon {
+    font-size: 2.2rem !important;
+}
+
+.mobileMenu {
+    display: none;
+    flex-direction: column;
+    gap: var(--sp-4);
+    padding: var(--sp-4) var(--gutter) var(--sp-5);
+    border-top: 0.1rem solid var(--c-line-200);
+    background-color: var(--c-surface);
+    box-shadow: var(--sh-2);
+}
+
+.mobileNav {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.mobileNav .navItemWrapper {
+    height: auto;
+}
+
+.mobileNav .navLink {
+    height: auto;
+    padding: var(--sp-3) 0;
+    font-size: var(--fs-md);
+    border-bottom: 0.1rem solid var(--c-line-100);
+}
+
+.mobileNav .navLinkActive::after {
+    left: 0;
+    right: auto;
+    top: 50%;
+    bottom: auto;
+    width: 0.3rem;
+    height: 2rem;
+    transform: translate(-1.2rem, -50%);
+    border-radius: var(--r-full);
+}
+
+.mobileActions {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+}
+
+.mobileActions > * {
+    flex: 1;
+}
+
+.mobileLoginLink {
+    composes: btnSecondary from "../../../styles/shared.module.css";
+}
+
+.mobileEmployerCta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-1);
+    padding: var(--sp-3);
+    border-radius: var(--r-sm);
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-hover);
+    font-size: var(--fs-base);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+@media (max-width: 992px) {
+    .logoTagline,
+    .employer,
+    .divider {
+        display: none;
+    }
+
+    .logo {
+        margin-right: var(--sp-4);
+    }
+
+    .navLink {
+        padding: 0 var(--sp-2);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav,
+    .actions {
+        display: none;
+    }
+
+    .menuToggle {
+        display: inline-flex;
+    }
+
+    /* :not([hidden]) — without it, display:flex would override the hidden attribute */
+    .mobileMenu:not([hidden]) {
+        display: flex;
+    }
 }

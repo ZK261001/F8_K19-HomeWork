@@ -1,45 +1,44 @@
 .panel {
-    padding: 2rem;
-    border: 0.1rem solid #eee;
-    border-radius: 1.2rem;
-    background-color: #fff;
+    composes: surface from "../../../../styles/shared.module.css";
+    padding: var(--sp-5);
 }
 
 .heading {
-    margin-bottom: 1.6rem;
-    font-size: 1.6rem;
+    margin-bottom: var(--sp-4);
+    font-size: var(--fs-lg);
     font-weight: 700;
-    color: #212f3f;
+    color: var(--c-ink-900);
 }
 
 .list {
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+    gap: var(--sp-4);
 }
 
 .row {
     display: flex;
     align-items: flex-start;
-    gap: 1.2rem;
+    gap: var(--sp-3);
 }
 
 .icon {
     font-size: 2rem !important;
-    color: #00b14f !important;
+    color: var(--c-brand) !important;
     margin-top: 0.2rem;
 }
 
 .label {
     display: block;
-    font-size: 1.2rem;
-    color: #7a7a7a;
+    font-size: var(--fs-sm);
+    color: var(--c-ink-500);
 }
 
 .value {
     display: block;
     margin-top: 0.2rem;
-    font-size: 1.4rem;
+    font-size: var(--fs-md);
     font-weight: 600;
-    color: #212f3f;
+    line-height: var(--lh-snug);
+    color: var(--c-ink-800);
 }

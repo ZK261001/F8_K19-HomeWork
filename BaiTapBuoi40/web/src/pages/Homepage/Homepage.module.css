@@ -1,10 +1,9 @@
 .overlapRow {
+    composes: container from "../../styles/shared.module.css";
     display: flex;
     flex-wrap: wrap;
-    gap: 2.4rem;
-    max-width: 128rem;
-    margin: -6.4rem auto 0;
-    padding: 0 2.4rem;
+    gap: var(--sp-6);
+    margin-top: -6.4rem;
 }
 
 @media (max-width: 768px) {

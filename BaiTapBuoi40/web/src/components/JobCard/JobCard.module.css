@@ -1,32 +1,35 @@
 .card {
+    composes: surfaceInteractive from "../../styles/shared.module.css";
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
-    border: 0.1rem solid #eee;
-    border-radius: 1.2rem;
-    background-color: #fff;
+    padding: var(--sp-5);
     text-decoration: none;
     color: inherit;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.card:hover {
-    border-color: #00b14f;
-    box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.08);
 }
 
 .saveButton {
     position: absolute;
-    top: 1.6rem;
-    right: 1.6rem;
+    top: var(--sp-3);
+    right: var(--sp-3);
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 3.2rem;
+    height: 3.2rem;
     border: none;
+    border-radius: var(--r-full);
     background: transparent;
-    color: #7a7a7a;
+    color: var(--c-ink-500);
     cursor: pointer;
+    transition:
+        background-color var(--dur) var(--ease),
+        color var(--dur) var(--ease);
+}
+
+.saveButton:hover {
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-hover);
 }
 
 .saveIcon {
@@ -37,15 +40,15 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 1.2rem;
-    margin-bottom: 1.4rem;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-4);
 }
 
 .logo {
     width: 4.8rem !important;
     height: 4.8rem !important;
-    background-color: #00b14f !important;
-    font-size: 1.8rem !important;
+    background-color: var(--c-brand-solid) !important;
+    font-size: var(--fs-xl) !important;
     font-weight: 700;
 }
 
@@ -53,50 +56,57 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-    gap: 0.6rem;
-    padding-right: 2.8rem;
+    gap: var(--sp-1);
+    padding-right: 3.2rem;
 }
 
 .badge {
     display: flex;
     align-items: center;
     gap: 0.2rem;
-    padding: 0.3rem 0.8rem;
-    border-radius: 999px;
-    font-size: 1rem;
+    padding: 0.3rem var(--sp-2);
+    border-radius: var(--r-full);
+    font-size: var(--fs-xs);
     font-weight: 700;
-    color: #fff;
+    line-height: 1.5;
     white-space: nowrap;
 }
 
 .badgeIcon {
-    font-size: 1.2rem !important;
+    font-size: var(--fs-sm) !important;
 }
 
+/*
+ * Soft badges (tinted background + saturated text) replace solid fills with
+ * white text: white on #00b14f / #ff424e / #ff9800 all fail WCAG AA.
+ */
 .badgeTop {
-    background-color: #00b14f;
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-hover);
 }
 
 .badgeHot {
-    background-color: #ff424e;
+    background-color: var(--c-danger-soft);
+    color: var(--c-danger);
 }
 
 .badgeUrgent {
-    background-color: #ff9800;
+    background-color: var(--c-warn-soft);
+    color: var(--c-warn);
 }
 
 .title {
-    margin-bottom: 0.6rem;
-    font-size: 1.5rem;
+    margin-bottom: var(--sp-1);
+    font-size: var(--fs-lg);
     font-weight: 700;
-    line-height: 1.4;
-    color: #212f3f;
+    line-height: var(--lh-snug);
+    color: var(--c-ink-900);
 }
 
 .company {
-    margin-bottom: 1.4rem;
-    font-size: 1.3rem;
-    color: #7a7a7a;
+    margin-bottom: var(--sp-4);
+    font-size: var(--fs-base);
+    color: var(--c-ink-500);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -105,22 +115,32 @@
 .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
+    gap: var(--sp-2);
     margin-top: auto;
 }
 
 .tag {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.6rem;
-    background-color: #f4f6f8;
-    color: #212f3f;
-    font-size: 1.2rem;
+    gap: var(--sp-1);
+    padding: 0.5rem var(--sp-3);
+    border-radius: var(--r-sm);
+    background-color: var(--c-bg-subtle);
+    color: var(--c-ink-600);
+    font-size: var(--fs-sm);
 }
 
 .tagIcon {
-    font-size: 1.4rem !important;
-    color: #00b14f !important;
+    font-size: var(--fs-md) !important;
+    color: var(--c-brand) !important;
+}
+
+@media (max-width: 640px) {
+    .card {
+        padding: var(--sp-4);
+    }
+
+    .badges {
+        padding-right: 2.8rem;
+    }
 }

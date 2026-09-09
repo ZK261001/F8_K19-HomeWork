@@ -1,156 +1,191 @@
 .page {
     max-width: 80rem;
-    margin: 4rem auto 6rem;
-    padding: 0 2rem;
+    margin: var(--sp-10) auto var(--sp-16);
+    padding: 0 var(--gutter);
 }
 
 .card {
-    padding: 3.2rem;
-    background-color: #fff;
-    border-radius: 1.2rem;
-    box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.06);
+    composes: surface from "../../styles/shared.module.css";
+    padding: var(--sp-8);
+    box-shadow: var(--sh-2);
 }
 
 .title {
-    font-size: 2rem;
+    font-size: var(--fs-2xl);
     font-weight: 700;
-    color: #212f3f;
-    margin-bottom: 0.6rem;
+    color: var(--c-ink-900);
+    margin-bottom: var(--sp-1);
 }
 
 .subtitle {
-    font-size: 1.4rem;
-    color: #6b7280;
-    margin-bottom: 2.4rem;
+    font-size: var(--fs-md);
+    color: var(--c-ink-500);
+    margin-bottom: var(--sp-6);
 }
 
 .formError {
-    background-color: #fdecea;
-    color: #c0392b;
-    border-radius: 0.6rem;
-    padding: 1rem 1.2rem;
-    font-size: 1.3rem;
-    margin-bottom: 1.6rem;
+    background-color: var(--c-danger-soft);
+    border: 0.1rem solid var(--c-danger-border);
+    color: var(--c-danger);
+    border-radius: var(--r-sm);
+    padding: var(--sp-3);
+    font-size: var(--fs-base);
+    line-height: var(--lh-snug);
+    margin-bottom: var(--sp-4);
+}
+
+.notice {
+    padding: var(--sp-3) var(--sp-4);
+    margin-bottom: var(--sp-4);
+    border: 0.1rem solid transparent;
+    border-radius: var(--r-sm);
+    font-size: var(--fs-base);
+    line-height: var(--lh-normal);
+}
+
+.notice code {
+    padding: 0.1rem var(--sp-1);
+    border-radius: 0.3rem;
+    background-color: rgba(16, 24, 40, 0.08);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.95em;
+}
+
+.noticeWarn {
+    composes: notice;
+    background-color: var(--c-warn-soft);
+    border-color: var(--c-warn-border);
+    color: var(--c-warn);
+}
+
+.noticeInfo {
+    composes: notice;
+    background-color: var(--c-info-soft);
+    border-color: var(--c-info-border);
+    color: var(--c-info);
 }
 
 .section {
-    margin-bottom: 2.4rem;
+    margin-bottom: var(--sp-6);
 }
 
 .sectionTitle {
-    font-size: 1.5rem;
+    font-size: var(--fs-lg);
     font-weight: 700;
-    color: #212f3f;
-    margin-bottom: 1.4rem;
-    padding-left: 1rem;
-    border-left: 0.4rem solid #00b14f;
+    color: var(--c-ink-900);
+    margin-bottom: var(--sp-4);
+    padding-left: var(--sp-3);
+    border-left: 0.4rem solid var(--c-brand);
 }
 
 .row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem;
+    gap: var(--sp-4);
 }
 
 .field {
-    margin-bottom: 1.6rem;
+    margin-bottom: var(--sp-4);
 }
 
 .label {
-    display: block;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #212f3f;
-    margin-bottom: 0.6rem;
+    composes: label from "../../styles/shared.module.css";
 }
 
-.input,
-.select,
-.textarea {
-    width: 100%;
-    padding: 1rem 1.4rem;
-    font-size: 1.4rem;
-    font-family: inherit;
-    color: #212f3f;
-    border: 0.1rem solid #d9dde3;
-    border-radius: 0.8rem;
-    outline: none;
-}
-
-.input,
-.select {
+.input {
+    composes: input from "../../styles/shared.module.css";
     height: 4.4rem;
+    padding: 0 var(--sp-4);
+    border-radius: var(--r-md);
+}
+
+.select {
+    composes: input from "../../styles/shared.module.css";
+    height: 4.4rem;
+    padding: 0 var(--sp-4);
+    border-radius: var(--r-md);
+    cursor: pointer;
 }
 
 .textarea {
-    resize: vertical;
-    min-height: 10rem;
-}
-
-.input:focus,
-.select:focus,
-.textarea:focus {
-    border-color: #00b14f;
+    composes: textarea from "../../styles/shared.module.css";
+    padding: var(--sp-3) var(--sp-4);
+    border-radius: var(--r-md);
 }
 
 .checkboxRow {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    font-size: 1.4rem;
-    color: #212f3f;
-    margin-bottom: 1.6rem;
+    gap: var(--sp-2);
+    min-height: 4rem;
+    font-size: var(--fs-md);
+    color: var(--c-ink-800);
+    margin-bottom: var(--sp-4);
+}
+
+.checkboxRow input[type="checkbox"] {
+    width: 1.8rem;
+    height: 1.8rem;
+    accent-color: var(--c-brand-solid);
+    cursor: pointer;
 }
 
 .locationRow {
     display: grid;
     grid-template-columns: 1fr 1fr auto;
-    gap: 1.2rem;
+    gap: var(--sp-3);
     align-items: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: var(--sp-3);
 }
 
 .removeLocationButton {
+    composes: btn from "../../styles/shared.module.css";
     height: 4.4rem;
-    padding: 0 1.4rem;
-    border: 0.1rem solid #d9dde3;
-    border-radius: 0.8rem;
-    background-color: #fff;
-    color: #c0392b;
-    font-size: 1.3rem;
-    cursor: pointer;
+    padding: 0 var(--sp-4);
+    border-color: var(--c-line-300);
+    border-radius: var(--r-md);
+    background-color: var(--c-surface);
+    color: var(--c-danger);
+}
+
+.removeLocationButton:hover {
+    border-color: var(--c-danger);
+    background-color: var(--c-danger-soft);
 }
 
 .addLocationButton {
-    border: 0.1rem dashed #00b14f;
-    border-radius: 0.8rem;
-    background-color: #fff;
-    color: #00b14f;
-    font-size: 1.3rem;
-    font-weight: 600;
-    padding: 1rem 1.4rem;
-    cursor: pointer;
+    composes: btn from "../../styles/shared.module.css";
+    height: 4.2rem;
+    border: 0.1rem dashed var(--c-brand);
+    border-radius: var(--r-md);
+    background-color: var(--c-surface);
+    color: var(--c-brand-solid);
+}
+
+.addLocationButton:hover {
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-hover);
 }
 
 .submitButton {
+    composes: btnPrimary from "../../styles/shared.module.css";
     width: 100%;
     height: 4.8rem;
-    border: none;
-    border-radius: 0.8rem;
-    background-color: #00b14f;
-    color: #fff;
-    font-size: 1.5rem;
+    border-radius: var(--r-md);
+    font-size: var(--fs-lg);
     font-weight: 700;
-    cursor: pointer;
-    margin-top: 0.8rem;
-}
-
-.submitButton:disabled {
-    background-color: #99d9b8;
-    cursor: not-allowed;
+    margin-top: var(--sp-2);
 }
 
 @media (max-width: 640px) {
+    .page {
+        margin-top: var(--sp-6);
+    }
+
+    .card {
+        padding: var(--sp-5);
+    }
+
     .row,
     .locationRow {
         grid-template-columns: 1fr;

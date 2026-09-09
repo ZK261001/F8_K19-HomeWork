@@ -2,8 +2,8 @@
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    padding: 6rem 2rem;
-    background-color: #f4f6f8;
+    padding: var(--sp-16) var(--sp-5);
+    background-color: var(--c-bg-subtle);
 }
 
 .wrapper {
@@ -16,138 +16,112 @@
 }
 
 .logo {
-    font-size: 2.2rem;
+    font-size: var(--fs-2xl);
     font-weight: 700;
-    color: #212f3f;
-    margin-bottom: 1.6rem;
+    color: var(--c-ink-900);
+    margin-bottom: var(--sp-4);
 }
 
 .logoAccent {
-    color: #00b14f;
+    color: var(--c-brand-solid);
 }
 
 .title {
-    font-size: 1.9rem;
+    font-size: var(--fs-xl);
     font-weight: 700;
-    color: #212f3f;
-    margin-bottom: 0.6rem;
+    color: var(--c-ink-900);
+    margin-bottom: var(--sp-1);
 }
 
 .subtitle {
-    font-size: 1.3rem;
-    color: #7a7a7a;
-    margin-bottom: 2.4rem;
+    font-size: var(--fs-base);
+    color: var(--c-ink-500);
+    margin-bottom: var(--sp-6);
 }
 
 .tabsWrapper {
-    margin-bottom: 2rem;
+    margin-bottom: var(--sp-5);
 }
 
 .card {
+    composes: surface from "../../styles/shared.module.css";
     width: 100%;
-    background-color: #fff;
-    border-radius: 1.2rem;
-    box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.08);
-    padding: 2.8rem 3.2rem;
+    box-shadow: var(--sh-2);
+    padding: var(--sp-8);
     text-align: left;
 }
 
 .formError {
-    background-color: #fdecea;
-    color: #c0392b;
-    border-radius: 0.6rem;
-    padding: 1rem 1.2rem;
-    font-size: 1.3rem;
-    margin-bottom: 1.6rem;
+    background-color: var(--c-danger-soft);
+    border: 0.1rem solid var(--c-danger-border);
+    color: var(--c-danger);
+    border-radius: var(--r-sm);
+    padding: var(--sp-3);
+    font-size: var(--fs-base);
+    line-height: var(--lh-snug);
+    margin-bottom: var(--sp-4);
 }
 
 .field {
-    margin-bottom: 1.8rem;
+    margin-bottom: var(--sp-5);
 }
 
 .field:last-of-type {
-    margin-bottom: 2.4rem;
+    margin-bottom: var(--sp-6);
 }
 
 .label {
-    display: block;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #212f3f;
-    margin-bottom: 0.6rem;
+    composes: label from "../../styles/shared.module.css";
 }
 
 .required {
-    color: #e53935;
+    color: var(--c-danger);
 }
 
 .input {
-    width: 100%;
+    composes: input from "../../styles/shared.module.css";
     height: 4.2rem;
-    padding: 0 1.4rem;
-    font-size: 1.4rem;
-    font-family: inherit;
-    color: #212f3f;
-    border: 0.1rem solid #d9dde3;
-    border-radius: 0.6rem;
-    outline: none;
-    transition: border-color 0.15s ease;
-}
-
-.input:focus {
-    border-color: #00b14f;
-}
-
-.input::placeholder {
-    color: #b0b6bd;
+    padding: 0 var(--sp-4);
 }
 
 .hint {
-    margin-top: 0.5rem;
-    font-size: 1.2rem;
-    color: #99a1ab;
+    composes: hintText from "../../styles/shared.module.css";
 }
 
 .errorText {
-    margin-top: 0.5rem;
-    font-size: 1.2rem;
-    color: #e53935;
+    composes: errorText from "../../styles/shared.module.css";
 }
 
 .submitButton {
+    composes: btnPrimary from "../../styles/shared.module.css";
     width: 100%;
     height: 4.6rem;
-    border: none;
-    border-radius: 0.6rem;
-    background-color: #00b14f;
-    color: #fff;
-    font-size: 1.5rem;
+    font-size: var(--fs-lg);
     font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.15s ease;
-}
-
-.submitButton:hover {
-    background-color: #009a44;
-}
-
-.submitButton:disabled {
-    background-color: #99d9b8;
-    cursor: not-allowed;
 }
 
 .footerText {
-    margin-top: 2rem;
-    font-size: 1.3rem;
-    color: #4a4a4a;
+    margin-top: var(--sp-5);
+    font-size: var(--fs-base);
+    color: var(--c-ink-600);
 }
 
 .footerLink {
-    color: #00b14f;
+    color: var(--c-brand-solid);
     font-weight: 700;
     text-decoration: none;
 }
 
 .footerLink:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .page {
+        padding: var(--sp-8) var(--sp-4);
+    }
+
+    .card {
+        padding: var(--sp-5);
+    }
 }

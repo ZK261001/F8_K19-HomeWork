@@ -1,54 +1,54 @@
 .fab {
     position: fixed;
-    right: 2.4rem;
-    bottom: 3.2rem;
-    z-index: 1200;
+    right: var(--sp-6);
+    bottom: var(--sp-8);
+    z-index: var(--z-fab);
 
     display: flex;
     align-items: center;
     justify-content: center;
     width: 5.2rem;
     height: 5.2rem;
-    border: 0.1rem solid #d9f0e2;
+    border: 0.1rem solid var(--c-brand-border);
     border-radius: 50%;
-    background-color: #fff;
-    box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.12);
+    background-color: var(--c-surface);
+    box-shadow: var(--sh-3);
     transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
+        border-color var(--dur) var(--ease),
+        box-shadow var(--dur) var(--ease);
 }
 
 .fab:hover {
-    border-color: #00b14f;
-    box-shadow: 0 0.6rem 2rem rgba(0, 177, 79, 0.28);
+    border-color: var(--c-brand);
+    box-shadow: var(--ring);
 }
 
 .icon {
     font-size: 2.6rem !important;
-    color: #00b14f;
+    color: var(--c-brand) !important;
 }
 
 .tooltip {
     position: absolute;
     top: 50%;
-    right: calc(100% + 1.2rem);
+    right: calc(100% + var(--sp-3));
     transform: translateY(-50%);
 
-    padding: 0.8rem 1.2rem;
-    border-radius: 0.6rem;
-    background-color: #3c3c3c;
-    color: #fff;
-    font-size: 1.4rem;
+    padding: var(--sp-2) var(--sp-3);
+    border-radius: var(--r-sm);
+    background-color: var(--c-ink-900);
+    color: var(--c-on-brand);
+    font-size: var(--fs-md);
     font-weight: 500;
-    line-height: 1.4;
+    line-height: var(--lh-snug);
     white-space: nowrap;
 
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition:
-        opacity 0.15s ease,
-        visibility 0.15s ease;
+        opacity var(--dur-fast) var(--ease),
+        visibility var(--dur-fast) var(--ease);
 }
 
 /* Mũi tên là con của chính hộp chữ nên luôn dính đúng mép phải của nó. */
@@ -59,7 +59,7 @@
     left: 100%;
     transform: translateY(-50%);
     border: 0.6rem solid transparent;
-    border-left-color: #3c3c3c;
+    border-left-color: var(--c-ink-900);
 }
 
 .fab:hover .tooltip,
@@ -68,10 +68,10 @@
     visibility: visible;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 640px) {
     .fab {
-        right: 1.6rem;
-        bottom: 2rem;
+        right: var(--sp-4);
+        bottom: var(--sp-5);
         width: 4.6rem;
         height: 4.6rem;
     }

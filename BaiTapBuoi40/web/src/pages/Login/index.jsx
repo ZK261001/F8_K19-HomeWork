@@ -54,8 +54,13 @@ function Login() {
                         <label className={styles.label} htmlFor="email">
                             Email
                         </label>
+                        {/* name + autoComplete là cặp trình duyệt và trình quản lý
+                            mật khẩu dựa vào để tự điền; thiếu một trong hai là
+                            autofill gần như vô hiệu. */}
                         <input
                             id="email"
+                            name="email"
+                            autoComplete="username"
                             className={styles.input}
                             type="email"
                             placeholder="Nhập email"
@@ -71,6 +76,8 @@ function Login() {
                         <div className={styles.passwordWrapper}>
                             <input
                                 id="password"
+                                name="password"
+                                autoComplete="current-password"
                                 className={styles.input}
                                 type={showPassword ? "text" : "password"}
                                 placeholder="Nhập mật khẩu"

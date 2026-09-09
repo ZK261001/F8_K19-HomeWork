@@ -1,18 +1,18 @@
 .page {
-    max-width: 128rem;
-    margin: 0 auto;
-    padding: 3.2rem 2.4rem 4.8rem;
+    composes: container from "../../styles/shared.module.css";
+    padding-top: var(--sp-8);
+    padding-bottom: var(--sp-12);
 }
 
 .searchBarWrapper {
     max-width: 96rem;
-    margin: 0 auto 3.2rem;
+    margin: 0 auto var(--sp-8);
 }
 
 .layout {
     display: flex;
     align-items: flex-start;
-    gap: 2.4rem;
+    gap: var(--sp-6);
 }
 
 .content {
@@ -21,34 +21,71 @@
 }
 
 .heading {
-    margin-bottom: 2.4rem;
-    font-size: 2rem;
+    margin-bottom: var(--sp-6);
+    font-size: var(--fs-2xl);
     font-weight: 700;
-    color: #212f3f;
+    color: var(--c-ink-900);
 }
 
-.filterNote {
-    margin: -1.2rem 0 2rem;
-    padding: 0.8rem 1.2rem;
-    background-color: #fff8e6;
-    border-left: 0.3rem solid #f0a500;
-    border-radius: 0.4rem;
-    font-size: 1.3rem;
-    color: #6b5300;
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin: calc(var(--sp-3) * -1) 0 var(--sp-5);
+}
+
+.chipRow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+}
+
+.clearButton {
+    padding: var(--sp-1) var(--sp-2);
+    border: none;
+    background-color: transparent;
+    color: var(--c-brand-solid);
+    font-size: var(--fs-base);
+    font-weight: 600;
+    font-family: var(--font-sans);
+    cursor: pointer;
+}
+
+.clearButton:hover {
+    text-decoration: underline;
+}
+
+.sortRow {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    margin-left: auto;
+}
+
+.sortLabel {
+    font-size: var(--fs-base);
+    color: var(--c-ink-500);
+    white-space: nowrap;
+}
+
+.sortSelect {
+    composes: input from "../../styles/shared.module.css";
+    width: auto;
+    cursor: pointer;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.6rem;
-    margin-bottom: 3.2rem;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-8);
 }
 
 .empty {
-    padding: 4rem 0;
-    text-align: center;
-    color: #7a7a7a;
-    font-size: 1.4rem;
+    composes: emptyState from "../../styles/shared.module.css";
 }
 
 .paginationWrapper {
@@ -69,5 +106,18 @@
 @media (max-width: 640px) {
     .grid {
         grid-template-columns: 1fr;
+    }
+
+    .heading {
+        font-size: var(--fs-xl);
+    }
+
+    .sortRow {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .sortSelect {
+        flex: 1;
     }
 }

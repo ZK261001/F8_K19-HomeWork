@@ -1,0 +1,148 @@
+.page {
+    composes: container from "../../styles/shared.module.css";
+    padding-top: var(--sp-8);
+    padding-bottom: var(--sp-12);
+}
+
+.heading {
+    font-size: var(--fs-2xl);
+    font-weight: 700;
+    color: var(--c-ink-900);
+}
+
+.subheading {
+    margin-top: var(--sp-2);
+    font-size: var(--fs-md);
+    color: var(--c-ink-500);
+}
+
+.filterRow {
+    margin: var(--sp-6) 0 var(--sp-4);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.filterRow::-webkit-scrollbar {
+    display: none;
+}
+
+.stateBlock {
+    composes: emptyState from "../../styles/shared.module.css";
+}
+
+.noticeWarn {
+    padding: var(--sp-3) var(--sp-4);
+    border: 0.1rem solid var(--c-warn-border);
+    border-radius: var(--r-sm);
+    background-color: var(--c-warn-soft);
+    color: var(--c-warn);
+    font-size: var(--fs-base);
+    line-height: var(--lh-normal);
+}
+
+/* Bảng nhiều cột — cuộn ngang trong khối riêng để trang không bị đẩy rộng. */
+.tableWrapper {
+    composes: scrollX from "../../styles/shared.module.css";
+    border: 0.1rem solid var(--c-line-200);
+    border-radius: var(--r-lg);
+    background-color: var(--c-surface);
+}
+
+.table {
+    width: 100%;
+    min-width: 88rem;
+    border-collapse: collapse;
+}
+
+.th {
+    padding: var(--sp-4);
+    border-bottom: 0.1rem solid var(--c-line-200);
+    background-color: var(--c-bg-subtle);
+    text-align: left;
+    font-size: var(--fs-base);
+    font-weight: 700;
+    color: var(--c-ink-900);
+    white-space: nowrap;
+}
+
+.row:not(:last-child) .td {
+    border-bottom: 0.1rem solid var(--c-line-100);
+}
+
+.row:hover .td {
+    background-color: var(--c-bg-subtle);
+}
+
+.td {
+    padding: var(--sp-4);
+    font-size: var(--fs-md);
+    color: var(--c-ink-600);
+    vertical-align: middle;
+}
+
+.jobLink {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    font-weight: 700;
+    color: var(--c-ink-900);
+    text-decoration: none;
+}
+
+.jobLink:hover {
+    color: var(--c-brand-solid);
+    text-decoration: underline;
+}
+
+.jobCategory {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: var(--fs-sm);
+    color: var(--c-ink-500);
+}
+
+.hotBadge {
+    composes: badgeDanger from "../../styles/shared.module.css";
+}
+
+.hotIcon {
+    font-size: var(--fs-sm) !important;
+}
+
+.status_success {
+    composes: badgeSuccess from "../../styles/shared.module.css";
+}
+
+.status_warn {
+    composes: badgeWarn from "../../styles/shared.module.css";
+}
+
+.status_neutral {
+    composes: badgeNeutral from "../../styles/shared.module.css";
+}
+
+.empty {
+    composes: emptyState from "../../styles/shared.module.css";
+}
+
+.emptyTitle {
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    color: var(--c-ink-800);
+}
+
+.emptyLink {
+    color: var(--c-brand-solid);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.emptyLink:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .heading {
+        font-size: var(--fs-xl);
+    }
+}

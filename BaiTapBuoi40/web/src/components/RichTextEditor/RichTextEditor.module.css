@@ -1,21 +1,25 @@
 .wrapper {
-    border: 0.1rem solid #d9dde3;
-    border-radius: 0.8rem;
+    border: 0.1rem solid var(--c-line-200);
+    border-radius: var(--r-md);
     overflow: hidden;
-    background-color: #fff;
+    background-color: var(--c-surface);
+    transition:
+        border-color var(--dur) var(--ease),
+        box-shadow var(--dur) var(--ease);
 }
 
 .wrapper:focus-within {
-    border-color: #00b14f;
+    border-color: var(--c-brand);
+    box-shadow: var(--ring);
 }
 
 .toolbar {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
-    padding: 0.6rem 0.8rem;
-    border-bottom: 0.1rem solid #eceff3;
-    background-color: #f7f8fa;
+    gap: var(--sp-1);
+    padding: var(--sp-1) var(--sp-2);
+    border-bottom: 0.1rem solid var(--c-line-200);
+    background-color: var(--c-bg-subtle);
 }
 
 .toolButton {
@@ -25,15 +29,18 @@
     width: 3.2rem;
     height: 3.2rem;
     border: none;
-    border-radius: 0.6rem;
+    border-radius: var(--r-sm);
     background-color: transparent;
-    color: #4a4a4a;
+    color: var(--c-ink-600);
     cursor: pointer;
+    transition:
+        background-color var(--dur) var(--ease),
+        color var(--dur) var(--ease);
 }
 
 .toolButton:hover {
-    background-color: #e6f7ee;
-    color: #00b14f;
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-hover);
 }
 
 .toolIcon {
@@ -42,18 +49,18 @@
 
 .editor {
     min-height: 14rem;
-    padding: 1.2rem 1.4rem;
-    font-size: 1.4rem;
-    font-family: inherit;
-    line-height: 1.6;
-    color: #212f3f;
+    padding: var(--sp-3) var(--sp-4);
+    font-size: var(--fs-md);
+    font-family: var(--font-sans);
+    line-height: var(--lh-normal);
+    color: var(--c-ink-800);
     outline: none;
     overflow-y: auto;
 }
 
 .editor:empty::before {
     content: attr(data-placeholder);
-    color: #9aa4b2;
+    color: var(--c-ink-500);
 }
 
 /* reset.css đặt `font: inherit` cho strong/b/em/i/u và `list-style: none` cho
@@ -75,19 +82,19 @@
 }
 
 .editor p {
-    margin: 0 0 0.8rem;
+    margin: 0 0 var(--sp-2);
 }
 
 .editor h3 {
-    margin: 1.2rem 0 0.8rem;
-    font-size: 1.6rem;
+    margin: var(--sp-3) 0 var(--sp-2);
+    font-size: var(--fs-lg);
     font-weight: 700;
 }
 
 .editor ul,
 .editor ol {
-    margin: 0 0 0.8rem;
-    padding-left: 2.4rem;
+    margin: 0 0 var(--sp-2);
+    padding-left: var(--sp-6);
 }
 
 .editor ul {
@@ -99,10 +106,10 @@
 }
 
 .editor li {
-    margin-bottom: 0.4rem;
+    margin-bottom: var(--sp-1);
 }
 
 .editor a {
-    color: #00b14f;
+    color: var(--c-brand-solid);
     text-decoration: underline;
 }

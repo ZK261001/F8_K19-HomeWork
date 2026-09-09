@@ -1,54 +1,55 @@
 .footer {
-    background-color: #fff;
-    border-top: 0.1rem solid #eee;
-    color: #212f3f;
-    font-size: 1.2rem;
+    background-color: var(--c-surface);
+    border-top: 0.1rem solid var(--c-line-200);
+    color: var(--c-ink-800);
+    font-size: var(--fs-sm);
 }
 
 .top {
+    composes: container from "../../../styles/shared.module.css";
     display: flex;
-    gap: 4rem;
-    max-width: 128rem;
-    margin: 0 auto;
-    padding: 4rem 2.4rem;
+    gap: var(--sp-10);
+    padding-top: var(--sp-10);
+    padding-bottom: var(--sp-10);
 }
 
 /* Brand column */
 .brand {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: var(--sp-5);
     min-width: 22rem;
 }
 
 .logo {
     display: block;
+    text-decoration: none;
 }
 
 .logoText {
-    font-size: 2.2rem;
+    font-size: var(--fs-2xl);
     font-weight: 700;
-    color: #00b14f;
-    line-height: 1.2;
+    color: var(--c-brand-solid);
+    line-height: var(--lh-tight);
 }
 
 .logoTagline {
-    margin-top: 0.4rem;
-    font-size: 1.1rem;
-    color: #4a4a4a;
+    margin-top: var(--sp-1);
+    font-size: var(--fs-xs);
+    color: var(--c-ink-600);
 }
 
 .badges {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: var(--sp-2);
 }
 
 .badgeImg {
     height: 3.6rem;
-    padding: 0.4rem 0.8rem;
-    border: 0.1rem solid #e5e5e5;
-    border-radius: 0.6rem;
+    padding: var(--sp-1) var(--sp-2);
+    border: 0.1rem solid var(--c-line-200);
+    border-radius: var(--r-sm);
     font-size: 1rem;
     display: flex;
     align-items: center;
@@ -60,24 +61,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.6rem;
-    background-color: #1c8dcc;
-    color: #fff;
+    border-radius: var(--r-sm);
+    background-color: var(--c-info);
+    color: var(--c-on-brand);
     font-size: 0.9rem;
     font-weight: 700;
 }
 
 .sectionTitle {
-    font-size: 1.3rem;
+    font-size: var(--fs-base);
     font-weight: 700;
-    margin-bottom: 0.4rem;
+    margin-bottom: var(--sp-1);
 }
 
 .contact {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-    line-height: 1.6;
+    gap: var(--sp-2);
+    line-height: var(--lh-normal);
 }
 
 .contact strong {
@@ -87,28 +88,28 @@
 .appDownload {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: var(--sp-2);
 }
 
 .storeBadges {
     display: flex;
-    gap: 0.8rem;
+    gap: var(--sp-2);
 }
 
 .storeBadge {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.6rem 1.2rem;
-    background-color: #000;
-    color: #fff;
-    border-radius: 0.6rem;
+    gap: var(--sp-2);
+    padding: var(--sp-1) var(--sp-3);
+    background-color: var(--c-ink-900);
+    color: var(--c-on-brand);
+    border-radius: var(--r-sm);
     text-decoration: none;
-    line-height: 1.2;
+    line-height: var(--lh-tight);
 }
 
 .storeBadgeIcon {
-    font-size: 1.8rem !important;
+    font-size: var(--fs-xl) !important;
 }
 
 .storeBadgeText {
@@ -117,24 +118,24 @@
 }
 
 .storeBadgeHint {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
 }
 
 .storeBadgeName {
-    font-size: 1.1rem;
+    font-size: var(--fs-xs);
     font-weight: 600;
 }
 
 .social {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--sp-3);
 }
 
 .socialIcons {
     display: flex;
-    gap: 1rem;
+    gap: var(--sp-3);
 }
 
 .socialIcon {
@@ -144,108 +145,113 @@
     width: 3.4rem;
     height: 3.4rem;
     border-radius: 50%;
-    background-color: #eef1f3;
-    color: #4a4a4a;
+    background-color: var(--c-bg-subtle);
+    color: var(--c-ink-600);
     text-decoration: none;
+    transition:
+        background-color var(--dur) var(--ease),
+        color var(--dur) var(--ease);
 }
 
 .socialIcon:hover {
-    background-color: #00b14f;
-    color: #fff;
+    background-color: var(--c-brand-solid);
+    color: var(--c-on-brand);
 }
 
 .socialIcon svg {
-    font-size: 1.5rem;
+    font-size: var(--fs-lg);
 }
 
 /* Link columns */
 .linkColumn {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: var(--sp-8);
     flex: 1;
 }
 
 .linkGroup {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: var(--sp-3);
 }
 
 .linkGroupTitle {
-    font-size: 1.3rem;
+    font-size: var(--fs-base);
     font-weight: 700;
-    color: #212f3f;
+    color: var(--c-ink-900);
 }
 
 .linkList {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--sp-3);
 }
 
 .linkItem {
-    color: #4a4a4a;
+    color: var(--c-ink-600);
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: var(--fs-sm);
+    transition: color var(--dur) var(--ease);
 }
 
 .linkItem:hover {
-    color: #00b14f;
+    color: var(--c-brand-solid);
 }
 
 /* Bottom section */
 .bottom {
-    border-top: 0.1rem solid #eee;
+    border-top: 0.1rem solid var(--c-line-200);
 }
 
 .bottomInner {
-    max-width: 128rem;
-    margin: 0 auto;
-    padding: 3.2rem 2.4rem 2.4rem;
+    composes: container from "../../../styles/shared.module.css";
+    padding-top: var(--sp-8);
+    padding-bottom: var(--sp-6);
 }
 
 .companyRow {
     display: flex;
     justify-content: space-between;
-    gap: 4rem;
+    gap: var(--sp-10);
 }
 
 .companyName {
-    font-size: 1.5rem;
+    font-size: var(--fs-lg);
     font-weight: 700;
-    margin-bottom: 1.2rem;
+    margin-bottom: var(--sp-3);
 }
 
 .companyInfo {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: var(--sp-2);
 }
 
 .companyInfoLine {
     display: flex;
     align-items: flex-start;
-    gap: 0.8rem;
-    color: #4a4a4a;
+    gap: var(--sp-2);
+    line-height: var(--lh-normal);
+    color: var(--c-ink-600);
 }
 
 .companyInfoIcon {
-    font-size: 1.4rem !important;
-    color: #00b14f;
-    margin-top: 0.1rem;
+    font-size: var(--fs-md) !important;
+    color: var(--c-brand) !important;
+    margin-top: 0.3rem;
     flex-shrink: 0;
 }
 
 .companyInfoLine strong {
-    color: #212f3f;
+    color: var(--c-ink-800);
 }
 
 .qrBox {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
+    gap: var(--sp-1);
     flex-shrink: 0;
 }
 
@@ -255,33 +261,33 @@
     justify-content: center;
     width: 9rem;
     height: 9rem;
-    border: 0.1rem solid #e5e5e5;
-    border-radius: 0.6rem;
+    border: 0.1rem solid var(--c-line-200);
+    border-radius: var(--r-sm);
 }
 
 .qrFrame svg {
     font-size: 5.5rem !important;
-    color: #212f3f;
+    color: var(--c-ink-800);
 }
 
 .qrCaption {
-    font-size: 1.1rem;
-    color: #4a4a4a;
+    font-size: var(--fs-xs);
+    color: var(--c-ink-600);
 }
 
 .ecosystem {
-    margin-top: 3.2rem;
+    margin-top: var(--sp-8);
 }
 
 .ecosystemTitle {
-    font-size: 1.2rem;
-    color: #4a4a4a;
-    margin-bottom: 1.2rem;
+    font-size: var(--fs-sm);
+    color: var(--c-ink-600);
+    margin-bottom: var(--sp-3);
 }
 
 .ecosystemCards {
     display: flex;
-    gap: 1.6rem;
+    gap: var(--sp-4);
     flex-wrap: wrap;
 }
 
@@ -290,20 +296,20 @@
     min-width: 20rem;
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    padding: 1.2rem 1.6rem;
-    border-radius: 0.8rem;
-    color: #fff;
+    gap: var(--sp-3);
+    padding: var(--sp-3) var(--sp-4);
+    border-radius: var(--r-md);
+    color: var(--c-on-brand);
 }
 
 .ecosystemLogo {
-    font-size: 1.4rem;
+    font-size: var(--fs-md);
     font-weight: 700;
 }
 
 .ecosystemDesc {
-    font-size: 1.1rem;
-    line-height: 1.4;
+    font-size: var(--fs-xs);
+    line-height: var(--lh-snug);
 }
 
 .ecosystem-topcv {
@@ -311,7 +317,7 @@
 }
 
 .ecosystem-happytime {
-    background: linear-gradient(135deg, #ff9142, #f6742a);
+    background: linear-gradient(135deg, #b54708, #93370d);
 }
 
 .ecosystem-testcenter {
@@ -319,25 +325,37 @@
 }
 
 .ecosystem-shiring {
-    background: linear-gradient(135deg, #16a37a, #0f8f6a);
+    background: linear-gradient(135deg, #0f7355, #0b5c44);
 }
 
 .copyright {
-    margin-top: 2.4rem;
-    padding-top: 1.6rem;
-    border-top: 0.1rem solid #eee;
+    margin-top: var(--sp-6);
+    padding-top: var(--sp-4);
+    border-top: 0.1rem solid var(--c-line-200);
     text-align: center;
-    font-size: 1.1rem;
-    color: #7a7a7a;
+    font-size: var(--fs-xs);
+    color: var(--c-ink-500);
 }
 
 @media (max-width: 992px) {
     .top {
         flex-wrap: wrap;
+        gap: var(--sp-8);
     }
 
     .companyRow {
         flex-direction: column;
         align-items: flex-start;
+        gap: var(--sp-6);
+    }
+}
+
+@media (max-width: 640px) {
+    .linkColumn {
+        gap: var(--sp-6);
+    }
+
+    .ecosystemCard {
+        min-width: 100%;
     }
 }

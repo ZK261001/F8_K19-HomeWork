@@ -1,3 +1,15 @@
-.container {
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*
+ * Do NOT set max-width here: Homepage's TopPromoBanner / HeroSection are
+ * full-bleed (their gradient runs edge to edge). Centering is handled by the
+ * `container` class in styles/shared.module.css, composed per section.
+ */
+.main {
+    flex: 1;
     width: 100%;
 }

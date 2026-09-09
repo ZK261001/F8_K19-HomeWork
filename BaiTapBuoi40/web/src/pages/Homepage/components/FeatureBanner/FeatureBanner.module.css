@@ -2,87 +2,78 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2.4rem;
+    gap: var(--sp-6);
     flex: 1.4;
     min-width: 36rem;
-    padding: 2.8rem 3.2rem;
-    border-radius: 1.2rem;
-    background: linear-gradient(120deg, #e8f3ff 0%, #f4faf7 100%);
-    box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.1);
+    padding: var(--sp-8);
+    border-radius: var(--r-lg);
+    background: linear-gradient(120deg, var(--c-info-soft) 0%, var(--c-mint-tint) 100%);
+    box-shadow: var(--sh-2);
     overflow: hidden;
 }
 
 .content {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: var(--sp-3);
 }
 
 .eyebrow {
-    font-size: 1.4rem;
+    font-size: var(--fs-md);
     font-style: italic;
-    color: #4a4a4a;
+    color: var(--c-ink-600);
 }
 
 .title {
     max-width: 32rem;
-    font-size: 2.2rem;
+    font-size: var(--fs-2xl);
     font-weight: 700;
-    line-height: 1.35;
-    color: #212f3f;
+    line-height: var(--lh-snug);
+    color: var(--c-ink-900);
+    text-wrap: balance;
 }
 
 .highlight {
-    color: #00b14f;
+    color: var(--c-brand-solid);
 }
 
 .features {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.2rem;
+    gap: var(--sp-3);
     list-style: none;
-    margin: 0.4rem 0;
+    margin: var(--sp-1) 0;
 }
 
 .feature {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.6rem 1rem;
-    border-radius: 0.8rem;
-    background-color: #fff;
-    font-size: 1.2rem;
+    gap: var(--sp-1);
+    padding: var(--sp-1) var(--sp-3);
+    border-radius: var(--r-md);
+    background-color: var(--c-surface);
+    font-size: var(--fs-sm);
     font-weight: 600;
-    color: #212f3f;
+    color: var(--c-ink-800);
 }
 
 .featureIcon {
-    font-size: 1.8rem !important;
-    color: #00b14f !important;
+    font-size: var(--fs-xl) !important;
+    color: var(--c-brand) !important;
 }
 
 .cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
+    composes: btnPrimary from "../../../../styles/shared.module.css";
     align-self: flex-start;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 999px;
-    background-color: #00b14f;
-    color: #fff;
-    font-size: 1.4rem;
+    height: 4.2rem;
+    padding: 0 var(--sp-5);
+    border-radius: var(--r-full);
+    font-size: var(--fs-md);
     font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.cta:hover {
-    background-color: #009645;
 }
 
 .ctaIcon {
-    font-size: 1.6rem !important;
+    font-size: var(--fs-lg) !important;
 }
 
 .illustration {
@@ -93,10 +84,21 @@
     width: 12rem;
     height: 12rem;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: var(--c-surface);
 }
 
 .illustrationIcon {
     font-size: 6.4rem !important;
-    color: #00b14f !important;
+    color: var(--c-brand) !important;
+}
+
+@media (max-width: 992px) {
+    .card {
+        min-width: 0;
+        padding: var(--sp-6);
+    }
+
+    .illustration {
+        display: none;
+    }
 }

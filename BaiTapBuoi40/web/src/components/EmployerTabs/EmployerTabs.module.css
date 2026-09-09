@@ -1,6 +1,8 @@
 .tabs {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--sp-3);
+    margin-bottom: var(--sp-6);
 }
 
 .tab {
@@ -9,22 +11,22 @@
     border-radius: var(--r-full);
     background-color: var(--c-surface);
     color: var(--c-brand-solid);
-    font-family: var(--font-sans);
     font-size: var(--fs-md);
     font-weight: 700;
     white-space: nowrap;
-    cursor: pointer;
+    text-decoration: none;
     transition:
         background-color var(--dur) var(--ease),
         color var(--dur) var(--ease);
 }
 
-.tab:hover:not(.active) {
+.tab:hover {
     background-color: var(--c-brand-soft);
     color: var(--c-brand-hover);
 }
 
-.tab.active {
+.tabActive,
+.tabActive:hover {
     background-color: var(--c-brand-solid);
     border-color: var(--c-brand-solid);
     color: var(--c-on-brand);

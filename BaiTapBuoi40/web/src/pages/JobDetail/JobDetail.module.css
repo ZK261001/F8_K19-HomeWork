@@ -1,48 +1,46 @@
 .page {
-    max-width: 128rem;
-    margin: 0 auto;
-    padding: 2.4rem 2.4rem 4.8rem;
+    composes: container from "../../styles/shared.module.css";
+    padding-top: var(--sp-6);
+    padding-bottom: var(--sp-12);
 }
 
 .loading,
 .notFound {
-    padding: 6rem 0;
-    text-align: center;
-    color: #7a7a7a;
-    font-size: 1.5rem;
+    composes: emptyState from "../../styles/shared.module.css";
 }
 
 .notFoundLink {
-    color: #00b14f;
+    color: var(--c-brand-solid);
     font-weight: 700;
 }
 
 .applyError,
 .applySuccess {
-    margin-bottom: 1.6rem;
-    padding: 1.2rem 1.6rem;
-    border-radius: 0.8rem;
-    font-size: 1.4rem;
+    margin-bottom: var(--sp-4);
+    padding: var(--sp-3) var(--sp-4);
+    border-radius: var(--r-md);
+    font-size: var(--fs-md);
     font-weight: 600;
+    line-height: var(--lh-snug);
 }
 
 .applyError {
-    background-color: #fdecea;
-    border-left: 0.3rem solid #e53935;
-    color: #b71c1c;
+    background-color: var(--c-danger-soft);
+    border-left: 0.3rem solid var(--c-danger);
+    color: var(--c-danger);
 }
 
 .applySuccess {
-    background-color: #e8f7ee;
-    border-left: 0.3rem solid #00b14f;
-    color: #0a6b34;
+    background-color: var(--c-brand-soft);
+    border-left: 0.3rem solid var(--c-brand);
+    color: var(--c-brand-hover);
 }
 
 .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 34rem;
     align-items: start;
-    gap: 2.4rem;
+    gap: var(--sp-6);
 }
 
 .main {
@@ -51,14 +49,14 @@
 
 .contentRow {
     display: flex;
-    gap: 1.6rem;
+    gap: var(--sp-4);
     align-items: flex-start;
 }
 
 .contentMain {
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+    gap: var(--sp-4);
     min-width: 0;
     flex: 1;
 }
@@ -66,9 +64,10 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+    gap: var(--sp-4);
     position: sticky;
-    top: 2rem;
+    /* leave room for the sticky header */
+    top: calc(var(--header-h) + var(--sp-4));
 }
 
 @media (max-width: 992px) {

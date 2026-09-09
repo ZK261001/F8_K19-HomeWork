@@ -236,6 +236,8 @@ function Register() {
                                 </label>
                                 <input
                                     id="fullName"
+                                    name="fullName"
+                                    autoComplete="name"
                                     className={styles.input}
                                     type="text"
                                     placeholder="Nguyễn Văn A"
@@ -251,6 +253,8 @@ function Register() {
                                 </label>
                                 <input
                                     id="email"
+                                    name="email"
+                                    autoComplete="username"
                                     className={styles.input}
                                     type="email"
                                     placeholder="ban@email.com"
@@ -264,8 +268,13 @@ function Register() {
                                 <label className={styles.label} htmlFor="password">
                                     Mật khẩu <span className={styles.required}>*</span>
                                 </label>
+                                {/* new-password (không phải current-password) là tín
+                                    hiệu để trình duyệt gợi ý mật khẩu mạnh và lưu
+                                    lại — có lưu thì màn đăng nhập mới tự điền được. */}
                                 <input
                                     id="password"
+                                    name="password"
+                                    autoComplete="new-password"
                                     className={styles.input}
                                     type="password"
                                     value={candidateForm.password}
@@ -284,6 +293,8 @@ function Register() {
                                 </label>
                                 <input
                                     id="confirmPassword"
+                                    name="confirmPassword"
+                                    autoComplete="new-password"
                                     className={styles.input}
                                     type="password"
                                     value={candidateForm.confirmPassword}
@@ -306,8 +317,12 @@ function Register() {
                                 <label className={styles.label} htmlFor="mst">
                                     Mã số thuế <span className={styles.required}>*</span>
                                 </label>
+                                {/* Mã số thuế không có token autocomplete chuẩn nào
+                                    khớp, để "off" hơn là gán bừa rồi bị điền nhầm. */}
                                 <input
                                     id="mst"
+                                    name="taxCode"
+                                    autoComplete="off"
                                     className={styles.input}
                                     type="text"
                                     placeholder="0102345678"
@@ -323,6 +338,8 @@ function Register() {
                                 </label>
                                 <input
                                     id="name"
+                                    name="companyName"
+                                    autoComplete="organization"
                                     className={styles.input}
                                     type="text"
                                     placeholder="Công ty Cổ phần Công nghệ ABC"
@@ -336,8 +353,12 @@ function Register() {
                                 <label className={styles.label} htmlFor="internationalName">
                                     Tên quốc tế
                                 </label>
+                                {/* Cũng là tên công ty nhưng dùng "organization" ở đây
+                                    sẽ tranh chấp với ô Tên công ty phía trên. */}
                                 <input
                                     id="internationalName"
+                                    name="internationalName"
+                                    autoComplete="off"
                                     className={styles.input}
                                     type="text"
                                     placeholder="ABC Technology Joint Stock Company"
@@ -353,6 +374,8 @@ function Register() {
                                 </label>
                                 <input
                                     id="shortName"
+                                    name="shortName"
+                                    autoComplete="off"
                                     className={styles.input}
                                     type="text"
                                     placeholder="ABC Tech"
@@ -368,6 +391,8 @@ function Register() {
                                 </label>
                                 <input
                                     id="director"
+                                    name="director"
+                                    autoComplete="name"
                                     className={styles.input}
                                     type="text"
                                     placeholder="Nguyễn Văn An"
@@ -383,6 +408,8 @@ function Register() {
                                 </label>
                                 <input
                                     id="employerPhone"
+                                    name="phone"
+                                    autoComplete="tel"
                                     className={styles.input}
                                     type="tel"
                                     placeholder="0243 7654 321"
@@ -396,8 +423,12 @@ function Register() {
                                 <label className={styles.label} htmlFor="employerEmail">
                                     Email <span className={styles.required}>*</span>
                                 </label>
+                                {/* Chính là email đăng nhập: POST /companies/register
+                                    dùng chung một email cho cả company lẫn user. */}
                                 <input
                                     id="employerEmail"
+                                    name="email"
+                                    autoComplete="username"
                                     className={styles.input}
                                     type="email"
                                     placeholder="hr@congty.vn"
@@ -413,6 +444,8 @@ function Register() {
                                 </label>
                                 <input
                                     id="headquartersAddress"
+                                    name="address"
+                                    autoComplete="street-address"
                                     className={styles.input}
                                     type="text"
                                     placeholder="Số 1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội"
@@ -428,6 +461,8 @@ function Register() {
                                 </label>
                                 <input
                                     id="website"
+                                    name="website"
+                                    autoComplete="url"
                                     className={styles.input}
                                     type="url"
                                     placeholder="https://congty.vn"
@@ -443,6 +478,8 @@ function Register() {
                                 </label>
                                 <input
                                     id="employerPassword"
+                                    name="password"
+                                    autoComplete="new-password"
                                     className={styles.input}
                                     type="password"
                                     value={employerForm.password}
@@ -461,6 +498,8 @@ function Register() {
                                 </label>
                                 <input
                                     id="employerConfirmPassword"
+                                    name="confirmPassword"
+                                    autoComplete="new-password"
                                     className={styles.input}
                                     type="password"
                                     value={employerForm.confirmPassword}

@@ -1,25 +1,41 @@
 .chip {
     flex-shrink: 0;
-    padding: 0.8rem 1.6rem;
-    border: 0.1rem solid #e5e5e5;
-    border-radius: 999px;
-    background-color: #fff;
-    color: #212f3f;
-    font-size: 1.3rem;
+    padding: var(--sp-2) var(--sp-4);
+    border: 0.1rem solid var(--c-line-200);
+    border-radius: var(--r-full);
+    background-color: var(--c-surface);
+    color: var(--c-ink-800);
+    font-family: var(--font-sans);
+    font-size: var(--fs-base);
     font-weight: 500;
     white-space: nowrap;
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+    transition:
+        border-color var(--dur) var(--ease),
+        color var(--dur) var(--ease),
+        background-color var(--dur) var(--ease);
 }
 
 .chip:hover {
-    border-color: #00b14f;
-    color: #00b14f;
+    border-color: var(--c-brand);
+    color: var(--c-brand-solid);
 }
 
 .chip.active {
-    border-color: #00b14f;
-    background-color: #e6f7ee;
-    color: #00b14f;
+    border-color: var(--c-brand);
+    background-color: var(--c-brand-soft);
+    /* text on the soft background uses brand-hover to reach 5.78:1 */
+    color: var(--c-brand-hover);
     font-weight: 700;
+}
+
+.remove {
+    margin-left: var(--sp-2);
+    font-size: var(--fs-lg);
+    line-height: 1;
+    opacity: 0.6;
+}
+
+.chip:hover .remove {
+    opacity: 1;
 }

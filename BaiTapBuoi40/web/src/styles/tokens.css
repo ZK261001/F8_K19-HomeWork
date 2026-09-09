@@ -1,0 +1,113 @@
+/*
+ * Design tokens — the single source of truth for color, spacing, radius,
+ * elevation, type scale and motion across the app.
+ *
+ * Note: html { font-size: 62.5% } in main.css => 1rem = 10px.
+ * Every value below follows that convention (1.6rem = 16px).
+ */
+
+:root {
+    /* ===== Brand — keeps the TopCV identity ===== */
+    /* For borders, icons, the active underline, accents — not text, so 3:1 suffices */
+    --c-brand: #00b14f;
+    /* Solid fill behind white text: #00b14f only reaches 2.84:1 (fails WCAG AA);
+       #00873a reaches 4.63:1 */
+    --c-brand-solid: #00873a;
+    --c-brand-hover: #006e2f;
+    --c-brand-soft: #e6f7ee;
+    --c-brand-border: #99d9b8;
+    /* dark stop of the hero gradient */
+    --c-brand-deep: #00532e;
+    /* text/icons placed on a solid color fill */
+    --c-on-brand: #ffffff;
+
+    /* ===== Neutral — slate ramp, collapses the 13 old greys ===== */
+    --c-ink-900: #0f1b2d;
+    --c-ink-800: #212f3f;
+    --c-ink-600: #4a5568;
+    --c-ink-500: #6b7280;
+    --c-line-300: #d5dae1;
+    --c-line-200: #e4e8ee;
+    --c-line-100: #f0f2f5;
+    --c-surface: #ffffff;
+    --c-bg-subtle: #f4f6f8;
+    --c-bg-page: #f7f9fb;
+
+    /* ===== Semantic ===== */
+    --c-danger: #d92d20;
+    --c-danger-hover: #b42318;
+    --c-danger-soft: #fef3f2;
+    --c-danger-border: #fecdca;
+    --c-warn: #b54708;
+    --c-warn-soft: #fffaeb;
+    --c-warn-border: #fedf89;
+    --c-info: #0369a1;
+    --c-info-soft: #eff8ff;
+    --c-info-border: #b2ddff;
+    --c-success: var(--c-brand-solid);
+    --c-success-soft: var(--c-brand-soft);
+
+    /* ===== Decorative backgrounds ===== */
+    --c-promo-from: #ffe9bd;
+    --c-promo-to: #fed77e;
+    --c-promo-ink: #6b4708;
+    --c-mint-tint: #f4faf7;
+
+    /* ===== Spacing — 4px scale ===== */
+    --sp-1: 0.4rem;
+    --sp-2: 0.8rem;
+    --sp-3: 1.2rem;
+    --sp-4: 1.6rem;
+    --sp-5: 2rem;
+    --sp-6: 2.4rem;
+    --sp-8: 3.2rem;
+    --sp-10: 4rem;
+    --sp-12: 4.8rem;
+    --sp-16: 6.4rem;
+
+    /* ===== Radius ===== */
+    --r-sm: 0.6rem;
+    --r-md: 0.8rem;
+    --r-lg: 1.2rem;
+    --r-xl: 1.6rem;
+    --r-full: 999px;
+
+    /* ===== Elevation — 3 steps replacing 10 one-off shadows ===== */
+    --sh-1: 0 0.1rem 0.2rem rgba(16, 24, 40, 0.05);
+    --sh-2: 0 0.4rem 1.2rem rgba(16, 24, 40, 0.08);
+    --sh-3: 0 1.2rem 2.4rem rgba(16, 24, 40, 0.1);
+    --ring: 0 0 0 0.3rem rgba(0, 177, 79, 0.28);
+    --ring-danger: 0 0 0 0.3rem rgba(217, 45, 32, 0.2);
+
+    /* ===== Typography ===== */
+    --font-sans:
+        "Be Vietnam Pro", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --fs-xs: 1.1rem;
+    --fs-sm: 1.2rem;
+    --fs-base: 1.3rem;
+    --fs-md: 1.4rem;
+    --fs-lg: 1.6rem;
+    --fs-xl: 1.8rem;
+    --fs-2xl: 2.2rem;
+    --fs-3xl: 2.8rem;
+    --fs-4xl: 3.6rem;
+    --lh-tight: 1.25;
+    --lh-snug: 1.4;
+    --lh-normal: 1.6;
+
+    /* ===== Motion ===== */
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+    --dur-fast: 120ms;
+    --dur: 180ms;
+    --dur-slow: 260ms;
+
+    /* ===== Layout & z-index ===== */
+    --container: 128rem;
+    --gutter: var(--sp-6);
+    --header-h: 6.4rem;
+    --z-header: 100;
+    --z-fab: 200;
+    --z-overlay: 900;
+    --z-modal: 1000;
+}

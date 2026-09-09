@@ -1,3 +1,4 @@
+@import "./tokens.css";
 @import "./reset.css";
 
 * {
@@ -5,23 +6,46 @@
 }
 
 html {
+    /* 1rem = 10px */
     font-size: 62.5%;
+    /* A sticky header must not obscure the focused element (WCAG 2.2 Focus Not Obscured) */
+    scroll-padding-top: calc(var(--header-h) + var(--sp-4));
 }
 
 body {
-    font-size: 1.6rem;
-    font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Oxygen,
-        Ubuntu,
-        Cantarell,
-        "Open Sans",
-        "Helvetica Neue",
-        sans-serif;
+    font-family: var(--font-sans);
+    font-size: var(--fs-lg);
+    /* reset.css sets line-height: 1 — Vietnamese diacritics would collide */
+    line-height: var(--lh-normal);
+    color: var(--c-ink-800);
+    background-color: var(--c-bg-page);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    line-height: var(--lh-tight);
+    color: var(--c-ink-900);
+}
+
+p {
+    line-height: var(--lh-normal);
+}
+
+a {
+    color: inherit;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
 }
 
 input,
@@ -30,4 +54,42 @@ select,
 textarea {
     font-family: inherit;
     font-size: inherit;
+    color: inherit;
+}
+
+/* The app had no focus ring anywhere — add one globally for every control */
+:focus-visible {
+    outline: 0.2rem solid var(--c-brand);
+    outline-offset: 0.2rem;
+    border-radius: var(--r-sm);
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+::selection {
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-hover);
+}
+
+/* Minimum touch target on touch screens */
+@media (max-width: 768px) {
+    button,
+    [role="button"],
+    input[type="submit"],
+    input[type="button"] {
+        min-height: 4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

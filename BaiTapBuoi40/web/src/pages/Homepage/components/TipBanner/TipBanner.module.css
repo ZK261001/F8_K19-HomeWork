@@ -2,12 +2,25 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.2rem;
-    padding: 1rem 1.6rem;
-    border-radius: 0.8rem;
-    background-color: #e8f3ff;
-    color: #1a5fb4;
-    font-size: 1.3rem;
+    gap: var(--sp-3);
+    padding: var(--sp-3) var(--sp-4);
+    border: 0.1rem solid var(--c-info-border);
+    border-radius: var(--r-md);
+    background-color: var(--c-info-soft);
+    color: var(--c-info);
+    font-size: var(--fs-base);
+    line-height: var(--lh-snug);
+}
+
+.text {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+}
+
+.tipIcon {
+    flex-shrink: 0;
+    font-size: var(--fs-xl) !important;
 }
 
 .closeButton {
@@ -15,12 +28,20 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    width: 2.8rem;
+    height: 2.8rem;
     border: none;
+    border-radius: 50%;
     background: transparent;
-    color: #1a5fb4;
+    color: var(--c-info);
     cursor: pointer;
+    transition: background-color var(--dur) var(--ease);
+}
+
+.closeButton:hover {
+    background-color: var(--c-info-border);
 }
 
 .closeIcon {
-    font-size: 1.8rem !important;
+    font-size: var(--fs-xl) !important;
 }

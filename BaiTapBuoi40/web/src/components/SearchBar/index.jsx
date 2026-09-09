@@ -7,9 +7,17 @@ import SearchOverlay from "./SearchOverlay";
 import { useRecentSearches } from "../../hooks/useRecentSearches";
 import styles from "./SearchBar.module.css";
 
-function SearchBar({ locations = [], categories = [], jobs = [], initialCityId = "" }) {
+function SearchBar({
+    locations = [],
+    categories = [],
+    jobs = [],
+    initialKeyword = "",
+    initialCityId = "",
+}) {
     const navigate = useNavigate();
-    const [keyword, setKeyword] = useState("");
+    // Đổ sẵn từ khoá đang tìm để người dùng thấy mình đang tìm gì và sửa tiếp
+    // được, thay vì ô trống làm mất keyword khi bấm tìm lại.
+    const [keyword, setKeyword] = useState(initialKeyword);
     // Giữ city id chứ không phải tên: `GET /jobs` lọc theo `city_id`.
     const [cityId, setCityId] = useState(String(initialCityId ?? ""));
     const [isFocused, setIsFocused] = useState(false);

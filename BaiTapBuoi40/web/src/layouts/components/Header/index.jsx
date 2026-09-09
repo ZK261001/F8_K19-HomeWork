@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { Avatar } from "@mui/material";
 import KeyboardDoubleArrowRight from "@mui/icons-material/KeyboardDoubleArrowRight";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 import { useAuth } from "../../../context/AuthContext";
 import logo from "../../../assets/logo.svg";
@@ -10,6 +13,7 @@ function Header() {
     const { user, isAuthenticated, logout } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const isJobsActive =
         location.pathname === "/" ||
@@ -20,11 +24,69 @@ function Header() {
         location.pathname.startsWith("/cong-ty/");
     const isProfileActive = location.pathname.startsWith("/ho-so");
     const isAdminActive = location.pathname.startsWith("/quan-tri");
+    const isPostJobActive = location.pathname.startsWith("/nha-tuyen-dung");
+
+    const canPostJob = user?.role === "EMPLOYER" || user?.role === "ADMIN";
 
     function handleLogout() {
         logout();
         navigate("/");
     }
+
+    const navLinks = (
+        <>
+            <li className={styles.navItemWrapper}>
+                <Link
+                    to="/"
+                    className={`${styles.navLink} ${isJobsActive ? styles.navLinkActive : ""}`}
+                >
+                    Việc làm
+                </Link>
+            </li>
+
+            <li className={styles.navItemWrapper}>
+                <Link
+                    to="/danh-sach-cong-ty"
+                    className={`${styles.navLink} ${isCompanyActive ? styles.navLinkActive : ""}`}
+                >
+                    Công ty
+                </Link>
+            </li>
+
+            {isAuthenticated && (
+                <li className={styles.navItemWrapper}>
+                    <Link
+                        to="/ho-so"
+                        className={`${styles.navLink} ${isProfileActive ? styles.navLinkActive : ""}`}
+                    >
+                        Hồ sơ
+                    </Link>
+                </li>
+            )}
+
+            {canPostJob && (
+                <li className={styles.navItemWrapper}>
+                    <Link
+                        to="/nha-tuyen-dung"
+                        className={`${styles.navLink} ${isPostJobActive ? styles.navLinkActive : ""}`}
+                    >
+                        Đăng tuyển
+                    </Link>
+                </li>
+            )}
+
+            {user?.role === "ADMIN" && (
+                <li className={styles.navItemWrapper}>
+                    <Link
+                        to="/quan-tri/cong-ty"
+                        className={`${styles.navLink} ${isAdminActive ? styles.navLinkActive : ""}`}
+                    >
+                        Quản trị
+                    </Link>
+                </li>
+            )}
+        </>
+    );
 
     return (
         <header className={styles.header}>
@@ -37,47 +99,7 @@ function Header() {
                     </span>
                 </Link>
 
-                <ul className={styles.nav}>
-                    <li className={styles.navItemWrapper}>
-                        <Link
-                            to="/"
-                            className={`${styles.navLink} ${isJobsActive ? styles.navLinkActive : ""}`}
-                        >
-                            Việc làm
-                        </Link>
-                    </li>
-
-                    <li className={styles.navItemWrapper}>
-                        <Link
-                            to="/danh-sach-cong-ty"
-                            className={`${styles.navLink} ${isCompanyActive ? styles.navLinkActive : ""}`}
-                        >
-                            Công ty
-                        </Link>
-                    </li>
-
-                    {isAuthenticated && (
-                        <li className={styles.navItemWrapper}>
-                            <Link
-                                to="/ho-so"
-                                className={`${styles.navLink} ${isProfileActive ? styles.navLinkActive : ""}`}
-                            >
-                                Hồ sơ
-                            </Link>
-                        </li>
-                    )}
-
-                    {user?.role === "ADMIN" && (
-                        <li className={styles.navItemWrapper}>
-                            <Link
-                                to="/quan-tri/cong-ty"
-                                className={`${styles.navLink} ${isAdminActive ? styles.navLinkActive : ""}`}
-                            >
-                                Quản trị
-                            </Link>
-                        </li>
-                    )}
-                </ul>
+                <ul className={styles.nav}>{navLinks}</ul>
 
                 <div className={styles.actions}>
                     {isAuthenticated ? (
@@ -110,6 +132,53 @@ function Header() {
                         </Link>
                     </div>
                 </div>
+
+                <button
+                    type="button"
+                    className={styles.menuToggle}
+                    aria-label={menuOpen ? "Đóng menu" : "Mở menu"}
+                    aria-expanded={menuOpen}
+                    aria-controls="header-mobile-menu"
+                    onClick={() => setMenuOpen((open) => !open)}
+                >
+                    {menuOpen ? (
+                        <CloseIcon className={styles.menuToggleIcon} />
+                    ) : (
+                        <MenuIcon className={styles.menuToggleIcon} />
+                    )}
+                </button>
+            </div>
+
+            {/* Clicking any link/button inside also closes the menu (event bubbling) */}
+            <div
+                id="header-mobile-menu"
+                className={styles.mobileMenu}
+                hidden={!menuOpen}
+                onClick={() => setMenuOpen(false)}
+            >
+                <ul className={styles.mobileNav}>{navLinks}</ul>
+
+                <div className={styles.mobileActions}>
+                    {isAuthenticated ? (
+                        <button type="button" className={styles.logoutButton} onClick={handleLogout}>
+                            Đăng xuất
+                        </button>
+                    ) : (
+                        <>
+                            <Link to="/dang-nhap" className={styles.mobileLoginLink}>
+                                Đăng nhập
+                            </Link>
+                            <Link to="/dang-ky" className={styles.registerLink}>
+                                Đăng ký
+                            </Link>
+                        </>
+                    )}
+                </div>
+
+                <Link to="/nha-tuyen-dung" className={styles.mobileEmployerCta}>
+                    Bạn là nhà tuyển dụng? Đăng tuyển ngay
+                    <KeyboardDoubleArrowRight className={styles.employerCtaIcon} />
+                </Link>
             </div>
         </header>
     );

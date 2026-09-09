@@ -1,67 +1,55 @@
 .sidebar {
+    composes: surface from "../../../../styles/shared.module.css";
     width: 27rem;
     flex-shrink: 0;
-    padding: 2rem;
-    background-color: #fff;
-    border: 0.1rem solid #e5e5e5;
-    border-radius: 0.8rem;
+    padding: var(--sp-5);
+    border-radius: var(--r-md);
 }
 
 .title {
-    margin-bottom: 1.6rem;
-    font-size: 1.6rem;
+    margin-bottom: var(--sp-4);
+    font-size: var(--fs-lg);
     font-weight: 700;
-    color: #212f3f;
+    color: var(--c-ink-900);
 }
 
 .field {
-    margin-bottom: 1.6rem;
+    margin-bottom: var(--sp-4);
 }
 
 .label {
-    display: block;
-    margin-bottom: 0.6rem;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #212f3f;
+    composes: label from "../../../../styles/shared.module.css";
 }
 
 .select {
-    width: 100%;
+    composes: input from "../../../../styles/shared.module.css";
     height: 4.4rem;
-    padding: 0 1.2rem;
-    border: 0.1rem solid #e5e5e5;
-    border-radius: 0.6rem;
-    outline: none;
-    font-size: 1.4rem;
-    color: #212f3f;
-    background-color: #fff;
     cursor: pointer;
 }
 
-.select:focus {
-    border-color: #00b14f;
+.select optgroup {
+    font-weight: 700;
+    color: var(--c-ink-900);
 }
 
 .hint {
-    margin-top: 0.6rem;
-    font-size: 1.2rem;
-    color: #7a7a7a;
+    composes: hintText from "../../../../styles/shared.module.css";
 }
 
 .checkboxRow {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    font-size: 1.4rem;
-    color: #212f3f;
+    gap: var(--sp-2);
+    min-height: 4rem;
+    font-size: var(--fs-md);
+    color: var(--c-ink-800);
     cursor: pointer;
 }
 
 .checkbox {
     width: 1.8rem;
     height: 1.8rem;
-    accent-color: #00b14f;
+    accent-color: var(--c-brand-solid);
     cursor: pointer;
 }
 

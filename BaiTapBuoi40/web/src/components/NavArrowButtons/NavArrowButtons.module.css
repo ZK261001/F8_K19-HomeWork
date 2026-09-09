@@ -1,7 +1,7 @@
 .wrapper {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: var(--sp-2);
 }
 
 .arrowButton {
@@ -10,21 +10,23 @@
     justify-content: center;
     width: 3.2rem;
     height: 3.2rem;
-    border: 0.1rem solid #d5d9de;
+    border: 0.1rem solid var(--c-line-300);
     border-radius: 50%;
-    background-color: #fff;
-    color: #212f3f;
+    background-color: var(--c-surface);
+    color: var(--c-ink-800);
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition:
+        border-color var(--dur) var(--ease),
+        color var(--dur) var(--ease);
 }
 
 .arrowButton:hover:not(:disabled) {
-    border-color: #00b14f;
-    color: #00b14f;
+    border-color: var(--c-brand);
+    color: var(--c-brand-solid);
 }
 
 .arrowButton:disabled {
-    color: #c2c8ce;
+    color: var(--c-line-300);
     cursor: not-allowed;
 }
 

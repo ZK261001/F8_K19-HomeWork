@@ -22,12 +22,13 @@ export function applyToJob(jobId, { cvId, coverLetter }) {
     });
 }
 
-// API không có endpoint lấy job theo company_id hay theo lô id, nên các màn cần
-// những cách lọc đó phải quét qua các trang công khai rồi lọc client-side.
-export async function fetchAllJobs() {
+// API chỉ lọc được theo keyword / category_slug / city_id, nên các màn cần lọc
+// theo tiêu chí khác phải quét hết các trang rồi lọc client-side. `filters` là
+// những tham số mà server làm được, truyền thẳng xuống listJobs.
+export async function fetchAllJobs(filters = {}) {
     const jobs = [];
     for (let page = 1; page <= MAX_PAGES; page++) {
-        const { data, total } = await listJobs({ page });
+        const { data, total } = await listJobs({ page, ...filters });
         jobs.push(...data);
         if (data.length === 0 || jobs.length >= total) break;
     }
