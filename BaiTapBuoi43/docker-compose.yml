@@ -1,0 +1,8 @@
+services:
+    web:
+        container_name: baitapbuoi43-web
+        build: ./web
+        volumes:
+            - ./web:/app/web
+        ports:
+            - 5173:5173
