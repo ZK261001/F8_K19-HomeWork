@@ -1,0 +1,12 @@
+services:
+    db:
+        container_name: bai-tap-buoi-44
+        image: postgres:17
+        ports:
+            - 5000:5432
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: postgres
+        volumes:
+            - ./db:/var/lib/postgresql/data
