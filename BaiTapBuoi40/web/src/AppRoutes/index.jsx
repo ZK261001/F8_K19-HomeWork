@@ -1,20 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
-import Homepage from "../../pages/Homepage";
-import JobSearchResults from "../../pages/JobSearchResults";
-import JobDetail from "../../pages/JobDetail";
-import CompanyList from "../../pages/CompanyList";
-import CompanyDetail from "../../pages/CompanyDetail";
-import CategoryDetail from "../../pages/CategoryDetail";
-import SavedJobs from "../../pages/SavedJobs";
-import AdminCompanies from "../../pages/AdminCompanies";
-import Profile from "../../pages/Profile";
-import Forbidden from "../../pages/Forbidden";
-import Register from "../../pages/Register";
-import Login from "../../pages/Login";
-import PostJob from "../../pages/PostJob";
-import EmployerJobs from "../../pages/EmployerJobs";
-import DefaultLayout from "../../layouts/DefaultLayout";
-import ProtectedRoute from "../ProtectedRoute";
+import Homepage from "../pages/Homepage";
+import JobSearchResults from "../pages/JobSearchResults";
+import JobDetail from "../pages/JobDetail";
+import CompanyList from "../pages/CompanyList";
+import CompanyDetail from "../pages/CompanyDetail";
+import CategoryDetail from "../pages/CategoryDetail";
+import SavedJobs from "../pages/SavedJobs";
+import AdminCompanies from "../pages/AdminCompanies";
+import Profile from "../pages/Profile";
+import Forbidden from "../pages/Forbidden";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
+import PostJob from "../pages/PostJob";
+import EmployerJobs from "../pages/EmployerJobs";
+import DefaultLayout from "../layouts/DefaultLayout";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 function AppRoutes() {
     return (

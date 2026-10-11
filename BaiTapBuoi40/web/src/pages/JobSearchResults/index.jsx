@@ -21,7 +21,7 @@ function JobSearchResults() {
     const keyword = searchParams.get("keyword") ?? "";
     const cityId = searchParams.get("city") ?? "";
     const categoryId = searchParams.get("category") ?? "";
-    const jobType = searchParams.get("job_type") ?? "";
+    const jobType = searchParams.get("jobType") ?? "";
     const salaryRange = searchParams.get("salary") ?? "";
     const experience = searchParams.get("exp") ?? "";
     const gender = searchParams.get("gender") ?? "";
@@ -125,7 +125,7 @@ function JobSearchResults() {
         selectedCategory && { key: "category", label: selectedCategory.name },
         selectedCity && { key: "city", label: selectedCity.name },
         salaryRange && { key: "salary", label: salaryRangeLabel(salaryRange) },
-        jobType && { key: "job_type", label: jobTypeLabel(jobType) },
+        jobType && { key: "jobType", label: jobTypeLabel(jobType) },
         experience && { key: "exp", label: experience },
         gender && { key: "gender", label: genderLabel(gender) },
         hotOnly && { key: "hot", label: "Tin nổi bật" },
