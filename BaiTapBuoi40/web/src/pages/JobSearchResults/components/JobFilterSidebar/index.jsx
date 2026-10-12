@@ -82,7 +82,7 @@ function JobFilterSidebar({
                     id="filter-jobtype"
                     className={styles.select}
                     value={filters.jobType}
-                    onChange={(e) => onFilterChange("job_type", e.target.value)}
+                    onChange={(e) => onFilterChange("jobType", e.target.value)}
                 >
                     <option value="">Tất cả</option>
                     {JOB_TYPES.map((type) => (

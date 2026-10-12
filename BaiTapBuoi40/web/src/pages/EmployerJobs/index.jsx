@@ -19,6 +19,12 @@ const FILTER_EXPIRED = "EXPIRED";
 // PUBLISHED và không có endpoint nào đổi status sau khi tạo.
 const EXPIRING_SOON_DAYS = 7;
 
+const STATUS_CLASS = {
+    success: styles.statusSuccess,
+    warn: styles.statusWarn,
+    neutral: styles.statusNeutral,
+};
+
 function getJobState(job) {
     const days = daysUntil(job.deadline);
     if (days == null) return { key: FILTER_ACTIVE, label: "Đang tuyển", tone: "success" };
@@ -196,7 +202,7 @@ function EmployerJobs() {
                                     </td>
                                     <td className={styles.td}>{formatDate(job.deadline)}</td>
                                     <td className={styles.td}>
-                                        <span className={styles[`status_${jobState.tone}`]}>
+                                        <span className={STATUS_CLASS[jobState.tone]}>
                                             {jobState.label}
                                         </span>
                                     </td>

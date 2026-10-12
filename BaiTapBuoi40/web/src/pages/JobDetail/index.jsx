@@ -117,10 +117,10 @@ function JobDetail() {
     };
 
     async function handleCreateCvAndApply(cvForm) {
-        const { cv_id } = await createCv(cvForm);
-        setStoredCvId(user.id, cv_id);
+        const { cv_id: cvId } = await createCv(cvForm);
+        setStoredCvId(user.id, cvId);
         setIsCvModalOpen(false);
-        await submitApplication(cv_id);
+        await submitApplication(cvId);
     }
 
     const relatedJobs = useMemo(() => {

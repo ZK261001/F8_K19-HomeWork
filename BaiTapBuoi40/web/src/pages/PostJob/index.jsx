@@ -22,7 +22,7 @@ const SALARY_TYPE_LABELS = {
 
 // Giữ city_id (không phải city_name) vì đó là thứ `GET /jobs?city_id=` lọc theo.
 // Thiếu nó thì tin đăng lên sẽ không bao giờ khớp bộ lọc địa điểm.
-const emptyLocation = () => ({ city_id: "", address_detail: "" });
+const emptyLocation = () => ({ cityId: "", addressDetail: "" });
 
 function PostJob() {
     const navigate = useNavigate();
@@ -35,8 +35,8 @@ function PostJob() {
         title: "",
         category: "",
         specialty: "",
-        job_type: "FULL_TIME",
-        experience_level: "",
+        jobType: "FULL_TIME",
+        experienceLevel: "",
         gender: "NOT_REQUIRED",
         quantity: "",
         salaryType: "RANGE",
@@ -44,10 +44,10 @@ function PostJob() {
         salaryMax: "",
         isNegotiable: false,
         deadline: "",
-        is_hot: false,
-        description_html: "",
-        requirements_html: "",
-        benefits_html: "",
+        isHot: false,
+        descriptionHtml: "",
+        requirementsHtml: "",
+        benefitsHtml: "",
     });
     const [locations, setLocations] = useState([emptyLocation()]);
     const [error, setError] = useState("");
@@ -108,13 +108,13 @@ function PostJob() {
         event.preventDefault();
         setError("");
 
-        // description_html là HTML từ contentEditable: rỗng vẫn còn "<br>" nên
+        // descriptionHtml là HTML từ contentEditable: rỗng vẫn còn "<br>" nên
         // phải kiểm tra có chữ thật hay không thay vì trim() chuỗi.
         if (
             !form.title.trim() ||
             !form.category.trim() ||
             !form.deadline ||
-            !hasVisibleText(form.description_html)
+            !hasVisibleText(form.descriptionHtml)
         ) {
             setError("Vui lòng điền đầy đủ các trường bắt buộc");
             return;
@@ -126,8 +126,8 @@ function PostJob() {
                 title: form.title.trim(),
                 category: form.category.trim(),
                 specialty: form.specialty.trim() || null,
-                job_type: form.job_type,
-                experience_level: form.experience_level.trim() || null,
+                job_type: form.jobType,
+                experience_level: form.experienceLevel.trim() || null,
                 gender: form.gender,
                 quantity: form.quantity ? Number(form.quantity) : null,
                 salary: form.isNegotiable
@@ -139,19 +139,19 @@ function PostJob() {
                           is_negotiable: false,
                       },
                 work_location: locations
-                    .filter((loc) => loc.city_id)
+                    .filter((loc) => loc.cityId)
                     .map((loc) => ({
-                        city_id: Number(loc.city_id),
-                        city_name: findCityById(loc.city_id)?.name ?? null,
-                        address_detail: loc.address_detail.trim() || null,
+                        city_id: Number(loc.cityId),
+                        city_name: findCityById(loc.cityId)?.name ?? null,
+                        address_detail: loc.addressDetail.trim() || null,
                     })),
                 deadline: form.deadline,
-                is_hot: form.is_hot,
-                description_html: form.description_html,
-                requirements_html: hasVisibleText(form.requirements_html)
-                    ? form.requirements_html
+                is_hot: form.isHot,
+                description_html: form.descriptionHtml,
+                requirements_html: hasVisibleText(form.requirementsHtml)
+                    ? form.requirementsHtml
                     : null,
-                benefits_html: hasVisibleText(form.benefits_html) ? form.benefits_html : null,
+                benefits_html: hasVisibleText(form.benefitsHtml) ? form.benefitsHtml : null,
             };
 
             const job = await createJob(payload);
@@ -262,14 +262,14 @@ function PostJob() {
 
                         <div className={styles.row}>
                             <div className={styles.field}>
-                                <label className={styles.label} htmlFor="job_type">
+                                <label className={styles.label} htmlFor="jobType">
                                     Hình thức làm việc *
                                 </label>
                                 <select
-                                    id="job_type"
+                                    id="jobType"
                                     className={styles.select}
-                                    value={form.job_type}
-                                    onChange={handleChange("job_type")}
+                                    value={form.jobType}
+                                    onChange={handleChange("jobType")}
                                 >
                                     {JOB_TYPES.map((type) => (
                                         <option key={type} value={type}>
@@ -280,16 +280,16 @@ function PostJob() {
                             </div>
 
                             <div className={styles.field}>
-                                <label className={styles.label} htmlFor="experience_level">
+                                <label className={styles.label} htmlFor="experienceLevel">
                                     Kinh nghiệm yêu cầu
                                 </label>
                                 <input
-                                    id="experience_level"
+                                    id="experienceLevel"
                                     className={styles.input}
                                     type="text"
                                     placeholder="Ví dụ: 1-2 năm"
-                                    value={form.experience_level}
-                                    onChange={handleChange("experience_level")}
+                                    value={form.experienceLevel}
+                                    onChange={handleChange("experienceLevel")}
                                 />
                             </div>
                         </div>
@@ -344,8 +344,8 @@ function PostJob() {
                         <label className={styles.checkboxRow}>
                             <input
                                 type="checkbox"
-                                checked={form.is_hot}
-                                onChange={handleChange("is_hot")}
+                                checked={form.isHot}
+                                onChange={handleChange("isHot")}
                             />
                             Đánh dấu tin nổi bật (HOT)
                         </label>
@@ -426,8 +426,8 @@ function PostJob() {
                             <div className={styles.locationRow} key={index}>
                                 <select
                                     className={styles.select}
-                                    value={loc.city_id}
-                                    onChange={handleLocationChange(index, "city_id")}
+                                    value={loc.cityId}
+                                    onChange={handleLocationChange(index, "cityId")}
                                 >
                                     <option value="">-- Tỉnh/thành phố --</option>
                                     {CITIES.map((city) => (
@@ -440,8 +440,8 @@ function PostJob() {
                                     className={styles.input}
                                     type="text"
                                     placeholder="Địa chỉ chi tiết"
-                                    value={loc.address_detail}
-                                    onChange={handleLocationChange(index, "address_detail")}
+                                    value={loc.addressDetail}
+                                    onChange={handleLocationChange(index, "addressDetail")}
                                 />
                                 {locations.length > 1 && (
                                     <button
@@ -464,37 +464,37 @@ function PostJob() {
                         <h2 className={styles.sectionTitle}>Mô tả chi tiết</h2>
 
                         <div className={styles.field}>
-                            <label className={styles.label} htmlFor="description_html">
+                            <label className={styles.label} htmlFor="descriptionHtml">
                                 Mô tả công việc *
                             </label>
                             <RichTextEditor
-                                id="description_html"
-                                value={form.description_html}
-                                onChange={handleRichTextChange("description_html")}
+                                id="descriptionHtml"
+                                value={form.descriptionHtml}
+                                onChange={handleRichTextChange("descriptionHtml")}
                                 placeholder="Mô tả chi tiết công việc, trách nhiệm chính..."
                             />
                         </div>
 
                         <div className={styles.field}>
-                            <label className={styles.label} htmlFor="requirements_html">
+                            <label className={styles.label} htmlFor="requirementsHtml">
                                 Yêu cầu ứng viên
                             </label>
                             <RichTextEditor
-                                id="requirements_html"
-                                value={form.requirements_html}
-                                onChange={handleRichTextChange("requirements_html")}
+                                id="requirementsHtml"
+                                value={form.requirementsHtml}
+                                onChange={handleRichTextChange("requirementsHtml")}
                                 placeholder="Kinh nghiệm, kỹ năng, bằng cấp yêu cầu..."
                             />
                         </div>
 
                         <div className={styles.field}>
-                            <label className={styles.label} htmlFor="benefits_html">
+                            <label className={styles.label} htmlFor="benefitsHtml">
                                 Quyền lợi ứng viên
                             </label>
                             <RichTextEditor
-                                id="benefits_html"
-                                value={form.benefits_html}
-                                onChange={handleRichTextChange("benefits_html")}
+                                id="benefitsHtml"
+                                value={form.benefitsHtml}
+                                onChange={handleRichTextChange("benefitsHtml")}
                                 placeholder="Lương thưởng, bảo hiểm, môi trường làm việc..."
                             />
                         </div>

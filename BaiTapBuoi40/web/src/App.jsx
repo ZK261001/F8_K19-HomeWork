@@ -1,4 +1,4 @@
-import AppRoutes from "./components/AppRoutes";
+import AppRoutes from "./AppRoutes";
 import { AuthProvider } from "./context/AuthContext";
 import { SavedJobsProvider } from "./context/SavedJobsContext";
 function App() {

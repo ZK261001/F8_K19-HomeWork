@@ -109,15 +109,15 @@
     font-size: var(--fs-sm) !important;
 }
 
-.status_success {
+.statusSuccess {
     composes: badgeSuccess from "../../styles/shared.module.css";
 }
 
-.status_warn {
+.statusWarn {
     composes: badgeWarn from "../../styles/shared.module.css";
 }
 
-.status_neutral {
+.statusNeutral {
     composes: badgeNeutral from "../../styles/shared.module.css";
 }
 

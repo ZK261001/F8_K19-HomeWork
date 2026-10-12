@@ -33,8 +33,8 @@ export function AuthProvider({ children }) {
         return () => setUnauthorizedHandler(null);
     }, []);
 
-    function persistSession({ access_token, user: authUser }) {
-        setToken(access_token);
+    function persistSession({ access_token: accessToken, user: authUser }) {
+        setToken(accessToken);
         setUser(authUser);
         return authUser;
     }
