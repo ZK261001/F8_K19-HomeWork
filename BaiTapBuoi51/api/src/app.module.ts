@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './modules/user/user.module';
+import { CandidateModule } from './modules/candidate/candidate.module';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -15,7 +15,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       appSecret: 'YOUR_APP_SECRET',
       serviceId: 'api',
     }),
-    UserModule,
+    CandidateModule,
   ],
   controllers: [AppController],
   providers: [AppService],
