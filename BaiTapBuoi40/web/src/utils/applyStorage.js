@@ -43,3 +43,49 @@ export function addAppliedJob(userId, { jobSlug, jobTitle, companyName }) {
     localStorage.setItem(`appliedJobs_${userId}`, JSON.stringify(applied));
     return appliedAt;
 }
+
+// Những lần ứng tuyển sau chỉ dùng lại cvId, nên lưu thông tin CV lúc tạo để
+// còn ghi được tên / email / SĐT ứng viên vào danh sách đơn bên dưới.
+export function getStoredCvProfile(userId) {
+    try {
+        const raw = localStorage.getItem(`cvProfile_${userId}`);
+        return raw ? JSON.parse(raw) : null;
+    } catch {
+        return null;
+    }
+}
+
+export function setStoredCvProfile(userId, profile) {
+    localStorage.setItem(`cvProfile_${userId}`, JSON.stringify(profile));
+}
+
+// API không có endpoint để nhà tuyển dụng xem đơn ứng tuyển, nên mọi đơn được
+// lưu chung một key (không theo user) để trang nhà tuyển dụng đọc lại được.
+// Hạn chế: chỉ thấy những đơn nộp trên cùng trình duyệt.
+const APPLICATIONS_KEY = "applications";
+
+export function getAllApplications() {
+    try {
+        const raw = localStorage.getItem(APPLICATIONS_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+    } catch {
+        return [];
+    }
+}
+
+export function addApplication({ jobId, candidateId, fullName, email, phone, skills }) {
+    const applications = getAllApplications();
+    const appliedAt = new Date().toISOString();
+    const existing = applications.find(
+        (app) => app.jobId === jobId && app.candidateId === candidateId,
+    );
+
+    if (existing) {
+        existing.appliedAt = appliedAt;
+    } else {
+        applications.push({ jobId, candidateId, fullName, email, phone, skills, appliedAt });
+    }
+
+    localStorage.setItem(APPLICATIONS_KEY, JSON.stringify(applications));
+}

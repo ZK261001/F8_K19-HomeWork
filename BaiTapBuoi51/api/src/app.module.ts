@@ -3,6 +3,7 @@ import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CandidateModule } from './modules/candidate/candidate.module';
+import { ProvinceModule } from './modules/province/province.module';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -16,6 +17,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       serviceId: 'api',
     }),
     CandidateModule,
+    ProvinceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

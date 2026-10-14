@@ -10,6 +10,9 @@ import {
     setStoredCvId,
     getAppliedJob,
     addAppliedJob,
+    getStoredCvProfile,
+    setStoredCvProfile,
+    addApplication,
 } from "../../utils/applyStorage";
 import ApplyCvModal from "../../components/ApplyCvModal";
 import Breadcrumb from "./components/Breadcrumb";
@@ -92,6 +95,17 @@ function JobDetail() {
                     companyName: job.company?.company_name,
                 }),
             );
+
+            // CV tạo trước khi có tính năng này sẽ không có profile lưu sẵn.
+            const profile = getStoredCvProfile(user.id);
+            addApplication({
+                jobId: job.id,
+                candidateId: user.id,
+                fullName: profile?.fullName || "Chưa cập nhật",
+                email: profile?.email || user.email,
+                phone: profile?.phone || "",
+                skills: profile?.skills || [],
+            });
         } catch (error) {
             setApplyError(error.message || "Ứng tuyển thất bại, vui lòng thử lại");
         }
@@ -119,6 +133,7 @@ function JobDetail() {
     async function handleCreateCvAndApply(cvForm) {
         const { cv_id: cvId } = await createCv(cvForm);
         setStoredCvId(user.id, cvId);
+        setStoredCvProfile(user.id, cvForm);
         setIsCvModalOpen(false);
         await submitApplication(cvId);
     }

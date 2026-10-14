@@ -13,6 +13,7 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import PostJob from "../pages/PostJob";
 import EmployerJobs from "../pages/EmployerJobs";
+import EmployerApplicants from "../pages/EmployerApplicants";
 import DefaultLayout from "../layouts/DefaultLayout";
 import ProtectedRoute from "../components/ProtectedRoute";
 
@@ -37,6 +38,7 @@ function AppRoutes() {
                     <Route element={<ProtectedRoute allowedRoles={["EMPLOYER", "ADMIN"]} />}>
                         <Route path="nha-tuyen-dung" element={<PostJob />} />
                         <Route path="nha-tuyen-dung/tin-da-dang" element={<EmployerJobs />} />
+                        <Route path="nha-tuyen-dung/ung-vien" element={<EmployerApplicants />} />
                     </Route>
                     <Route element={<ProtectedRoute allowedRoles={["ADMIN"]} />}>
                         <Route path="quan-tri/cong-ty" element={<AdminCompanies />} />

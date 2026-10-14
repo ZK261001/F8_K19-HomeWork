@@ -5,6 +5,7 @@ import styles from "./EmployerTabs.module.css";
 const TABS = [
     { to: "/nha-tuyen-dung", label: "Đăng tin mới" },
     { to: "/nha-tuyen-dung/tin-da-dang", label: "Tin đã đăng" },
+    { to: "/nha-tuyen-dung/ung-vien", label: "Ứng viên" },
 ];
 
 function EmployerTabs() {
