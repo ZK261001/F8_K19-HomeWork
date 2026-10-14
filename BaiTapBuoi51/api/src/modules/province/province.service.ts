@@ -2,10 +2,12 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProvinceDto } from './dto/create-province.dto';
 import { UpdateProvinceDto } from './dto/update-province.dto';
 import { Province } from './entities/province.entity';
+import { WardService } from '../ward/ward.service';
 
 @Injectable()
 export class ProvinceService {
-  provinces: Province[] = [
+  constructor(private readonly wardService: WardService) {}
+  private provinces: Province[] = [
     { id: 29, name: 'Thành phố Hà Nội' },
     { id: 23, name: 'Tỉnh Hà Giang' },
     { id: 11, name: 'Tỉnh Cao Bằng' },
@@ -78,8 +80,11 @@ export class ProvinceService {
   findOne(id: number) {
     const province = this.provinces.find((p) => p.id === id);
     if (!province) {
-      throw new NotFoundException(`Candidate #${id} not found`);
+      throw new NotFoundException(`Province #${id} not found`);
     }
-    return province;
+    return {
+      ...province,
+      wards: this.wardService.findByProvince(id),
+    };
   }
 }

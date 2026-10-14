@@ -5,7 +5,7 @@ import { Candidate } from './entities/candidate.entity';
 
 @Injectable()
 export class CandidateService {
-  candidate: Candidate[] = [];
+  private candidate: Candidate[] = [];
   private nextId = 1;
 
   create(createCandidateDto: CreateCandidateDto) {

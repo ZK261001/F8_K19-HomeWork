@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CandidateModule } from './modules/candidate/candidate.module';
 import { ProvinceModule } from './modules/province/province.module';
+import { WardModule } from './modules/ward/ward.module';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -18,6 +19,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     }),
     CandidateModule,
     ProvinceModule,
+    WardModule,
   ],
   controllers: [AppController],
   providers: [AppService],
