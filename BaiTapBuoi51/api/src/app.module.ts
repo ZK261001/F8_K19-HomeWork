@@ -5,6 +5,11 @@ import { AppService } from './app.service';
 import { CandidateModule } from './modules/candidate/candidate.module';
 import { ProvinceModule } from './modules/province/province.module';
 import { WardModule } from './modules/ward/ward.module';
+import { CompanyModule } from './modules/company/company.module';
+import { CompanyAddressModule } from './modules/company_address/company_address.module';
+import { CvModule } from './modules/cv/cv.module';
+import { JobModule } from './modules/job/job.module';
+import { JobApplicationModule } from './modules/job_application/job_application.module';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -20,6 +25,11 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     CandidateModule,
     ProvinceModule,
     WardModule,
+    CompanyModule,
+    CompanyAddressModule,
+    CvModule,
+    JobModule,
+    JobApplicationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

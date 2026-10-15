@@ -10,8 +10,9 @@ import {
 import { WardService } from './ward.service';
 import { CreateWardDto } from './dto/create-ward.dto';
 import { UpdateWardDto } from './dto/update-ward.dto';
-import { ApiParam } from '@nestjs/swagger';
+import { ApiParam, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Ward')
 @Controller('ward')
 export class WardController {
   constructor(private readonly wardService: WardService) {}
