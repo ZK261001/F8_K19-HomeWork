@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { WardService } from './ward.service';
 import {
   ApiNotFoundResponse,
@@ -32,7 +32,7 @@ export class WardController {
   })
   @ApiOkResponse({ type: Ward })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  findOne(@Param('id') id: string) {
-    return this.wardService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.wardService.findOne(id);
   }
 }

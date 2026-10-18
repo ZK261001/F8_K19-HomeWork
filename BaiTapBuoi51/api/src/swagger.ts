@@ -6,6 +6,7 @@ export const swaggerConfig = new DocumentBuilder()
     'API cho hệ thống tuyển dụng: quản lý ứng viên, CV, công ty, tin tuyển dụng, đơn ứng tuyển và danh mục địa giới hành chính (tỉnh/thành, phường/xã).',
   )
   .setVersion('1.0')
+  .addServer(`http://localhost:${process.env.PORT ?? 3000}`, 'Local')
   .addTag('Candidate', 'Quản lý ứng viên')
   .addTag('CV', 'Quản lý CV của ứng viên')
   .addTag('Company', 'Quản lý công ty / nhà tuyển dụng')

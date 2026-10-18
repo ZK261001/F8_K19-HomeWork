@@ -40,7 +40,7 @@ export class CandidateService {
     return this.candidate[index];
   }
 
-  // Soft delete: chỉ đánh dấu active = false
+  // Soft delete
   remove(id: number) {
     const candidate = this.findOne(id);
     candidate.active = false;

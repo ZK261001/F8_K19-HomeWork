@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -43,8 +44,8 @@ export class CompanyAddressController {
   @ApiOperation({ summary: 'Lấy chi tiết địa chỉ công ty' })
   @ApiOkResponse({ type: CompanyAddress })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  findOne(@Param('id') id: string) {
-    return this.companyAddressService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.companyAddressService.findOne(id);
   }
 
   @Patch(':id')
@@ -58,15 +59,15 @@ export class CompanyAddressController {
   })
   @ApiOkResponse({ type: CompanyAddress })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  update(@Param('id') id: string, @Body() updateCompanyAddressDto: UpdateCompanyAddressDto) {
-    return this.companyAddressService.update(+id, updateCompanyAddressDto);
+  update(@Param('id', ParseIntPipe) id: number, @Body() updateCompanyAddressDto: UpdateCompanyAddressDto) {
+    return this.companyAddressService.update(id, updateCompanyAddressDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Xóa địa chỉ công ty' })
   @ApiOkResponse({ type: CompanyAddress, description: 'Bản ghi đã xóa' })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  remove(@Param('id') id: string) {
-    return this.companyAddressService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.companyAddressService.remove(id);
   }
 }

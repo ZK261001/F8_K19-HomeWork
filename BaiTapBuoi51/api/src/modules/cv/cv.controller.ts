@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -43,8 +44,8 @@ export class CvController {
   @ApiOperation({ summary: 'Lấy chi tiết CV' })
   @ApiOkResponse({ type: Cv })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  findOne(@Param('id') id: string) {
-    return this.cvService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.cvService.findOne(id);
   }
 
   @Patch(':id')
@@ -58,15 +59,15 @@ export class CvController {
   })
   @ApiOkResponse({ type: Cv })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  update(@Param('id') id: string, @Body() updateCvDto: UpdateCvDto) {
-    return this.cvService.update(+id, updateCvDto);
+  update(@Param('id', ParseIntPipe) id: number, @Body() updateCvDto: UpdateCvDto) {
+    return this.cvService.update(id, updateCvDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Xóa CV' })
   @ApiOkResponse({ type: Cv, description: 'Bản ghi đã xóa' })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  remove(@Param('id') id: string) {
-    return this.cvService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.cvService.remove(id);
   }
 }

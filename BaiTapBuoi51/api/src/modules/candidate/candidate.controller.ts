@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -43,8 +44,8 @@ export class CandidateController {
   @ApiOperation({ summary: 'Lấy chi tiết ứng viên' })
   @ApiOkResponse({ type: Candidate })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  findOne(@Param('id') id: string) {
-    return this.candidateService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.candidateService.findOne(id);
   }
 
   @Patch(':id')
@@ -58,15 +59,15 @@ export class CandidateController {
   })
   @ApiOkResponse({ type: Candidate })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  update(@Param('id') id: string, @Body() updateCandidateDto: UpdateCandidateDto) {
-    return this.candidateService.update(+id, updateCandidateDto);
+  update(@Param('id', ParseIntPipe) id: number, @Body() updateCandidateDto: UpdateCandidateDto) {
+    return this.candidateService.update(id, updateCandidateDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Xóa ứng viên (soft delete: active = false)' })
   @ApiOkResponse({ type: Candidate, description: 'Bản ghi đã xóa' })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  remove(@Param('id') id: string) {
-    return this.candidateService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.candidateService.remove(id);
   }
 }

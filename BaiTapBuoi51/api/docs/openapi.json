@@ -1190,7 +1190,12 @@
       "description": "Danh mục phường/xã"
     }
   ],
-  "servers": [],
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local"
+    }
+  ],
   "components": {
     "schemas": {
       "CreateCandidateDto": {

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -43,8 +44,8 @@ export class JobController {
   @ApiOperation({ summary: 'Lấy chi tiết tin tuyển dụng' })
   @ApiOkResponse({ type: Job })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  findOne(@Param('id') id: string) {
-    return this.jobService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.jobService.findOne(id);
   }
 
   @Patch(':id')
@@ -58,15 +59,15 @@ export class JobController {
   })
   @ApiOkResponse({ type: Job })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  update(@Param('id') id: string, @Body() updateJobDto: UpdateJobDto) {
-    return this.jobService.update(+id, updateJobDto);
+  update(@Param('id', ParseIntPipe) id: number, @Body() updateJobDto: UpdateJobDto) {
+    return this.jobService.update(id, updateJobDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Xóa tin tuyển dụng' })
   @ApiOkResponse({ type: Job, description: 'Bản ghi đã xóa' })
   @ApiNotFoundResponse({ description: 'Không tìm thấy' })
-  remove(@Param('id') id: string) {
-    return this.jobService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.jobService.remove(id);
   }
 }
