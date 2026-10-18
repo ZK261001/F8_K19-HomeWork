@@ -5,15 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Job Portal API</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui.css" />
 </head>
 
 <body>
-    <div id="swagger-ui"></div>
-    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui-bundle.js"></script>
-    <script>
-        window.ui = SwaggerUIBundle({ url: './openapi.json', dom_id: '#swagger-ui' });
-    </script>
+    <script id="api-reference" data-url="./openapi.json"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference@1.75.0"></script>
 </body>
 
 </html>

@@ -22,7 +22,4 @@ export class CreateCandidateDto {
 
   @ApiProperty({ example: 'Số 1 Đường ABC', required: false })
   addressDetail?: string;
-
-  @ApiProperty({ example: true, required: false })
-  active?: boolean;
 }
