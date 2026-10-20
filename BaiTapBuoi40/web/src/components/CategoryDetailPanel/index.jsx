@@ -13,7 +13,7 @@ function CategoryDetailPanel({ category, height }) {
             <div className={styles.section}>
                 <span className={styles.sectionTitle}>{category.name}</span>
                 <p>Xem tất cả tin tuyển dụng thuộc lĩnh vực {category.name}.</p>
-                <Link to={`/linh-vuc/${category.slug}`} className={styles.hotChip}>
+                <Link to={`/viec-lam?category=${category.slug}`} className={styles.hotChip}>
                     Xem việc làm {category.name}
                     <ChevronRightOutlined className={styles.hotChipIcon} />
                 </Link>

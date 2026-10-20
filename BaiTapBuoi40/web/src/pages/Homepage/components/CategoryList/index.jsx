@@ -24,7 +24,7 @@ const CategoryList = forwardRef(function CategoryList(
                 {visibleCategories.map((category) => (
                     <li key={category.id}>
                         <Link
-                            to={`/linh-vuc/${category.slug ?? category.id}`}
+                            to={`/viec-lam?category=${category.slug}`}
                             className={`${styles.item} ${category.id === activeId ? styles.itemActive : ""}`}
                             onMouseEnter={() => onHoverCategory?.(category.id)}
                         >

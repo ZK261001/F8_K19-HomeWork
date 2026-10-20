@@ -4,7 +4,6 @@ import JobSearchResults from "../pages/JobSearchResults";
 import JobDetail from "../pages/JobDetail";
 import CompanyList from "../pages/CompanyList";
 import CompanyDetail from "../pages/CompanyDetail";
-import CategoryDetail from "../pages/CategoryDetail";
 import SavedJobs from "../pages/SavedJobs";
 import AdminCompanies from "../pages/AdminCompanies";
 import Profile from "../pages/Profile";
@@ -26,7 +25,6 @@ function AppRoutes() {
                     <Route path="viec-lam" element={<JobSearchResults />} />
                     <Route path="viec-lam/:slug" element={<JobDetail />} />
                     <Route path="cong-ty/:id" element={<CompanyDetail />} />
-                    <Route path="linh-vuc/:slug" element={<CategoryDetail />} />
                     {/* Không bọc ProtectedRoute: SavedJobsContext có nhánh "guest"
                         nên khách chưa đăng nhập vẫn lưu và xem lại được. */}
                     <Route path="viec-lam-da-luu" element={<SavedJobs />} />

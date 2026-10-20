@@ -20,7 +20,7 @@ function JobSearchResults() {
     const [searchParams, setSearchParams] = useSearchParams();
     const keyword = searchParams.get("keyword") ?? "";
     const cityId = searchParams.get("city") ?? "";
-    const categoryId = searchParams.get("category") ?? "";
+    const categorySlug = searchParams.get("category") ?? "";
     const jobType = searchParams.get("jobType") ?? "";
     const salaryRange = searchParams.get("salary") ?? "";
     const experience = searchParams.get("exp") ?? "";
@@ -32,7 +32,7 @@ function JobSearchResults() {
     const [jobs, setJobs] = useState([]);
     const [categoryGroups, setCategoryGroups] = useState([]);
 
-    const filters = { categoryId, cityId, jobType, salaryRange, experience, gender, hotOnly };
+    const filters = { categorySlug, cityId, jobType, salaryRange, experience, gender, hotOnly };
 
     function updateParams(changes) {
         setSearchParams((prev) => {
@@ -62,7 +62,7 @@ function JobSearchResults() {
         () => categoryGroups.flatMap((group) => group.categories),
         [categoryGroups],
     );
-    const selectedCategory = categories.find((c) => c.id === categoryId);
+    const selectedCategory = categories.find((c) => c.slug === categorySlug);
     const selectedCity = findCityById(cityId);
 
     useEffect(() => {
@@ -77,7 +77,7 @@ function JobSearchResults() {
 
         fetchAllJobs({
             keyword: keyword || undefined,
-            categorySlug: selectedCategory?.slug,
+            categorySlug: categorySlug || undefined,
             cityId: cityId || undefined,
         })
             .then((data) => {
@@ -90,9 +90,7 @@ function JobSearchResults() {
         return () => {
             cancelled = true;
         };
-        // selectedCategory được suy ra từ categoryGroups nên chỉ cần theo dõi id đã chọn
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [keyword, cityId, categoryId, categoryGroups]);
+    }, [keyword, cityId, categorySlug]);
 
     // Kinh nghiệm là chuỗi tự do, danh sách lựa chọn lấy từ chính dữ liệu trả về.
     const experienceOptions = useMemo(
@@ -134,7 +132,9 @@ function JobSearchResults() {
     const headingSuffix = selectedCity ? ` tại ${selectedCity.name}` : "";
     const heading = keyword
         ? `Kết quả tìm kiếm cho "${keyword}"${headingSuffix} (${total} việc làm)`
-        : `Tất cả công việc${headingSuffix} (${total} việc làm)`;
+        : selectedCategory
+          ? `Việc làm ${selectedCategory.name}${headingSuffix} (${total} việc làm)`
+          : `Tất cả công việc${headingSuffix} (${total} việc làm)`;
 
     return (
         <div className={styles.page}>
