@@ -1,6 +1,4 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateWardDto } from './dto/create-ward.dto';
-import { UpdateWardDto } from './dto/update-ward.dto';
 import { Ward } from './entities/ward.entity';
 
 @Injectable()
