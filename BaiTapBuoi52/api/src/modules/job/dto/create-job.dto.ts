@@ -17,116 +17,116 @@ import {
 
 export class CreateJobDto {
   @ApiProperty({
-    description: 'ID danh mục ngành nghề',
+    description: 'Job category ID',
     example: 1,
   })
-  @IsInt({ message: 'category_id phải là số nguyên' })
+  @IsInt({ message: 'category_id must be an integer' })
   category_id: number;
 
   @ApiProperty({
-    description: 'ID công ty',
+    description: 'Company ID',
     example: 1,
   })
-  @IsInt({ message: 'company_id phải là số nguyên' })
+  @IsInt({ message: 'company_id must be an integer' })
   company_id: number;
 
   @ApiProperty({
-    description: 'Tiêu đề công việc',
+    description: 'Job title',
     example: 'Frontend Developer (ReactJS)',
   })
-  @IsString({ message: 'Tiêu đề phải là chuỗi' })
-  @IsNotEmpty({ message: 'Tiêu đề không được để trống' })
+  @IsString({ message: 'Title must be a string' })
+  @IsNotEmpty({ message: 'Title must not be empty' })
   title: string;
 
   @ApiProperty({
-    description: 'Mô tả công việc',
+    description: 'Job description',
     example: 'Phát triển giao diện web bằng ReactJS',
   })
-  @IsString({ message: 'Mô tả phải là chuỗi' })
-  @IsNotEmpty({ message: 'Mô tả không được để trống' })
+  @IsString({ message: 'Description must be a string' })
+  @IsNotEmpty({ message: 'Description must not be empty' })
   description: string;
 
   @ApiProperty({
-    description: 'Yêu cầu ứng viên',
+    description: 'Candidate requirements',
     example: 'Thành thạo HTML, CSS, JavaScript, ReactJS',
   })
-  @IsString({ message: 'Yêu cầu phải là chuỗi' })
-  @IsNotEmpty({ message: 'Yêu cầu không được để trống' })
+  @IsString({ message: 'Requirement must be a string' })
+  @IsNotEmpty({ message: 'Requirement must not be empty' })
   requirement: string;
 
   @ApiProperty({
-    description: 'Quyền lợi',
+    description: 'Benefits',
     example: 'Lương tháng 13, bảo hiểm đầy đủ',
     required: false,
   })
   @IsOptional()
-  @IsString({ message: 'Quyền lợi phải là chuỗi' })
+  @IsString({ message: 'Benefit must be a string' })
   benefit?: string;
 
   @ApiProperty({
-    description: 'Số năm kinh nghiệm',
+    description: 'Years of experience',
     example: 1,
   })
-  @IsInt({ message: 'Số năm kinh nghiệm phải là số nguyên' })
-  @Min(0, { message: 'Số năm kinh nghiệm không được âm' })
+  @IsInt({ message: 'Years of experience must be an integer' })
+  @Min(0, { message: 'Years of experience must not be negative' })
   experience: number;
 
   @ApiProperty({
-    description: 'Hạn nộp hồ sơ (YYYY-MM-DD)',
+    description: 'Application deadline (YYYY-MM-DD)',
     example: '2026-12-31',
   })
-  @IsDateString({}, { message: 'Hạn nộp phải có dạng YYYY-MM-DD' })
+  @IsDateString({}, { message: 'Due date must be in YYYY-MM-DD format' })
   due_date: string;
 
   @ApiProperty({
-    description: 'Số lượng tuyển',
+    description: 'Number of openings',
     example: 2,
   })
-  @IsInt({ message: 'Số lượng tuyển phải là số nguyên' })
-  @Min(1, { message: 'Số lượng tuyển ít nhất là 1' })
+  @IsInt({ message: 'Quantity must be an integer' })
+  @Min(1, { message: 'Quantity must be at least 1' })
   quantity: number;
 
   @ApiProperty({
-    description: 'Lương tối thiểu (VNĐ)',
+    description: 'Minimum salary (VND)',
     example: 10000000,
   })
-  @IsInt({ message: 'Lương tối thiểu phải là số nguyên' })
-  @Min(0, { message: 'Lương tối thiểu không được âm' })
+  @IsInt({ message: 'Minimum salary must be an integer' })
+  @Min(0, { message: 'Minimum salary must not be negative' })
   min_salary: number;
 
   @ApiProperty({
-    description: 'Lương tối đa (VNĐ)',
+    description: 'Maximum salary (VND)',
     example: 20000000,
   })
-  @IsInt({ message: 'Lương tối đa phải là số nguyên' })
-  @Min(0, { message: 'Lương tối đa không được âm' })
+  @IsInt({ message: 'Maximum salary must be an integer' })
+  @Min(0, { message: 'Maximum salary must not be negative' })
   max_salary: number;
 
   @ApiProperty({
-    description: 'Trình độ',
+    description: 'Qualification',
     enum: QUALIFICATIONS,
     example: 'Đại học',
   })
   @IsIn(QUALIFICATIONS, {
-    message: `Trình độ phải là một trong: ${QUALIFICATIONS.join(', ')}`,
+    message: `Qualification must be one of: ${QUALIFICATIONS.join(', ')}`,
   })
   qualification: Qualification;
 
   @ApiProperty({
-    description: 'Hình thức làm việc',
+    description: 'Work type',
     enum: WORK_TYPES,
     example: 'Full-time',
   })
   @IsIn(WORK_TYPES, {
-    message: `Hình thức làm việc phải là một trong: ${WORK_TYPES.join(', ')}`,
+    message: `Work type must be one of: ${WORK_TYPES.join(', ')}`,
   })
   work_type: WorkType;
 
   @ApiProperty({
-    description: 'Thời gian làm việc',
+    description: 'Working time',
     example: 'Thứ 2 - Thứ 6, 8:00 - 17:00',
   })
-  @IsString({ message: 'Thời gian làm việc phải là chuỗi' })
-  @IsNotEmpty({ message: 'Thời gian làm việc không được để trống' })
+  @IsString({ message: 'Working time must be a string' })
+  @IsNotEmpty({ message: 'Working time must not be empty' })
   working_time: string;
 }

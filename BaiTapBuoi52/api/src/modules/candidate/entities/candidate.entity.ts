@@ -1,11 +1,6 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-} from 'typeorm';
+import { ApiProperty } from '@nestjs/swagger';
+import { Column, Entity } from 'typeorm';
+import { BaseEntity } from '../../Base/entity';
 
 export enum Gender {
   MALE = 'male',
@@ -13,50 +8,33 @@ export enum Gender {
   OTHER = 'other',
 }
 
-@Entity()
-export class Candidate {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
+@Entity('candidates')
+export class Candidate extends BaseEntity {
+  @ApiProperty({ example: 'Nguyễn Văn A' })
+  @Column({ type: 'varchar', length: 255 })
   name: string;
 
-  @Column({ nullable: true })
-  phone: string;
+  @ApiProperty({ example: '0901234567', required: false })
+  @Column({ type: 'varchar', length: 20, nullable: true })
+  phone?: string;
 
-  @Column()
+  @ApiProperty({ example: 'nguyenvana@gmail.com' })
+  @Column({ type: 'varchar', length: 255 })
   email: string;
 
+  @ApiProperty({ enum: Gender, example: Gender.MALE })
   @Column({ type: 'enum', enum: Gender, default: Gender.MALE })
   gender: Gender;
 
-  @Column({ nullable: true })
+  @ApiProperty({ example: 1, required: false })
+  @Column({ type: 'int', nullable: true })
   province_id?: number;
 
-  @Column({ nullable: true })
+  @ApiProperty({ example: 1, required: false })
+  @Column({ type: 'int', nullable: true })
   ward_id?: number;
 
-  @Column({ type: 'varchar', nullable: true })
+  @ApiProperty({ example: '123 Đường ABC', required: false })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   addressDetail?: string;
-
-  @CreateDateColumn({ type: 'timestamptz' })
-  created_at: Date;
-
-  @Column({ type: 'bigint', nullable: true })
-  created_by?: number;
-
-  @UpdateDateColumn({ type: 'timestamptz' })
-  modified_at: Date;
-
-  @Column({ type: 'bigint', nullable: true })
-  modified_by?: number;
-
-  @DeleteDateColumn({ type: 'timestamptz', nullable: true })
-  deleted_at?: Date;
-
-  @Column({ type: 'bigint', nullable: true })
-  deleted_by?: number;
-
-  @Column({ type: 'boolean', default: true })
-  active: boolean;
 }

@@ -3,31 +3,31 @@ import { IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateCompanyAddressDto {
   @ApiProperty({
-    description: 'ID công ty',
+    description: 'Company ID',
     example: 1,
   })
-  @IsInt({ message: 'company_id phải là số nguyên' })
+  @IsInt({ message: 'company_id must be an integer' })
   company_id: number;
 
   @ApiProperty({
-    description: 'ID tỉnh/thành phố',
+    description: 'Province/city ID',
     example: 1,
   })
-  @IsInt({ message: 'province_id phải là số nguyên' })
+  @IsInt({ message: 'province_id must be an integer' })
   province_id: number;
 
   @ApiProperty({
-    description: 'ID phường/xã',
+    description: 'Ward ID',
     example: 1,
   })
-  @IsInt({ message: 'ward_id phải là số nguyên' })
+  @IsInt({ message: 'ward_id must be an integer' })
   ward_id: number;
 
   @ApiProperty({
-    description: 'Địa chỉ chi tiết',
+    description: 'Address detail',
     example: 'Số 1 Đường ABC',
   })
-  @IsString({ message: 'Địa chỉ chi tiết phải là chuỗi' })
-  @IsNotEmpty({ message: 'Địa chỉ chi tiết không được để trống' })
+  @IsString({ message: 'Address detail must be a string' })
+  @IsNotEmpty({ message: 'Address detail must not be empty' })
   address_detail: string;
 }

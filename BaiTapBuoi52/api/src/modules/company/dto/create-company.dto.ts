@@ -12,55 +12,55 @@ import {
 
 export class CreateCompanyDto {
   @ApiProperty({
-    description: 'Mã số thuế',
+    description: 'Tax code',
     example: '0312345678',
     required: false,
   })
   @IsOptional()
-  @IsString({ message: 'Mã số thuế phải là chuỗi' })
+  @IsString({ message: 'Tax code must be a string' })
   tax?: string;
 
   @ApiProperty({
-    description: 'Tên công ty',
+    description: 'Company name',
     example: 'Công ty TNHH F8',
   })
-  @IsString({ message: 'Tên công ty phải là chuỗi' })
-  @IsNotEmpty({ message: 'Tên công ty không được để trống' })
+  @IsString({ message: 'Company name must be a string' })
+  @IsNotEmpty({ message: 'Company name must not be empty' })
   name: string;
 
   @ApiProperty({
-    description: 'Tên tiếng Anh',
+    description: 'English name',
     example: 'F8 Company Limited',
     required: false,
   })
   @IsOptional()
-  @IsString({ message: 'Tên tiếng Anh phải là chuỗi' })
+  @IsString({ message: 'English name must be a string' })
   name_eng?: string;
 
   @ApiProperty({
-    description: 'Mô tả công ty',
+    description: 'Company description',
     example: 'Công ty chuyên đào tạo lập trình',
     required: false,
   })
   @IsOptional()
-  @IsString({ message: 'Mô tả phải là chuỗi' })
+  @IsString({ message: 'Description must be a string' })
   desc?: string;
 
   @ApiProperty({
-    description: 'Email liên hệ',
+    description: 'Contact email',
     example: 'contact@f8.edu.vn',
   })
-  @IsNotEmpty({ message: 'Email không được để trống' })
-  @IsEmail({}, { message: 'Email không hợp lệ' })
+  @IsNotEmpty({ message: 'Email must not be empty' })
+  @IsEmail({}, { message: 'Email is invalid' })
   email: string;
 
   @ApiProperty({
-    description: 'Số điện thoại',
+    description: 'Phone number',
     example: '0901234567',
     required: false,
   })
   @IsOptional()
-  @IsString({ message: 'Số điện thoại phải là chuỗi' })
+  @IsString({ message: 'Phone number must be a string' })
   phone?: string;
 
   @ApiProperty({
@@ -69,19 +69,19 @@ export class CreateCompanyDto {
     required: false,
   })
   @IsOptional()
-  @IsUrl({}, { message: 'Website không hợp lệ' })
+  @IsUrl({}, { message: 'Website is invalid' })
   website?: string;
 
   @ApiProperty({
-    description: 'Đánh giá (0 - 5)',
+    description: 'Rating (0 - 5)',
     example: 4.5,
     minimum: 0,
     maximum: 5,
     required: false,
   })
   @IsOptional()
-  @IsNumber({}, { message: 'Đánh giá phải là số' })
-  @Min(0, { message: 'Đánh giá thấp nhất là 0' })
-  @Max(5, { message: 'Đánh giá cao nhất là 5' })
+  @IsNumber({}, { message: 'Rating must be a number' })
+  @Min(0, { message: 'Rating must be at least 0' })
+  @Max(5, { message: 'Rating must be at most 5' })
   rate?: number;
 }
