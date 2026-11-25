@@ -1,35 +1,28 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { BaseService } from '../Base/service';
 import { Ward } from './entities/ward.entity';
+import { WARD_SEED } from './ward.seed';
 
 @Injectable()
-export class WardService {
-  private wards: Ward[] = [
-    { id: 1, province_id: 29, name: 'Phường Phúc Xá' },
-    { id: 2, province_id: 29, name: 'Phường Trúc Bạch' },
-    { id: 3, province_id: 29, name: 'Phường Vĩnh Phúc' },
-    { id: 4, province_id: 29, name: 'Phường Cống Vị' },
-    { id: 5, province_id: 29, name: 'Phường Liễu Giai' },
-    { id: 6, province_id: 29, name: 'Phường Nguyễn Trung Trực' },
-    { id: 7, province_id: 29, name: 'Phường Quán Thánh' },
-    { id: 8, province_id: 29, name: 'Phường Thành Công' },
-    { id: 9, province_id: 29, name: 'Phường Điện Biên' },
-    { id: 10, province_id: 29, name: 'Phường Đội Cấn' },
-  ];
-
-  findAll() {
-    return this.wards;
+export class WardService extends BaseService<Ward> implements OnModuleInit {
+  constructor(
+    @InjectRepository(Ward)
+    repository: Repository<Ward>,
+  ) {
+    super(repository);
   }
 
-  findOne(id: number) {
-    const ward = this.wards.find((w) => w.id === id);
-    if (!ward) {
-      throw new NotFoundException(`Ward #${id} not found`);
+  async onModuleInit() {
+    if ((await this.repository.count()) === 0) {
+      await this.repository.insert(WARD_SEED);
     }
-
-    return ward;
   }
 
-  findByProvince(provinceId: number) {
-    return this.wards.filter((w) => w.province_id === provinceId);
+  findByProvince(provinceId: number): Promise<Ward[]> {
+    return this.repository.find({
+      where: { province_id: provinceId, active: true },
+    });
   }
 }
