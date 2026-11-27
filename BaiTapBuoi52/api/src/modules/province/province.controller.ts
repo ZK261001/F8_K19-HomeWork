@@ -15,23 +15,30 @@ export class ProvinceController {
   constructor(private readonly provinceService: ProvinceService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Lấy danh sách tỉnh/thành phố' })
+  @ApiOperation({ summary: 'Get list of provinces' })
   @ApiOkResponse({ type: [Province] })
   findAll() {
     return this.provinceService.findAll();
   }
 
+  @Get('columns')
+  @ApiOperation({ summary: 'Get province columns' })
+  @ApiOkResponse({ type: [String] })
+  getColumns() {
+    return this.provinceService.getColumns();
+  }
+
   @Get(':id')
-  @ApiOperation({ summary: 'Lấy chi tiết tỉnh/thành phố kèm danh sách phường/xã' })
+  @ApiOperation({ summary: 'Get province detail with its wards' })
   @ApiParam({
     name: 'id',
     type: 'number',
     example: 29,
     required: true,
-    description: 'ID của thành phố',
+    description: 'Province ID',
   })
   @ApiOkResponse({ type: ProvinceDetail })
-  @ApiNotFoundResponse({ description: 'Không tìm thấy' })
+  @ApiNotFoundResponse({ description: 'Not found' })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.provinceService.findOne(id);
   }

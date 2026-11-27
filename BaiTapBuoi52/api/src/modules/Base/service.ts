@@ -7,6 +7,11 @@ import { BaseEntity } from './entity';
 export abstract class BaseService<T extends BaseEntity> {
   constructor(protected readonly repository: Repository<T>) {}
 
+  // Get entity property names
+  getColumns() {
+    return Object.keys(this.repository.metadata.propertiesMap);
+  }
+
   // Where clause that always adds active = true (skips soft-deleted rows)
   private activeWhere(extra: object = {}): FindOptionsWhere<T> {
     return { ...extra, active: true } as FindOptionsWhere<T>;

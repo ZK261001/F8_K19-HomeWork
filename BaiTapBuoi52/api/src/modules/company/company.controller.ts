@@ -27,46 +27,53 @@ export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Tạo công ty' })
+  @ApiOperation({ summary: 'Create company' })
   @ApiCreatedResponse({ type: Company })
   create(@Body() createCompanyDto: CreateCompanyDto) {
     return this.companyService.create(createCompanyDto);
   }
 
   @Get()
-  @ApiOperation({ summary: 'Lấy danh sách công ty' })
+  @ApiOperation({ summary: 'Get list of companies' })
   @ApiOkResponse({ type: [Company] })
   findAll() {
     return this.companyService.findAll();
   }
 
+  @Get('columns')
+  @ApiOperation({ summary: 'Get company columns' })
+  @ApiOkResponse({ type: [String] })
+  getColumns() {
+    return this.companyService.getColumns();
+  }
+
   @Get(':id')
-  @ApiOperation({ summary: 'Lấy chi tiết công ty' })
+  @ApiOperation({ summary: 'Get company detail' })
   @ApiOkResponse({ type: Company })
-  @ApiNotFoundResponse({ description: 'Không tìm thấy' })
+  @ApiNotFoundResponse({ description: 'Not found' })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.companyService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOperation({
-    summary: 'Cập nhật một phần công ty',
-    description: 'Chỉ gửi các field cần sửa, các field khác giữ nguyên.',
+    summary: 'Partially update company',
+    description: 'Send only the fields to change; other fields stay unchanged.',
   })
   @ApiBody({
     type: UpdateCompanyDto,
-    examples: { 'Cập nhật 1 field': { value: { phone: '0909999999' } } },
+    examples: { 'Update one field': { value: { phone: '0909999999' } } },
   })
   @ApiOkResponse({ type: Company })
-  @ApiNotFoundResponse({ description: 'Không tìm thấy' })
+  @ApiNotFoundResponse({ description: 'Not found' })
   update(@Param('id', ParseIntPipe) id: number, @Body() updateCompanyDto: UpdateCompanyDto) {
     return this.companyService.update(id, updateCompanyDto);
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Xóa công ty' })
-  @ApiOkResponse({ type: Company, description: 'Bản ghi đã xóa' })
-  @ApiNotFoundResponse({ description: 'Không tìm thấy' })
+  @ApiOperation({ summary: 'Delete company (soft delete: active = false)' })
+  @ApiOkResponse({ type: Company, description: 'Deleted record' })
+  @ApiNotFoundResponse({ description: 'Not found' })
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.companyService.remove(id);
   }

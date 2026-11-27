@@ -15,23 +15,30 @@ export class WardController {
   constructor(private readonly wardService: WardService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Lấy danh sách phường/xã' })
+  @ApiOperation({ summary: 'Get list of wards' })
   @ApiOkResponse({ type: [Ward] })
   findAll() {
     return this.wardService.findAll();
   }
 
+  @Get('columns')
+  @ApiOperation({ summary: 'Get ward columns' })
+  @ApiOkResponse({ type: [String] })
+  getColumns() {
+    return this.wardService.getColumns();
+  }
+
   @Get(':id')
-  @ApiOperation({ summary: 'Lấy chi tiết phường/xã' })
+  @ApiOperation({ summary: 'Get ward detail' })
   @ApiParam({
     name: 'id',
     type: 'number',
     example: 1,
     required: true,
-    description: 'ID của phường/xã',
+    description: 'Ward ID',
   })
   @ApiOkResponse({ type: Ward })
-  @ApiNotFoundResponse({ description: 'Không tìm thấy' })
+  @ApiNotFoundResponse({ description: 'Not found' })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.wardService.findOne(id);
   }

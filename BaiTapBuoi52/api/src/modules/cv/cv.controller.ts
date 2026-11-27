@@ -27,46 +27,53 @@ export class CvController {
   constructor(private readonly cvService: CvService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Tạo CV' })
+  @ApiOperation({ summary: 'Create CV' })
   @ApiCreatedResponse({ type: Cv })
   create(@Body() createCvDto: CreateCvDto) {
     return this.cvService.create(createCvDto);
   }
 
   @Get()
-  @ApiOperation({ summary: 'Lấy danh sách CV' })
+  @ApiOperation({ summary: 'Get list of CVs' })
   @ApiOkResponse({ type: [Cv] })
   findAll() {
     return this.cvService.findAll();
   }
 
+  @Get('columns')
+  @ApiOperation({ summary: 'Get CV columns' })
+  @ApiOkResponse({ type: [String] })
+  getColumns() {
+    return this.cvService.getColumns();
+  }
+
   @Get(':id')
-  @ApiOperation({ summary: 'Lấy chi tiết CV' })
+  @ApiOperation({ summary: 'Get CV detail' })
   @ApiOkResponse({ type: Cv })
-  @ApiNotFoundResponse({ description: 'Không tìm thấy' })
+  @ApiNotFoundResponse({ description: 'Not found' })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.cvService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOperation({
-    summary: 'Cập nhật một phần CV',
-    description: 'Chỉ gửi các field cần sửa, các field khác giữ nguyên.',
+    summary: 'Partially update CV',
+    description: 'Send only the fields to change; other fields stay unchanged.',
   })
   @ApiBody({
     type: UpdateCvDto,
-    examples: { 'Cập nhật 1 field': { value: { title: 'CV Backend Developer' } } },
+    examples: { 'Update one field': { value: { title: 'CV Backend Developer' } } },
   })
   @ApiOkResponse({ type: Cv })
-  @ApiNotFoundResponse({ description: 'Không tìm thấy' })
+  @ApiNotFoundResponse({ description: 'Not found' })
   update(@Param('id', ParseIntPipe) id: number, @Body() updateCvDto: UpdateCvDto) {
     return this.cvService.update(id, updateCvDto);
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Xóa CV' })
-  @ApiOkResponse({ type: Cv, description: 'Bản ghi đã xóa' })
-  @ApiNotFoundResponse({ description: 'Không tìm thấy' })
+  @ApiOperation({ summary: 'Delete CV (soft delete: active = false)' })
+  @ApiOkResponse({ type: Cv, description: 'Deleted record' })
+  @ApiNotFoundResponse({ description: 'Not found' })
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.cvService.remove(id);
   }

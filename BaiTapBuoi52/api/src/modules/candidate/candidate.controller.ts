@@ -27,38 +27,45 @@ export class CandidateController {
   constructor(private readonly candidateService: CandidateService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Tạo ứng viên' })
+  @ApiOperation({ summary: 'Create candidate' })
   @ApiCreatedResponse({ type: Candidate })
   create(@Body() createCandidateDto: CreateCandidateDto) {
     return this.candidateService.create(createCandidateDto);
   }
 
   @Get()
-  @ApiOperation({ summary: 'Lấy danh sách ứng viên' })
+  @ApiOperation({ summary: 'Get list of candidates' })
   @ApiOkResponse({ type: [Candidate] })
   findAll() {
     return this.candidateService.findAll();
   }
 
+  @Get('columns')
+  @ApiOperation({ summary: 'Get candidate columns' })
+  @ApiOkResponse({ type: [String] })
+  getColumns() {
+    return this.candidateService.getColumns();
+  }
+
   @Get(':id')
-  @ApiOperation({ summary: 'Lấy chi tiết ứng viên' })
+  @ApiOperation({ summary: 'Get candidate detail' })
   @ApiOkResponse({ type: Candidate })
-  @ApiNotFoundResponse({ description: 'Không tìm thấy' })
+  @ApiNotFoundResponse({ description: 'Not found' })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.candidateService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOperation({
-    summary: 'Cập nhật một phần ứng viên',
-    description: 'Chỉ gửi các field cần sửa, các field khác giữ nguyên.',
+    summary: 'Partially update candidate',
+    description: 'Send only the fields to change; other fields stay unchanged.',
   })
   @ApiBody({
     type: UpdateCandidateDto,
-    examples: { 'Cập nhật 1 field': { value: { phone: '0987654321' } } },
+    examples: { 'Update one field': { value: { phone: '0987654321' } } },
   })
   @ApiOkResponse({ type: Candidate })
-  @ApiNotFoundResponse({ description: 'Không tìm thấy' })
+  @ApiNotFoundResponse({ description: 'Not found' })
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateCandidateDto: UpdateCandidateDto,
@@ -67,9 +74,9 @@ export class CandidateController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Xóa ứng viên (soft delete: active = false)' })
-  @ApiOkResponse({ type: Candidate, description: 'Bản ghi đã xóa' })
-  @ApiNotFoundResponse({ description: 'Không tìm thấy' })
+  @ApiOperation({ summary: 'Delete candidate (soft delete: active = false)' })
+  @ApiOkResponse({ type: Candidate, description: 'Deleted record' })
+  @ApiNotFoundResponse({ description: 'Not found' })
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.candidateService.remove(id);
   }
